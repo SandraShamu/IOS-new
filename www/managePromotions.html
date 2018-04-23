@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.headerImage_top{
+				height: 150px;
+				float: left;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.headerImage_top span{
+				line-height: 150px;
+				font-size: 7em;
+				color: #ffffff;
+			}
+			
+			.headerImage_bottom{
+				height: 50px;
+				float: left;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.headerImage_bottom span{
+				line-height: 50px;
+				color: #ffffff;
+				font-size: 1.19em;
+			}
+			
+			.arrowGo{
+				width: 10%;
+				height: 100%;
+				float: left;
+				line-height: 40px;
+			}
+			
+			.goRight{
+				color: 
+			}
+			
+			.containsPromos{
+				height: auto;
+				float: left;
+				width: 100%;
+			}
+			
+			.serviceName, .servicePromotion{
+				color: #666;
+			}
+			
+			.serviceName{
+				font-weight: bold;
+			}
+			
+			.iconSize{
+				font-size: 18px;
+			}
+			
+			.iarrowIcon, .promotionStatus{
+				line-height: 45px;
+			}
+			
+			.promoContainer{
+				border-bottom: 1px solid #e6e6e6;
+			}
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <!--<img src="images/bars.svg" class="menuBurger" data-activates="slide-out">-->
+			  <a href="salonDashboard.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Promotions<!--<img src="images/logo.png" class="gLogo">--></a>
+			</div>
+		 </nav>
+		 </div>
+		  <a href="manageBookings.html"><div class="headerImage" style="background: url('images/2.jpg');">
+			<div class="headerImage_top">
+				
+			</div>
+			<div class="headerImage_bottom">
+				
+			</div>
+		 </div>
+		 <div class="lollipopColorsContainer">
+			<div class="lollipopColor" style="background: rgb(134, 232, 175);"></div>
+			<div class="lollipopColor" style="background: rgb(49, 158, 94);"></div>
+			<div class="lollipopColor" style="background: rgb(229, 141, 87);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 248, 153);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 218, 96);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 132, 167);"></div>
+			<div class="lollipopColor" style="background: rgb(237, 28, 59);"></div>
+		</div>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+			  <div class="row">
+				<div class="input-field col s12">
+					<a href="addPromotion.html"><button class="btn-large waves-effect waves-light addPrommo" style="width: 100%;" >Add</button></a>
+				</div>
+			  </div>
+			</div>
+		</div>
+		<section class="containsPromos">
+			
+		</section>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script>
+			checkLogin();
+			countPromos(salonId);
+			listOfPromos(salonId);
+			
+			function viewPromotion(item) {
+					
+				promoID = $("#" + item).attr("data-promo-id");
+				
+				localStorage.setItem('promoId', promoID);
+				if(promoID > 0){
+					window.location.href = "updatePromotion.html";
+				}
+			}
+		</script>
+	</body>
+</html>

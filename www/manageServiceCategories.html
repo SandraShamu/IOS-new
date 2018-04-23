@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/loader.js"></script>	
+		<style>
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;	
+			}
+			
+			.serviceCategoryRow{
+				width: 100%;
+				float: left;
+				text-align: center;
+				height: 75px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				border-bottom: 1px solid #e6e6e6;
+			}
+			
+			.serviceCategoryRow_left{
+				height: 100%;
+				width: 40%;
+				float: left;
+				text-align: center;
+			}
+			
+			.switch{
+				line-height: 55px;
+			}
+			
+			.serviceCategoryRow_right{
+				height: 100%;
+				width: 60%;
+				float: left;
+				text-align: left;
+			}
+			
+			.serviceCategoryRow_right span{
+				font-size: 1.4em;
+				line-height: 55px;
+			}
+			
+			.spaceTop{
+				width: 100%;
+				float: left;
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="salonServices.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Service Categories</a>
+			</div>
+		</nav>
+		<section>
+			<div class="serviceCategoryRow">
+				<div class="serviceCategoryRow_left">
+					<div class="switch">
+					<label>
+					  
+					  <input type="checkbox" name="checkbox1" id="checkbox1">
+					  <span class="lever"></span>
+					  
+					</label>
+				  </div>
+				</div>
+				<div class="serviceCategoryRow_right">
+					<span>Make-Up</span>
+				</div>
+			</div>
+			
+			<div class="serviceCategoryRow">
+				<div class="serviceCategoryRow_left">
+					<div class="switch">
+					<label>
+					  
+					  <input type="checkbox" name="checkbox2" id="checkbox2">
+					  <span class="lever"></span>
+					  
+					</label>
+				  </div>
+				</div>
+				<div class="serviceCategoryRow_right">
+					<span>Hair</span>
+				</div>
+			</div>
+			
+			<div class="serviceCategoryRow">
+				<div class="serviceCategoryRow_left">
+					<div class="switch">
+					<label>
+					  
+					  <input type="checkbox" name="checkbox3" id="checkbox3">
+					  <span class="lever"></span>
+					  
+					</label>
+				  </div>
+				</div>
+				<div class="serviceCategoryRow_right">
+					<span>Nails</span>
+				</div>
+			</div>
+			
+			<div class="serviceCategoryRow">
+				<div class="serviceCategoryRow_left">
+					<div class="switch">
+					<label>
+					  
+					  <input type="checkbox" name="checkbox4" id="checkbox4">
+					  <span class="lever"></span>
+					  
+					</label>
+				  </div>
+				</div>
+				<div class="serviceCategoryRow_right">
+					<span>Massage</span>
+				</div>
+			</div>
+			
+			<div class="serviceCategoryRow">
+				<div class="serviceCategoryRow_left">
+					<div class="switch">
+					<label>
+					  
+					  <input type="checkbox" name="checkbox5" id="checkbox5">
+					  <span class="lever"></span>
+					  
+					</label>
+				  </div>
+				</div>
+				<div class="serviceCategoryRow_right">
+					<span>Waxing</span>
+				</div>
+			</div>
+			
+			<div class="serviceCategoryRow">
+				<div class="serviceCategoryRow_left">
+					<div class="switch">
+					<label>
+					  
+					  <input type="checkbox" name="checkbox6" id="checkbox6">
+					  <span class="lever"></span>
+					  
+					</label>
+				  </div>
+				</div>
+				<div class="serviceCategoryRow_right">
+					<span>Barber</span>
+				</div>
+			</div>
+			<div class="spaceTop"></div>
+			<div class="row">
+				<div class="input-field col s12">
+					<button class="btn waves-effect waves-light updateServiceCategories" style="width: 100%; background: #666;" type="submit" name="action">Update Service Categories</button>
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript">
+			checkLogin();
+			getCurrentServiceCategories();
+			$('.updateServiceCategories').click(function() 
+			{
+				var complete = 1;
+				var categories = [];
+				
+				if($('#checkbox1').is(":checked")){
+					//alert("Checked");
+					categories.push("1");
+				}
+				
+				if($('#checkbox2').is(":checked")){
+					//alert("Checked");
+					categories.push("2");
+				}
+				
+				if($('#checkbox3').is(":checked")){
+					//alert("Checked");
+					categories.push("3");
+				}
+				
+				if($('#checkbox4').is(":checked")){
+					//alert("Checked");
+					categories.push("4");
+				}
+				
+				if($('#checkbox5').is(":checked")){
+					//alert("Checked");
+					categories.push("5");
+				}
+				
+				if($('#checkbox6').is(":checked")){
+					//alert("Checked");
+					categories.push("6");
+				}
+				
+				if(complete == 1)
+				{
+					
+					upateServiceCategories(salonId, categories);
+					
+				}
+			});
+			
+		</script>
+	</body>
+</html>

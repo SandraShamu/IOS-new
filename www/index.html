@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loaderHome.js"></script>
+		<style>
+			.caption h3{
+				position: relative;
+				top: 150px;
+				font-size: 2.1em;
+				font-weight: 100;
+			}
+			
+			.serviceCategoryIcons{
+				width: 10px;
+				position: relative;
+				top: 150px;
+			}
+			
+			.logoContainer{
+				width: 100%;
+				float: left;
+				
+				height: 100px;
+				position: absolute;
+				text-align: center;
+				z-index: 99;
+			}
+			
+			.buttonsContainer{
+				width: 100%;
+				float: left;				
+				height: 100px;
+				position: absolute;
+				bottom: 0;
+				z-index: 999;
+			}
+			
+			.buttonsContainer_half{
+				width: 50%;
+				height: 100%;
+				text-align: center;
+				float: left;
+			}
+			
+			.buttonsContainer_half button{
+				position: relative;
+				top: 35px;
+				
+			}
+			
+			.logoContainer img{
+				width: 200px;
+			}
+			
+			.indicator-item{
+				position: relative;
+				top: -90px;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<img src="images/logo.png">
+		</div>
+		<div class="logoContainer">
+			<img src="images/logoWhite.svg">
+		</div>
+		 <div class="slider fullscreen">
+			<ul class="slides">
+			  <li>
+				<img src="images/1.jpg"> <!-- random image -->
+				<div class="caption left-align">
+				  <h3 class="light grey-text text-lighten-3">Beauty Parlors</h3>
+				  <img class="serviceCategoryIcons" style="width: 90px;" src="images/home-icons/make-up.svg">
+				</div>
+			  </li>
+			  <li>
+				<img src="images/2.jpg"> <!-- random image -->
+				<div class="caption left-align">
+				 <h3 class="light grey-text text-lighten-3">Hair Salons</h3>
+				 <img class="serviceCategoryIcons" style="width: 90px;" src="images/home-icons/hair.svg">
+				</div>
+			  </li>
+			  <li>
+				<img src="images/3.jpg"> <!-- random image -->
+				<div class="caption left-align">
+				 <h3 class="light grey-text text-lighten-3">Nail Salons</h3>
+				 <img class="serviceCategoryIcons" style="width: 90px;" src="images/home-icons/nails.svg">
+				</div>
+			  </li>
+			  <li>
+				<img src="images/4.jpg"> <!-- random image -->
+				<div class="caption left-align">
+				  <h3 class="light grey-text text-lighten-3">Spas</h3>
+				  <img class="serviceCategoryIcons" style="width: 90px;" src="images/home-icons/massage.svg">
+				</div>
+			  </li>
+			  <li>
+				<img src="images/5.jpg"> <!-- random image -->
+				<div class="caption left-align">
+				  <h3 class="light grey-text text-lighten-3">Waxing</h3>
+				  <img class="serviceCategoryIcons" style="width: 90px;" src="images/home-icons/waxing.svg">
+				</div>
+			  </li>
+			  <li>
+				<img src="images/6.jpg"> <!-- random image -->
+				<div class="caption left-align">
+				  <h3 class="light grey-text text-lighten-3">Barbers</h3>
+				  <img class="serviceCategoryIcons" style="width: 90px;" src="images/home-icons/barber.svg">
+				</div>
+			  </li>
+			</ul>
+	  </div>
+	  <div class="buttonsContainer">
+			<div class="buttonsContainer_half">
+				 <button class="btn waves-effect waves-light login" type="submit" name="action">Login</button>
+			</div>
+			<div class="buttonsContainer_half">
+				 <button class="btn waves-effect waves-light sign-up" type="submit" name="action">Sign Up</button>
+			</div>
+		</div>
+    </body>
+	<script src="js/functions.js"></script>
+	<script>
+		 $(document).ready(function(){
+		  $('.slider').slider({full_width: true});
+		});
+		
+		function checkLoginHome()
+		{
+			if(userId == '' || accessKey == '' || type == '')
+			{
+				localStorage.setItem('accessKey', '');
+				localStorage.setItem('userId', '');
+				localStorage.setItem('type', '');
+				localStorage.setItem('userEmail', '');
+			}
+			else
+			{
+				if(type == 'normalUser')
+				{
+					verifyLoginHome('user_profile', 'email', userEmail);
+					verifyLoginHome('user_profile', 'accessKey', accessKey);
+				}
+				else if(type == 'salonUser')
+				{
+					verifyLoginHome('salon_profile', 'company_email_address', userEmail);
+					verifyLoginHome('salon_profile', 'accessKey', accessKey);
+				}
+				else if(type == 'employeeUser')
+				{
+					verifyLoginHome('salon_employees', 'employee_email', userEmail);
+					verifyLoginHome('salon_employees', 'accessKey', accessKey);
+				}
+			}
+		}
+		
+		function verifyLoginHome(base, dataName, data)
+		{	
+
+			$.ajax
+			({
+			   url: 'https://lollipopbeauty.co.za/Website_1/api/checkData.php?base='+ base +'&dataName='+ dataName +'&data='+ data,
+			   dataType: 'jsonp',
+			   jsonp: 'jsoncallback',
+			   timeout: 10000,
+			   success: function(data, status)
+			   {	
+					if(data !== true)
+					{
+						window.location.href = "logout.html";
+					}else{
+						if(base == 'salon_profile'){
+							window.location.href = "salonDashboard.html";
+						}else if(base == 'salon_employees'){
+							window.location.href = "salonEmployeeDashboard.html";
+						}else if (base == 'user_profile'){
+							window.location.href = "main.html";
+						}else{
+							window.location.href = "logout.html";
+						}
+					}
+			   },
+			   error: function()
+			   {	
+					failure('Could not connect. Please try again.');
+			   }
+			});
+		}
+		
+		checkLoginHome();
+		
+	</script>
+</html>

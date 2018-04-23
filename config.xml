@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.dfm.lollipop" version="1.1.84" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Lollipop Beauty</name>
+    <description>
+       Beauty when you want it Where you want it.
+    </description>
+    <author email="santaptech@gmail.com" href="https://lollipopbeauty.co.za/">
+        Lollipop Beauty Team
+    </author>
+    <content src="index.html" />
+    <preference name="phonegap-version" value="cli-8.0.0" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="ios">
+        <!-- iOS 8.0+ -->
+        <!-- iPhone 6 Plus  -->
+        <icon src="res/icon/ios/icon_180.png" platform="ios" width="180" height="180" />
+        <!-- iOS 7.0+ -->
+        <!-- iPhone / iPod Touch  -->
+        <icon src="res/icon/ios/icon-60.png"  platform="ios" width="60" height="60" />
+        <icon src="res/icon/ios/icon-120.png" platform="ios" width="120" height="120" />
+        <!-- iPad -->
+        <icon src="res/icon/ios/icon_76.png" platform="ios" width="76" height="76" />
+        <icon src="res/icon/ios/icon-152.png" platform="ios" width="152" height="152" />
+        <icon src="www/res/icon/ios/icon-76@2x.png" platform="ios" width="152"  height="152" />
+
+        <!-- Spotlight Icon -->
+        <icon src="res/icon/ios/icon_40.png" platform="ios" width="40" height="40" />
+        <icon src="res/icon/ios/icon_80.png" platform="ios" width="80" height="80" />
+        <!-- iOS 6.1 -->
+        <!-- iPhone / iPod Touch -->
+        <icon src="res/icon/ios/icon_57.png" platform="ios" width="57" height="57" />
+        <icon src="res/icon/ios/icon_114.png" platform="ios" width="114" height="114" />
+        <!-- iPad -->
+        <icon src="res/icon/ios/icon_72.png" platform="ios" width="72" height="72" />
+        <icon src="res/icon/ios/icon_144.png" platform="ios" width="144" height="144" />
+        <!-- iPad Pro -->
+        <icon src="res/icon/ios/icon_167.png" platform="ios" width="167" height="167" />
+        <!-- iPhone Spotlight and Settings Icon -->
+        <icon src="res/icon/ios/icon_29.png" platform="ios" width="29" height="29" />
+        <icon src="res/icon/ios/icon_58.png" platform="ios" width="58"   height="58" />
+        <!-- iPad Spotlight and Settings Icon -->
+        <icon src="res/icon/ios/icon_50.png" platform="ios" width="50" height="50" />
+        <icon src="res/icon/ios/icon_100.png" platform="ios" width="100" height="100" />
+        <!-- iPad Pro -->
+        <icon src="res/icon/ios/icon_167" platform="ios" width="167" height="167" />
+
+
+        <splash src="splash_1136.png" platform="ios" width="640" height="1136"/>
+        <splash src="splash_750.png" platform="ios" width="750" height="1334"/>
+        <splash src="splash_1242.png" platform="ios" width="1242" height="2208"/>
+        <splash src="splash_2208.png" platform="ios" width="2208" height="1242"/>
+        
+        <splash src="splash_640.png" platform="ios" width="640" height="960"/>
+        <splash src="splash_320.png" platform="ios" width="320" height="480"/>
+    </platform>
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+     <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+ 
+  
+    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
+    <plugin name="cordova-plugin-facebook" spec="^0.2.2">
+        <variable name="FACEBOOK_DISPLAY_NAME" value="Lollipo" />
+        <variable name="FACEBOOK_APP_ID" value="921573651357574" />
+    </plugin>
+    <plugin name="cordova-plugin-googleplus" spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.574999593306-i2t1f04g4qbg377fu18k8rhddpnf0fpl" />
+    </plugin>
+    <plugin name="cordova-plugin-geolocation" spec="https://github.com/apache/cordova-plugin-geolocation.git">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Lollipop uses you location to show you available stylists near your location" />
+    </plugin>
+    <plugin name="cordova-plugin-camera" spec="^4.0.2">
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Lollipop use image for profile"/>
+    </plugin>
+    <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+    <string>Lollipop uses you location to show you available stylists near your location</string>
+    </edit-config>
+  
+    <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
+    <string>Lollipop needs access to your Photo Library to use as profile.</string>
+   </edit-config>
+   <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+    <string>Lollipop needs access to your Photo Library to use as profile.</string>
+   </edit-config>
+
+    <plugin name="cc.fovea.cordova.purchase" spec="^7.1.2"><variable name="BILLING_KEY" value="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk/esIUW4YlTEu/JsPqCr0mWhHYxTDoRvmX8V8bHtiH5WRC2wXk+SZPdbv6bD7NBrouJqNjkxNiNvpHNYvTELKt+X7uAQDtPiou8I5qNIm2do9CP0tm7bdspPMqdfIo9pVi89+dSvZxc45ze3D5T/PeMMRH2iIz/Sr115zfORAkrizh7tEwAisXnla3TZ0vsvpzy1e1jfKhXD/GwmHOJf4G67zaHONOkx9ZxNtEL4jQHxoC/a5M5Aw9RMN46yapC4xPFZXxedxtnRwL4u4DwWds0AZ54uUd9JNWSUURzl0FN4Zdw/aV5kO1OkerEtZwVtNCIaaDHxrvX/+uBxfG6DFwIDAQAB"/></plugin>
+   
+    <engine name="browser" spec="^5.0.3" />
+    <engine name="android" spec="^7.0.0" />
+</widget>

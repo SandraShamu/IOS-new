@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.menuBurger{
+				width: 35px;
+				position: relative;
+				top: 2px;
+				left: 15px;
+			}
+		
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.logoContainer img{
+				width: 200px;
+			}
+			
+			.indicator-item{
+				position: relative;
+				top: -50px;
+				z-index: 99;
+			}
+			
+			.gLogo{
+				width: 100px;
+				position: relative;
+				top: -10px;
+			}
+			
+			._sliderOverlay{
+				height: 400px;
+				width: 100%;
+				background: rgba(89,89,89,0.4);
+				position: absolute;
+				z-index: 99;
+			}
+			
+			.search-icon{
+				float: right;
+				position: relative;
+				top: 4px;
+				left: -25px;
+				font-size: 24px;
+			}
+			
+			.search_result{
+				width: 100%;
+				float: left;
+				color: #666;
+				font-weight: bold;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			.search_result span{
+				font-size: 1.4em;
+			}
+			
+			.slideInSearch{
+				width: 100%;
+				height: auto;
+				background: #ffffff;
+				position: absolute;
+				top: -300px;
+				text-align: center;
+				z-index: 9999;
+			}
+			
+			.close-search{
+				width: 100%;
+				height: 35px;
+				background: #666;
+				text-align: center;
+				position: relative;
+				
+			}
+			
+			.close-search img{
+				height: 30px;
+				position: relative;
+				top: 5px;
+			}
+			
+			.headerImage_top{
+				height: 150px;
+				float: left;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.headerImage_top span{
+				line-height: 150px;
+				font-size: 7em;
+				color: #ffffff;
+			}
+			
+			.headerImage_bottom{
+				height: 50px;
+				float: left;
+				width: 100%;
+				text-align: center;
+				color: #ffffff;
+			}
+			
+			.headerImage_bottom span{
+				line-height: 50px;
+				color: #666;
+				font-size: 1.19em;
+				color: #ffffff;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+		
+			
+			.box{
+				width: 50%;
+				float: left;
+				height: 150px;
+				text-align: center;
+			}
+			
+			.db-icon{
+				color: #666;
+				font-size: 58px;
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.services{
+				float: left;
+				width: 100%;
+				position: relative;
+				top: 50px;
+				
+			}
+			
+			.services span{
+				color: #666;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div class="slideInSearch">
+				<input type="text" id="search_text" style="text-transform: none; margin-bottom: 0px;" name="search" >
+				<div class="close-search">
+					<img src="images/up-arrow.svg">
+				</div>
+				<div id="result"></div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <i class="ion-android-menu menuBurger button-collapse" data-activates="slide-out"></i>
+			  <a href="#!" class="brand-logo center appPageTitle"><img src="images/logo.png" class="gLogo"></a>
+			  
+			</div>
+		</nav>
+		</div>
+		<ul id="slide-out" class="side-nav">
+			<div class="navfullWidth">
+				<div class="row">
+					<div class="col s4" >
+						<div  class="navCircleProfilePic _userProfilePicture" id="myPicture" ></div>
+					</div>
+					<div class="col s8">
+						<span class="white-text name"  style=""></span>
+					</div>
+				</div>
+			</div>
+			<li><a class="waves-effect" href="salonEmployeeDashboard.html">Dashboard</a></li>
+			<li><a class="waves-effect" href="termsOfService.html">Legal</a></li>
+			<li><a class="waves-effect" href="contactUs.html">Get In Touch With Us</a></li>
+			<li><a class="waves-effect" href="logout.html">Log Out</a></li>
+		 </ul>
+		 <a href="employeeBookings.html"><div class="headerImage" style="background: url('images/1.jpg');">
+			<div class="headerImage_top">
+				
+			</div>
+			<div class="headerImage_bottom">
+				
+			</div>
+		 </div></a>
+		 <div class="lollipopColorsContainer">
+			<div class="lollipopColor" style="background: rgb(134, 232, 175);"></div>
+			<div class="lollipopColor" style="background: rgb(49, 158, 94);"></div>
+			<div class="lollipopColor" style="background: rgb(229, 141, 87);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 248, 153);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 218, 96);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 132, 167);"></div>
+			<div class="lollipopColor" style="background: rgb(237, 28, 59);"></div>
+		</div>
+		<section class="services">
+
+			<div class="box employeeTTManageBookings" >
+			<i class="ion-android-calendar db-icon"></i><br>
+			<span>My Timetable</span>
+			</div>
+			
+			<a href="employeeTips.html"><div class="box" >
+			<i class="ion-cash db-icon"></i>
+			<br><span>My Tips</span>
+			</div></a>
+			
+			<a href="employeeServices.html"><div class="box" >
+			<i class="ion-pricetags db-icon"></i>
+			<br><span>My Services</span>
+			</div></a>
+			
+			<a href="updateEmployeeMedia.html"><div class="box" >
+			<i class="ion-android-camera db-icon"></i>
+			<br><span>My Portfolio</span>
+			</div></a>
+			
+			<a href="updateEmployeeProfile.html"><div class="box" >
+			<i class="ion-android-settings db-icon"></i>
+			<br><span>My Profile</span>
+			</div></a>
+		
+		</section>
+	  
+    </body>
+	<script src="js/functions.js"></script>
+	<script>
+		checkLogin();
+		$(document).ready(function(){
+			$('.name').empty();
+			$('.name').text(userName);
+
+		  $(".button-collapse").sideNav();
+		  
+		});
+		
+		function loadData()
+		{
+			setData('salon_employees', 'profile_picture', 'employee_email', userEmail, 'myPicture', 'profilePic');
+		}
+		
+		loadData();
+		
+		getEmployeeDatesWithBookings(employeeId); 
+		
+		$('.employeeTTManageBookings').click(function(){
+		
+			var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+				var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+				
+				var fullDate = new Date();
+				var day = fullDate.getDay(); //Day
+				var date = fullDate.getDate(); //Date
+				var month = fullDate.getMonth(); //Month
+				var year = fullDate.getFullYear(); //Year
+				
+				currentDay = days[day];
+				currentDate = date;
+				currentMonth = months[month];
+				currentYear = year;
+					
+					var correctDate = currentDate;
+					
+					//Append 0 to date
+					if(correctDate == 1){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 2){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 3){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 4){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 5){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 6){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 7){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 8){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 9){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else{
+						
+						var twoDigitDate = correctDate;
+						
+					}
+					
+					var correctMonth = month + 1;
+					
+					if(correctMonth == 1){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 2){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 3){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 4){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 5){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 6){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 7){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 8){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 9){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else{
+						
+						var twoDigitMonth = correctMonth;
+						
+					}
+					
+				
+				todaysDateDBformat = twoDigitDate + "/" + twoDigitMonth + "/" + currentYear; 
+				
+				localStorage.setItem('dbDateFormat', todaysDateDBformat);
+				
+				if(todaysDateDBformat != ''){
+					window.location = 'employeeBookings.html';
+				}
+		});
+		
+		getEmployeeBookingsCount(employeeId);
+	</script>
+</html>

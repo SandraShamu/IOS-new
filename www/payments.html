@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">
+		<script src="js/angular.min.js"></script>		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+	
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.allCustomers{
+				float: left;
+				width: 100%;
+				height: auto;
+			}
+			
+			.customer{
+				width: 100%;
+				float: left;
+				height: 90px;
+				border-bottom: 1px solid #e6e6e6;
+				text-align: center;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			
+			.oneThirdWidth{
+				height: 100%;
+				width: 25%;
+				float: left;
+			}
+			
+			.profilePicCircle{
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background: #f2f2f2;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				border: 1px solid #a6a6a6;
+				line-height: 75px;
+			}
+			
+			.twoThirdsWidth{
+				height: 100%;
+				width: 75%;
+				float: left;
+				text-align: center;
+			}
+			
+			.twoThirdsWidth span{
+				line-height: 75px;
+				font-size: font-size: 1.3em;
+			}
+			
+			.serviceCategories{
+				float: left;
+				height: auto;
+				width: 100%;
+				background: #ffffff;
+				height: 100%;
+			}
+			
+			.buttonContainer{
+				width: calc(100% - 20px);
+				margin: 0 auto;
+				height: auto;
+				margin-top: 5px;
+			}
+			
+			.serviceCategory{
+				width: 100%;
+				float: left;
+				text-align: center;
+				border-bottom: 1px solid #e6e6e6;
+				height: 75px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+
+			.serviceCategory img{
+				height: 55px;
+			}
+			
+			.serviceCategory span{
+				font-size: 1.4em;
+				line-height: 55px;
+			}
+			
+			.fixedMenu{
+			float: left;
+			width: 100%;
+			text-align: center;
+			position: fixed;
+			border-top: 1px solid #e6e6e6;
+			bottom: 0;
+			height: 70px;
+			background: #ffffff;
+		}
+		
+		.normal-icon{
+			color: #ffffff;
+			font-size: 2.5em;
+		}
+		
+		.FullThirdMenuItem{
+			width: 100%;
+			float: left;
+			height: 100%;
+			text-align: center;
+		}
+			
+		</style>
+
+		
+	</head>
+	<body ng-app="myEmployeesApp">
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="salonDashboard.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Payments</a>
+			</div>
+		 </nav>
+		 </div>
+		<section class="payments" style="margin-bottom: 100px;">
+			<br/><br/>
+			    <div class="row" id="trial">
+			    	
+			        <div class="col s12 m6">
+			          <div class="card blue-grey darken-1">
+			            <div class="card-content white-text">
+			              <span class="card-title">Trial</span>
+			              <p>This will allow you to use the sytem for 31 days for free.</p>
+			            </div>
+			            <div class="card-action">
+			              <a href="#" id="0" class="getStarted">Get Started Now</a>
+			            </div>
+			          </div>
+			        </div>
+			      </div>
+
+
+			       <div class="row">
+			        <div class="col s12 m6">
+			          <div class="card blue-grey darken-1">
+			            <div class="card-content white-text">
+			              <span class="card-title">Freelance R180 Per Month</span>
+			              <p>This is for a freelancer or someone who work alone</p>
+			            </div>
+			            <div class="card-action">
+			              <a href="#" id="180"  class="buyIOS">Get Started Now</a>
+			            </div>
+			          </div>
+			        </div>
+			      </div>
+			            
+                  <div class="row">
+			        <div class="col s12 m6">
+			          <div class="card blue-grey darken-1">
+			            <div class="card-content white-text">
+			              <span class="card-title">2 - 5 Employees R250 Per Month</span>
+			              <p>This  allows you to have 2 to 5 employees</p>
+			            </div>
+			            <div class="card-action">
+			              <a href="#" id="250" class="gold">Get Started Now</a>
+			            </div>
+			          </div>
+			        </div>
+			      </div>
+
+			      <div class="row">
+			        <div class="col s12 m6">
+			          <div class="card blue-grey darken-1">
+			            <div class="card-content white-text">
+			              <span class="card-title">6+ Employees R350 Per Month</span>
+			              <p>This allows you to have more than 6 employess</p>
+			            </div>
+			            <div class="card-action">
+			              <a id="350" class="platinum" href="#">Get Started Now</a>
+			            </div>
+			          </div>
+			        </div>
+			      </div>
+
+
+		</section>
+		
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript">
+
+			checkLogin();
+			checkTrial(salonId);
+
+			$('.getStarted').click(function(){
+             var id_value = $(this).attr('id');
+             processPayment(id_value);
+             //alert(id_value);
+			});
+              $('.buyIOS').click(function(){
+                window.location.href = "process_payment.html";
+        		});			 
+              
+
+              $('.gold').click(function(){
+                window.location.href = "process_payment_gold.html";
+        		});		
+		
+		        $('.platinum').click(function(){
+                window.location.href = "process_payment_platinum.html";
+        		});		
+		
+
+			
+
+			
+		</script>
+	</body>
+</html>

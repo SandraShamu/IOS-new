@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.menuBurger{
+				width: 35px;
+				position: relative;
+				top: 2px;
+				left: 15px;
+			}
+		
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.logoContainer img{
+				width: 200px;
+			}
+			
+			.indicator-item{
+				position: relative;
+				top: -50px;
+				z-index: 99;
+			}
+			
+			.gLogo{
+				width: 100px;
+				position: relative;
+				top: -10px;
+			}
+			
+			._sliderOverlay{
+				height: 400px;
+				width: 100%;
+				background: rgba(89,89,89,0.4);
+				position: absolute;
+				z-index: 99;
+			}
+			
+			.search-icon{
+				float: right;
+				position: relative;
+				top: 1px;
+				left: -25px;
+			}
+			
+			.search_result{
+				width: 100%;
+				float: left;
+				color: #666;
+				font-weight: bold;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			.search_result span{
+				font-size: 1.4em;
+			}
+			
+			.slideInSearch{
+				width: 100%;
+				height: auto;
+				background: #ffffff;
+				position: absolute;
+				top: -300px;
+				text-align: center;
+				z-index: 9999;
+			}
+			
+			.close-search{
+				width: 100%;
+				height: 35px;
+				background: #666;
+				text-align: center;
+				position: relative;
+				
+			}
+			
+			.close-search img{
+				height: 30px;
+				position: relative;
+				top: 5px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.search-icon{
+				float: right;
+				position: relative;
+				top: 4px;
+				left: -25px;
+				font-size: 24px;
+			}
+			
+			.result{
+				float: left;
+				width: 100%;
+				height: 250px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				margin-bottom: 5px;
+			}
+			
+			.result-box{
+				float: left;
+				height: 100%;
+				width: 100%;
+				background: rgba(102, 102, 102, 0.5);
+			}
+			
+			.topOfBox, .bottomOfBox{
+				width: 100%;
+				height: 50%;
+				float: left;
+			}
+			
+			.bottomOfBox h1{
+				color: #ffffff;
+				font-size: 2.29em;
+				position: relative;
+				width: calc(100% - 50px);
+				margin: 0 auto;
+			}
+			
+			.bottomOfBox p{
+				font-size: 1.15em;
+				color: #ffffff;
+				width: calc(100% - 50px);
+				margin: 0 auto;
+			}
+			
+			.bottomOfBox{
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.23) 27%, rgba(58,58,58,0.32) 38%, rgba(58,58,58,0.65) 78%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.23) 27%,rgba(58,58,58,0.32) 38%,rgba(58,58,58,0.65) 78%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.23) 27%,rgba(58,58,58,0.32) 38%,rgba(58,58,58,0.65) 78%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a63a3a3a',GradientType=0 ); /* IE6-9 */
+
+			}
+			
+			.month{
+				width: 100%;
+				float: left;
+				height: auto;
+				background: #ffffff;
+			}
+			
+			.daysOfTheWeek{
+				width: 100%;
+				float: left;
+				height: 50px;
+			}
+			
+			.dayOfTheWeek{
+				float: left;
+				width: 14.2857143%;
+				height: 100%;
+				text-align: center;
+			}
+			
+			.dayOfTheWeek h3{
+				font-size: 13px;
+				color: rgba(0, 0, 0, 0.54);
+			}
+			
+			.daysContainer{
+				width: 100%;
+				float: left;
+				height: auto;
+				border-bottom: 1px solid #26a69a;
+			}
+			
+			.dayCell{
+				float: left;
+				width: 14.2857143%;
+				height: 40px;
+				text-align: center;
+			}
+			
+			.dayCell div{
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				margin: 0 auto;
+				position: relative;
+				font-weight: 400;
+				top: 5px;
+			}
+			
+			.dayCell div span{ 
+				position: relative;
+				top: 6px;
+			}
+			
+			.month h1{
+				color: rgba(0, 0, 0, 0.87);
+				font-weight: bold;
+				font-size: 0.93em;
+			}
+			
+			.leftPanel, .rightPanel{
+				float: left;
+				width: 20%;
+				height: 100%;
+				text-align: center;
+			}
+			
+			.middlePanel{
+				float: left;
+				width: 60%;
+				height: 100%;
+				text-align: center;
+			}
+			
+			.rightPanel .navArrow{
+				-ms-transform: rotate(180deg); /* IE 9 */
+				-webkit-transform: rotate(180deg); /* Safari */
+				transform: rotate(180deg);
+			}
+			
+			.navArrow{
+				height: 20px;
+				position: relative;
+				top: 30px;
+			}	
+			
+			.freeTimeSlots{
+				width: 100%;
+				float: left;
+				height: auto;
+			}
+			
+			.specificServiceName{
+				width: 100%;
+				float: left;
+				height: 100%;
+				font-size: 1.39em;
+				color: #666;
+				text-align: center;
+			}
+			
+			.employeeContainer{
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			
+			.service-category{
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				background: rgba(255,255,255,1);
+				z-index: 9999;
+				overflow-y: scroll;
+				display: none;
+			}
+			
+			.service-category-table{
+				width: 100%;
+				float: left;
+				height: auto;
+				background: #ffffff;
+			}
+			
+			.service-category table{
+				margin-bottom: 100px;
+			}
+			
+			.service-category table td{
+				font-size: 0.9em;
+			}
+			
+			.employeeTimetableRow{
+				display: none;
+			}
+			
+			.closeServices{
+				position: fixed;
+				width: 100%;
+				bottom: 0;
+				height: auto;
+				background: #ffffff;
+				border-top: 1px solid #cccccc;
+				z-index: 99999;
+			}
+			
+			.closeServices button{
+				width: 100%;
+			}
+			
+			.chosenEmployeeID{
+				opacity: 0;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.chosen{
+				font-size: 0.99em;
+			}
+			
+			.chosenTwo{
+				font-size: 0.89em;
+				color: #666;
+				font-style: italic;
+			}
+			
+			.chosenHeading{
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-size: 1.05em;
+			}
+			
+			.chosenHeadingTwo{
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-size: 0.9em;
+			}
+			
+			.bookingInfo{
+				position: relative;
+				top: 30px;
+			}
+			
+			#freelanceRequest{
+				display: none;
+			}
+			
+			.headingContainer{
+				width: 100%;
+				float: left;
+				height: auto;
+			}
+			
+			.headingContainer_halfWidth{
+				float: left;
+				width: 33.3333%;
+				height: auto;
+			}
+			
+			.headingContainer_halfWidth h4{
+				font-size: 0.84em;
+				text-align: center;
+				position: relative;
+				top: 5px;
+			}
+			
+			.selectedTab{
+				background: #ccc;
+				border-radius: 2px;
+			}
+			
+			.selectedTab h4{
+				color: #666;
+			}
+			
+			.serviceProviderContainer{
+				margin-top: 50px;
+			}
+			
+			.portfolioContainer, .favoriteContainer{
+				display:none;
+			}
+			
+			.portfolioImage{
+				background: #f2f2f2;
+				height: 150px;
+				line-height: 150px;
+				width: 100%;
+				float: left;
+				margin: 2px;
+				margin-left: -2px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+			}
+			
+			.listAllMyBookedServices{
+				float: left;
+				width: 100%;
+				height: auto;
+			}
+			
+			.lowerButton{
+				position: relative;
+				top: 80px;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="modal2" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Bookings Have Been made</h4>
+			  <p>Your bookings have successfully been made.</p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light goToMyBookings" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="modal3" class="modal modal-fixed-footer">
+			<div class="modal-content">
+			  <h4>Please Confirm Booking</h4>
+				<div class="col s12">
+					<div>
+						<button class="btn modal-action modal-close addMoreBookings waves-effect waves-effect waves-light dark-btn">Add More Services</button>
+					</div>
+				</div>
+				<div class="listAllMyBookedServices">
+				
+				</div>
+			  <div class="row" style="margin-top:50px;" id="freelanceRequest">
+				<span>Please set a location if<br>the freelancer is coming to you.</span>
+				<div class="input-field col s12">
+				  <textarea id="location" class="materialize-textarea" ></textarea>
+				  <label for="location" class="active alabel" style>Location</label>
+				</div>
+				<div class="input-field col s12">
+				  <textarea id="specialRequests" class="materialize-textarea"></textarea>
+				  <label for="specialRequests" class="active alabel" style>Special Requests</label>
+				</div>
+			  </div>
+			</div>
+			<div class="modal-footer">
+				<div class="row">
+					<div class="col s12">
+						<div class="col s6 confirmBookingContainer">
+							<div>
+								<button class="btn modal-action modal-close makeBooking waves-effect waves-effect waves-light" >Confirm</button>
+							</div>
+						</div>
+						<div class="col s6">
+							<div>
+								<button class="btn modal-action modal-close waves-effect waves-effect waves-light cancelBookings dark-btn" >Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="modal5" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<div class="headingContainer" >
+					<div class="headingContainer_halfWidth selectedTab"  data-sp-container="freeTimesContainer">
+						<h4 id="employeeTimetable">Available Times</h4>
+					</div>
+					<div class="headingContainer_halfWidth" data-sp-container="portfolioContainer">
+						<h4>Portfolio</h4>
+					</div>	
+					<div class="headingContainer_halfWidth" data-sp-container="favoriteContainer">
+						<h4>Mark as favourite</h4>
+					</div>
+					
+				</div>
+				
+				<div class="portfolioContainer serviceProviderContainer">
+					<p>
+						<span class="chosenHeadingTwo">Why Pick Me?</span><br>
+						<span id="whyPickMe" class="chosenTwo">I'm great at what I do</span><br><br>
+					</p>
+					<div class="portfolioImage" id="portfolioImage1"></div>
+					<br><br>
+					<div class="portfolioImage" id="portfolioImage2"></div>
+					<br><br>
+					<div class="portfolioImage" id="portfolioImage3"></div>
+					<br><br>
+					<div class="portfolioImage" id="portfolioImage4"></div>
+					<br><br>
+					<div class="portfolioImage" id="portfolioImage5"></div>
+				</div>
+				<div class="freeTimesContainer serviceProviderContainer"></div>
+				
+				<div class="favoriteContainer serviceProviderContainer">
+					<div class="col s12 lowerButton">
+						<button class="btn-large waves-effect waves-light rateUsClassFavorite myBtn" >Mark as favourite</button>
+					</div>
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close  waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div class="slideInSearch">
+				<input type="text" id="search_text" style="text-transform: none; margin-bottom: 0px;" name="search" >
+				<div class="close-search">
+					<img src="images/up-arrow.svg">
+				</div>
+				<div id="result"></div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <i class="ion-ios-arrow-left topLeftIcon" onclick="goBack()"></i>
+			  <a href="#!" class="brand-logo center appPageTitle">Booking Calendar</a>
+			</div>
+		</nav>
+		</div>
+		<div class="month"> 
+			<div class="leftPanel" data-previous-month data-previous-monthnumber>
+				<i class="ion-ios-arrow-back arrowIcon previousMonth"></i>
+			</div>
+			<div class="middlePanel" data-current-monthnumber data-current-year>
+				<h1></h1>
+			</div>
+			<div class="rightPanel" data-next-month data-next-monthnumber>
+				<i class="ion-ios-arrow-forward arrowIcon nextMonth"></i>
+			</div>
+		</div>
+		<div class="daysOfTheWeek">
+			<div class="dayOfTheWeek">
+				<h3>Su</h3>
+			</div>
+			<div class="dayOfTheWeek">
+				<h3>Mo</h3>
+			</div>
+			<div class="dayOfTheWeek">
+				<h3>Tu</h3>
+			</div>
+			<div class="dayOfTheWeek">
+				<h3>We</h3>
+			</div>
+			<div class="dayOfTheWeek">
+				<h3>Th</h3>
+			</div>
+			<div class="dayOfTheWeek">
+				<h3>Fr</h3>
+			</div>
+			<div class="dayOfTheWeek">
+				<h3>Sa</h3>
+			</div>
+		</div>
+		<div class="daysContainer">
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>
+			<div class="dayCell"></div>		
+		</div>
+
+		<section class="employeesForThisService">
+			
+			
+		</section>
+
+    </body>
+	<script src="js/functions.js"></script>
+	<script src="js/calendar.js"></script>
+	<script>
+		checkLogin();
+		var employeeID = '';
+		var employeeName = '';
+		var bookingTime = '';
+		var serviceName = '';
+		var timeToCompleteService = '';
+		var serviceCost = '';
+		
+		$(document).ready(function(){
+			$(".button-collapse").sideNav();
+		});
+		
+		isAFreelancer(salonId);
+		
+		/*
+		function countChar(val){
+		
+			var len = val.value.length;
+			if (len > 15) {
+			  $('.mB').prop('disabled', false);
+			} else {
+			  $('.mB').prop('disabled', true);
+			}
+			
+		}
+		*/
+		
+		$(".headingContainer_halfWidth").click(function(){
+			
+			$(".headingContainer_halfWidth").removeClass("selectedTab");
+			$(this).addClass("selectedTab");
+			
+			var className = $(this).attr("data-sp-container");
+			$(".serviceProviderContainer").css("display","none");
+			
+			$("." + className).fadeIn();
+			
+		});
+		
+		$('.rateUsClassFavorite').click(function(){
+			favoriteServiceProvider(employeeID, salonId, normalUserId);
+			$('#modal5').closeModal(); 
+		});
+		
+		$(document).ready(function(){
+				
+				$('.name').empty();
+				$('.name').text(userName);
+				
+				var displayThisImage = 'https://lollipopbeauty.co.za/Website_1/temp/' + userPicture;
+				
+				$('._userProfilePicture').attr("src",displayThisImage);
+				
+					$('#search_text').keyup(function(){
+						var txt = $(this).val();
+						
+						if(txt !=''){
+						
+							$('#result').html('');
+							
+							$.ajax
+							({		
+							   url : "https://lollipopbeauty.co.za/Website_1/api/searchApp.php",
+							   method: "post",
+							   data: {search:txt},
+							   dataType: "text",
+							   success: function(data, status)
+							   {
+									$('#result').html(data);
+							   }
+							});
+							
+						}else{
+							$('#result').html('');
+						}
+						
+					});
+					
+		});
+
+		function selectThisEmployee(item){
+				employeeID = $('#' + item).attr("data-employee-id");
+				employeeName = $('#' + item).attr("data-employee-name");
+				
+				var dateFromat = bookingDate;
+				var dateToWorkWith = dateFromat.split('/');
+				dateToWorkWith = dateToWorkWith[0] + "-" + dateToWorkWith[1] + "-" + dateToWorkWith[2];
+				var a = dateToWorkWith.split("-");
+				var the_date_select = new Date( a[2], (a[1] - 1), a[0] );
+				var the_day_select = the_date_select.getDay();
+				var days_array = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+				var the_day_select_is = days_array[the_day_select];
+				
+				getAvailableSlotsForEmployee(salonId,chosenServiceId,employeeID,bookingDate,the_day_select_is,normalUserId);
+				$('#modal5').openModal();
+		}
+		
+		function selectThisTime(item){
+				
+				bookingTime = $('#' + item).attr("data-rtime-slot");
+				serviceName = $('#' + item).attr("data-service-name");
+				timeToCompleteService = $('#' + item).attr("data-service-duration");
+				serviceCost = $('#' + item).attr("data-service-cost");
+				
+				var myBooking = bookingTime + '//' + serviceName + '//' + timeToCompleteService + '//' + serviceCost + '//' +  employeeName + '//' +  employeeID + '//' + bookingDate + '//' + chosenServiceId + '/----/';
+				
+				if(myBookedServices != ''){
+					myBookedServices += myBooking;
+				}else{
+					myBookedServices = myBooking;
+				}
+				
+				var data = myBookedServices.split('/----/');
+				
+				$('#modal5').closeModal();
+				
+				$(".listAllMyBookedServices").empty();
+				var countOfBookings = 0;
+				
+				$.each(data, function (index, value) {
+					
+					if(value != ''){
+						countOfBookings++;
+					}
+					
+				});
+				
+				var countTillBookings = 1;
+				
+				$.each(data, function (index, value) {
+					
+					if(value != ''){
+						
+						if(countTillBookings == countOfBookings){
+							var bookingInfo = value.split('//');
+							$(".listAllMyBookedServices").append('<p class="bookingInfo"><span class="chosenHeading">Service</span><br><span class="chosen">'+  bookingInfo[1] +'</span><br><br><span class="chosenHeading">Service Cost</span><br><span class="chosen"> R '+  bookingInfo[3] +'</span><br><br><span class="chosenHeading">Service Provider</span><br><span class="chosen">'+  bookingInfo[4] +'</span><br><br><span class="chosenHeading">DATE</span><br><span class="chosen">'+ bookingInfo[6] +'</span><br><br><span class="chosenHeading">Time</span><br><span class="chosen">'+  bookingInfo[0] +'</span><br><span class="chosen chosenEmployeeID">'+ bookingInfo[5] +'</span><br><br></p>');
+						
+						}else{
+							var bookingInfo = value.split('//');
+							$(".listAllMyBookedServices").append('<p class="bookingInfo" style="border-bottom: 1px solid #666666;"><span class="chosenHeading">Service</span><br><span class="chosen">'+  bookingInfo[1] +'</span><br><br><span class="chosenHeading">Service Cost</span><br><span class="chosen"> R '+  bookingInfo[3] +'</span><br><br><span class="chosenHeading">Service Provider</span><br><span class="chosen">'+  bookingInfo[4] +'</span><br><br><span class="chosenHeading">DATE</span><br><span class="chosen">'+ bookingInfo[6] +'</span><br><br><span class="chosenHeading">Time</span><br><span class="chosen">'+  bookingInfo[0] +'</span><br><span class="chosen chosenEmployeeID">'+ bookingInfo[5] +'</span><br><br></p>');
+						}
+							
+						
+					}
+					
+					countTillBookings++;
+				});
+				
+				$(".addMoreBookings").click(function(){
+					localStorage.setItem('myBookedServices', myBookedServices);
+
+					if(myBookedServices != ''){
+						window.location.href = "salon.html";
+					}
+					
+				});
+
+			$('#modal3').openModal();
+			
+		}
+		
+		//Redirect to my bookings
+		$('.goToMyBookings').click(function(){
+		
+			myBookedServices = '';
+			localStorage.setItem('myBookedServices', myBookedServices);
+			
+			if(myBookedServices == ''){
+				window.location.href = "userBookings.html";
+			}
+			
+		});
+		
+		//Go back to Services
+		$(document).on('click', ".backToServices", function() {
+			window.location.href = "salon.html";
+		});
+		
+		
+		$('.cancelBookings').click(function(){
+			myBookedServices = '';
+			localStorage.setItem('myBookedServices', myBookedServices);
+			
+			if(myBookedServices == ''){
+				//window.location.href = "bookingCalendar.html";
+			}
+		});
+			
+		$('.makeBooking').click(function(){
+			var data = myBookedServices.split('/----/');
+			var countOfBookings = 0;
+			
+			$.each(data, function (index, value) {
+				if(value != ''){countOfBookings++;}
+			});
+			
+			var loopCount = 0;
+			
+			var location = $("#location").val();
+			var specialRequests = $("#specialRequests").val();
+			
+			if(location ==''){
+				location = "";
+			}
+			
+			if(specialRequests ==''){
+				specialRequests = "";
+			}
+			
+			$.each(data, function (index, value) {
+					
+					if(value != ''){
+					
+						var bookingInfo = value.split('//');
+
+						chosenServiceId = bookingInfo[7];
+						serviceName = bookingInfo[1];
+						serviceCost = bookingInfo[3];
+						timeToCompleteService = bookingInfo[2];
+						employeeName = bookingInfo[4];
+						employeeID = bookingInfo[5];
+						bookingDate = bookingInfo[6];
+						bookingTime = bookingInfo[0];
+						
+						loopCount++;
+						
+						clientMakeBooking(normalUserId, userName, userContactNumber, userEmail, salonId, chosenServiceId, serviceName, serviceCost, timeToCompleteService, employeeName, employeeID, bookingDate, bookingTime, location, specialRequests);
+		
+						if(loopCount == countOfBookings){
+							$('#modal2').openModal();
+						}
+					
+					}
+					
+			});
+			
+		});
+		
+	</script>
+</html>

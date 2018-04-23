@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.profilePic{
+				width: 100px;
+				position: relative;
+				top: 40px;
+			}
+			
+			.timePicker{
+				/* background: #ffffff; */
+				width: calc(100% - 20px);
+				margin: 0 auto;
+				height: auto;
+			}
+			
+			.topHalf, .bottomHalf{
+				width: 100%;
+				float: left;
+				height: auto;
+			}
+			
+			
+			.left75{
+				float: left;
+				width: 75%;
+				height: 100%;
+			}
+			
+			.right25{
+				float: left;
+				width: 25%;
+				height: 100%;
+			}
+			
+			.containerForUp{
+				float: left;
+				width: 100%;
+				height: auto;
+				
+				text-align: center;
+				
+			}
+			
+			.containerForUp .clockArrow{
+				width: 40px;
+			}
+			
+			.containerForDown{
+				float: left;
+				width: 100%;
+				height: 50%;
+				text-align: center;
+			}
+			
+			.containerForDown .clockArrow{
+				width: 40px;
+				-ms-transform: rotate(180deg); /* IE 9 */
+				-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+				transform: rotate(180deg);
+			}
+			
+			.left75 h5, .right25 h5{
+				color: #666;
+				position: relative;
+				top: -12px;
+				font-size: 1.15em;
+				text-align: center;
+				text-transform: uppercase;
+			}
+			
+			.left75{
+				text-align: center;
+			}
+			
+			.left75 span{
+				font-size: 1.8em;
+				font-weight: bold;
+			}
+			
+			#salonCompanyLogo{
+				width: 100%;
+				max-height: 200px;
+			}
+			
+			#map{
+				width: 100%;
+				height: 200px;
+			}
+			
+			.pHclass{
+				position: relative;
+				width: 100%;
+				float: left;
+			}
+			
+			.pHclass label{
+				color: #666;
+				font-size: 1.02em;
+				text-tranform: uppercase;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<!-- Time Picker 1 -->
+		<div id="weeklyHours" class="modal modal-fixed-footer">
+			<div class="modal-content">
+			  <h4>Operating Hours</h4>
+			  <p>A bunch of text</p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Confirm</button>
+			</div>
+		</div>
+		
+
+		<div id="operatingDaysHoursModal" class="modal">
+			<div class="modal-content">
+				<h4>Operating Hours</h4>
+				<div class="clock">
+					<div class="topLayerOfClock">
+						<div class="left_up">
+							<img src="images/clock-arrow.svg" class="clockArrow OHU">
+						</div>
+						<div class="right_up">
+							<img src="images/clock-arrow.svg" class="clockArrow OMU">
+						</div>
+					</div>
+					<div class="middleLayerOfClock">
+						<div class="middleLeft">
+							<span id="openingHour">08</span>
+						</div>
+						<div class="middleMiddle">
+							<span>:</span>
+						</div>
+						<div class="middleRight">
+							<span id="openingMinuteHand">00</span>
+						</div>
+					</div>
+					<div class="bottomLayerOfClock">
+						<div class="left_down" >
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow OHD">
+						</div>
+						<div class="right_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow OMD">
+						</div>
+					</div>
+				</div>
+				<h4>TO</h4>
+				<div class="clock">
+					<div class="topLayerOfClock">
+						<div class="left_up" >
+							<img src="images/clock-arrow.svg" class="clockArrow CHU" >
+						</div>
+						<div class="right_up">
+							<img src="images/clock-arrow.svg" class="clockArrow CMU">
+						</div>
+					</div>
+					<div class="middleLayerOfClock">
+						<div class="middleLeft">
+							<span id="closingHour">17</span>
+						</div>
+						<div class="middleMiddle">
+							<span>:</span>
+						</div>
+						<div class="middleRight">
+							<span id="closingMinuteHand">00</span>
+						</div>
+					</div>
+					<div class="bottomLayerOfClock">
+						<div class="left_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow CHD">
+						</div>
+						<div class="right_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow CMD">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close m1 waves-effect waves-effect waves-light" style="width: 100%;" >Confirm</button>
+			</div>
+		</div>
+
+
+		
+	
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <i class="ion-ios-arrow-left topLeftIcon dashboard"></i>
+			  <a href="#!" class="brand-logo center appPageTitle">Update Profile</a>
+			</div>
+		 </nav>
+		 </div>
+		<div class="row">
+			<div class="col s12 spaceTop">
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="companyName" type="text" class="validate">
+				  <label for="companyName" class="active alabel" style>Company Name</label>
+				</div>
+				<div class="input-field col s6">
+				  <input id="companyEmail" type="text" class="validate" readonly>
+				  <label  for="companyEmail" class="active alabel" style>Company Email</label>
+				</div>
+				<!-- <div class="input-field col s6">
+				  <input id="ownersName" type="text" class="validate">
+				  <label for="ownersName" class="active alabel" style>Owner's Name</label>
+				</div> -->
+				<!-- <div class="input-field col s6">
+				  <input id="operatingHours" type="text" class="validate" value="08:00 - 17:00">
+				  <label  for="operatingHours" class="active alabel" style>Operating Hours</label>
+				</div> -->
+
+			  </div>
+			 <!--  <div class="row">
+				<div class="input-field col s12">
+				  <input id="companyEmail" type="text" class="validate">
+				  <label  for="companyEmail" class="active alabel" style>Company Email</label>
+				</div> -->
+				<!-- <div class="input-field col s6">
+				  <input id="ownerEmail" type="text" class="validate">
+				  <label  for="ownerEmail"class="active alabel" style>Owner's Email</label>
+				</div> -->
+				<!-- <div class="input-field col s6">
+				  <input id="weekendHours" type="text" class="validate">
+				  <label  for="weekendHours" class="active alabel" style>Weekends Hours</label>
+				</div> -->
+
+			 <!--  </div> -->
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="companyPhoneNumber" type="text" class="validate" onkeyup="numbersOnly(this)">
+				  <label  for="companyPhoneNumber" class="active alabel" style>Company Phone Number</label>
+				</div>
+				<!-- <div class="input-field col s6">
+				  <input id="ownerPhoneNumber" type="text" class="validate" onkeyup="numbersOnly(this)">
+				  <label  for="ownerPhoneNumber" class="active alabel" style>Owner's Phone Number</label>
+				</div> -->
+				<!-- <div class="input-field col s6">
+				  <input id="publicHolidaysHours" type="text" class="validate">
+				  <label  for="publicHolidaysHours" class="active alabel" style>Public Holiday Hours</label>
+				</div> -->
+			  </div>
+			  <div  class="row">
+				<div class="col s12">
+					<div class="inputRow" style="">
+						<input class="magic-checkbox aService" type="checkbox" id="freelancer" value="">
+						<label class="text" for="freelancer" style="position: relative; color: #666; font-weight: bold;">I am a freelancer</label>
+					</div>
+				</div>
+			  </div>
+				
+			  <div class="row">
+				<div class="input-field col s12">
+				  <textarea id="aboutUs" class="materialize-textarea"></textarea>
+				  <label for="aboutUs" class="active alabel" style>About Us</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<!-- <div class="input-field col s6">
+				  <input id="operatingHours" type="text" class="validate">
+				  <label  for="operatingHours" class="active alabel" style>Operating Hours</label>
+				</div> -->
+				<!-- <div class="input-field col s6">
+				  <input id="weekendHours" type="text" class="validate">
+				  <label  for="weekendHours" class="active alabel" style>Weekends Hours</label>
+				</div> -->
+			  </div>
+			  <div class="row">
+				<!-- <div class="input-field col s6">
+				  <input id="publicHolidaysHours" type="text" class="validate">
+				  <label  for="publicHolidaysHours" class="active alabel" style>Public Holiday Hours</label>
+				</div> -->
+			  </div>
+			  
+			  <!--  <div class="row">
+				
+				<div class="input-field col s12">
+				    <select name="opDays" id="opDays" multiple>
+				        <option value="" disabled selected>Choose days</option>
+				        <option value="1">Monday</option>
+				        <option value="2">Tuesday</option>
+				        <option value="3">Wednesday</option>
+				        <option value="4">Thursday</option>
+				        <option value="5">Friday</option>
+				        <option value="6">Saturday</option>
+				        <option value="7">Sunday</option>
+				    </select>
+				    <label>Operating Days</label>
+				</div>
+			</div> -->
+			
+			  
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="streetAddress" type="text" class="validate" onkeyup="getLatLong()">
+				  <label  for="streetAddress" class="active alabel" style>Street Address</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12" id="operatingHoursDiv">
+				 <table>
+				 <tr>
+				 <td>
+			      <input type="checkbox" class="daysSelected" id="test1" />
+			       <label for="test1">Monday </label>
+			      </td>
+			      
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			       <span class="test1_time">08:00 - 17:00</span> 
+			      </td>
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			      <a href="#"  id="1" class="editTime"> <i class="ion-android-arrow-forward myArrow"></i> </a>
+			       </td>
+			     </tr>
+			     <tr>
+				 <td>
+			      <input type="checkbox" class="daysSelected" id="test2" />
+			      <label for="test2">Tuesday </label>
+			      </td>
+			     
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			       <span class="test2_time">08:00 - 17:00</span> 
+			      </td>
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			      <a href="#"  id="2" class="editTime"> <i class="ion-android-arrow-forward myArrow"></i> </a>
+			       </td>
+			     </tr>
+			     <tr>
+				 <td>
+			      <input type="checkbox" class="daysSelected" id="test3" />
+			      <label for="test3">Wednesday </label>
+			      </td>
+			      
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			       <span class="test3_time">08:00 - 17:00</span> 
+			      </td>
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			      <a href="#"  id="3" class="editTime"> <i class="ion-android-arrow-forward myArrow"></i> </a>
+			       </td>
+			     </tr>
+			     <tr>
+				 <td>
+			      <input type="checkbox" class="daysSelected" id="test4" />
+			       <label for="test4">Thursday </label>
+			      </td>
+			      
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			       <span class="test4_time">08:00 - 17:00</span> 
+			      </td>
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			      <a href="#"  id="4" class="editTime"> <i class="ion-android-arrow-forward myArrow"></i> </a>
+			       </td>
+			     </tr>
+			     <tr>
+				 <td>
+			      <input type="checkbox" class="daysSelected" id="test5" />
+			       <label for="test5">Friday </label>
+			      </td>
+			      
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			       <span class="test5_time">08:00 - 17:00</span> 
+			      </td>
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			      <a href="#"  id="5" class="editTime"> <i class="ion-android-arrow-forward myArrow"></i> </a>
+			       </td>
+			     </tr>
+			     <tr>
+				 <td>
+			      <input type="checkbox" class="daysSelected" class="daysSelected" id="test6" />
+			       <label for="test6">Saturday </label>
+			      </td>
+			      
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			       <span class="test6_time">08:00 - 17:00</span> 
+			      </td>
+			      <td>
+			      <a href="#"  id="6" class="editTime"> <i class="ion-android-arrow-forward myArrow"></i> </a>
+			       </td>
+			     </tr>
+			     <tr>
+				 <td>
+			      <input type="checkbox" class="daysSelected" id="test7" />
+			       <label for="test7">Sunday </label>
+			      </td>
+			      
+			      <td style="top: 0.8rem; color: #9e9e9e;position: relative;">
+			       <span class="test7_time">08:00 - 17:00</span> 
+			      </td>
+			      <td>
+			      <a href="#"  id="7" class="editTime"> <i class="ion-android-arrow-forward myArrow"></i> </a>
+			       </td>
+			     </tr>
+			     
+				  <label  for="streetAddress" class="active alabel" style>Operating Hours</label>
+				</table>
+				</div>
+			  </div>
+
+			 <!--  <div class="row">
+				<div class="input-field col s6">
+				  <input id="suburb" type="text" class="validate" onchange="codeAddress()">
+				  <label  for="suburb" class="active alabel" style>Suburb</label>
+				</div>
+				<div class="input-field col s6">
+				  <input id="city" type="text" class="validate" onchange="codeAddress()">
+				  <label  for="city" class="active alabel" style>City</label>
+				</div>
+			  </div> -->
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="location" type="text" class="validate" readonly>
+				  <label  for="location" class="active alabel" style>Salon Co-Ordinates</label>
+				</div>
+			  </div>
+		
+           
+			 </div>
+			<div class="col s12" style="position: relative; top: 30px;">
+				<div class="row">			
+					<div id="map"></div>	
+				</div>
+			
+			
+			  <div class="row">
+				<div class="input-field col s12">
+					<button class="btn-large waves-effect waves-light updateSalonProfile" style="width: 100%;" type="submit" name="action">Update Salon Profile</button>
+				</div>
+			  </div> 
+			</div>
+		</div>
+		<script src="js/functions.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/draggabilly.pkgd.min.js"></script>
+		<script src="js/mdDateTimePicker.js"></script>
+		<script>
+			checkLogin();
+			$(document).ready(function(){
+				/*
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				*/
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+ 	
+			});
+			$(document).ready(function() {
+			    $('select').material_select();
+			});
+				
+			//$('#weeklyHours').modal('open');
+		
+			checkLogin();
+			getSalonProfileInfo();
+			
+			function loadData()
+			{
+				setData('salon_profile', 'profile_picture', 'company_id', salonId, 'salonLogo', 'salonProfileImage');
+				setData('salon_profile', 'company_name', 'company_id', salonId, 'companyName', 'normalText');
+				setData('salon_profile', 'package', 'company_id', salonId, 'package_id', 'hiddenText');
+				setData('salon_profile', 'opDays', 'company_id', salonId, 'opDays', 'workingHoursText');
+				setData('salon_profile', 'owners_name', 'company_id', salonId, 'ownersName', 'normalText');
+				setData('salon_profile', 'owners_email_address', 'company_id', salonId, 'ownerEmail', 'normalText');
+				setData('salon_profile', 'owners_phone_number', 'company_id', salonId, 'ownerPhoneNumber', 'normalText');
+				// setData('salon_profile', 'operating_hours', 'company_id', salonId, 'operatingHours', 'normalText');
+				setData('salon_profile', 'weekend_hours', 'company_id', salonId, 'weekendHours', 'normalText');
+				setData('salon_profile', 'public_holidays', 'company_id', salonId, 'publicHolidaysHours', 'normalText');
+				setData('salon_profile', 'company_email_address', 'company_id', salonId, 'companyEmail', 'normalText');
+				setData('salon_profile', 'company_phone_number', 'company_id', salonId, 'companyPhoneNumber', 'normalText');
+				setData('salon_profile', 'street_address', 'company_id', salonId, 'streetAddress', 'normalText');
+				setData('salon_profile', 'suburb', 'company_id', salonId, 'suburb', 'normalText');
+				setData('salon_profile', 'city', 'company_id', salonId, 'city', 'normalText');
+				setData('salon_profile', 'location', 'company_id', salonId, 'location', 'normalText');
+				
+				setData('salon_profile', 'about_us', 'company_id', salonId, 'aboutUs', 'normalText');
+				setData('salon_profile', 'vat_number', 'company_id', salonId, 'vatNumber', 'normalText');
+				setData('salon_profile', 'freelancer', 'company_id', salonId, 'freelancer', 'checkBox');
+				
+			}
+			
+			loadData();
+
+			//get selected times 
+            try{
+			var opDays = localStorage.getItem('opDays');
+			if(opDays != '' || opDays != null || opDays != undefined){
+			var selectedTimesRaw = opDays;
+			var selectedOpDays = [];
+			var selectedOpTimes = [];
+			//spliting
+
+			selectedTimesRawArray = opDays.split('_');
+			selectedOpDays =  selectedTimesRawArray[0];
+			selectedOpDays = selectedOpDays.split(',');
+			selectedOpTimes = selectedTimesRawArray[1];
+			selectedOpTimes = selectedOpTimes.split(',');
+
+		
+            var dataSelectRe = '<table>';
+			for(var i = 1; i <= 7; i++){
+			  //days computer
+			  var day;
+			  if(i == 1){ day = 'Monday';}if(i == 2){ day = 'Tuesday';}if(i == 3){ day = 'Wednesday';}if(i == 4){ day = 'Thursday';}if(i == 5){ day = 'Friday';}
+			  if(i == 6){ day = 'Saturday';}if(i == 7){ day = 'Sunday';}
+			    var status = 0;
+			  	for(var k = 0; k < selectedOpDays.length; k++){
+                    var comLocal = 'test'+i+'';
+                   
+			  		if(comLocal == selectedOpDays[k]){
+			  			dataSelectRe += '<tr><td><input type="checkbox" class="daysSelected" id="test'+i+'" checked /><label for="test'+i+'">'+day+' </label></td>';
+			            dataSelectRe += '<td style="top: 0.8rem; color: #9e9e9e;position: relative;"><span class="test'+i+'_time">'+selectedOpTimes[k]+'</span> </td>';
+			            dataSelectRe += '<td style="top: 0.8rem; color: #9e9e9e;position: relative;"><a href="#"  id="'+i+'" class="editTime"> <i class="ion-android-arrow-forward myArrow"></i> </a>';
+			            dataSelectRe += '</td></tr><tr>';
+			          
+			            var status = 1;
+
+			  		}
+			  	}
+			  	if(status == 0){
+			    dataSelectRe += '<tr><td><input type="checkbox" class="daysSelected" id="test'+i+'" /><label for="test'+i+'">'+day+' </label></td>';
+				dataSelectRe += '<td style="top: 0.8rem; color: #9e9e9e;position: relative;"><span class="test'+i+'_time">08:00 - 17:00</span> </td>';
+				dataSelectRe += '<td style="top: 0.8rem; color: #9e9e9e;position: relative;"><a href="#"  id="'+i+'" class="editTime"> <i class="ion-android-arrow-forward myArrow"></i> </a>';
+				dataSelectRe += '</td></tr><tr>';
+		 	    }
+			 
+              
+			}
+			dataSelectRe += '</table>';
+			//append to div
+			$('#operatingHoursDiv').empty();
+			$('#operatingHoursDiv').append(dataSelectRe);
+	     	}
+	       }catch(e){
+		       // alert("we are in catch "+e.print);
+		    }
+
+
+			startMap();
+			var geocoder;
+			var map;		
+			
+			function initMap() {
+				bounds = new google.maps.LatLngBounds();
+				geocoder = new google.maps.Geocoder();
+			
+				map = new google.maps.Map(document.getElementById('map'), {
+				  center: {lat: -26.149047, lng: 28.033915},
+				  zoom: 17,
+				  mapTypeId: google.maps.MapTypeId.ROADMAP,
+				  disableDefaultUI: true
+				});
+			
+				google.maps.event.addListener(map, 'click', function(event) 
+				{
+					marker = new google.maps.Marker({position: event.latLng, map: map});
+					$('#location').val(event.latLng);
+				});
+				
+				var location = $('#location').val();
+				if(location != ''){
+				
+					var position = new google.maps.LatLng + location;	
+					marker = new google.maps.Marker({
+							position: position,
+							map: map
+						});
+					map.panTo(position);
+					map.setZoom(17);
+					$("#location").val(location);
+				}else{
+					codeAddress();
+				}
+		  }
+			
+			function codeAddress() 
+			{
+				var _streetAddress = _("streetAddress").val();
+				var _city = _("city").val();
+				var _suburb = _("suburb").val();
+				
+				var address = _streetAddress + ', ' + _suburb + ', ' + _city;
+				geocoder.geocode( { 'address': address}, function(results, status) 
+				{
+					if (status == google.maps.GeocoderStatus.OK) 
+					{
+						map.setCenter(results[0].geometry.location);
+						var marker = new google.maps.Marker(
+						{
+							map: map,
+							position: results[0].geometry.location
+						});
+						
+						$('#location').val(results[0].geometry.location);
+					} 
+					else 
+					{
+						
+					}
+				});
+			}
+			function showResult(result) {
+		    //document.getElementById('latitude').value = result.geometry.location.lat();
+		   // document.getElementById('longitude').value = result.geometry.location.lng();
+		   var full_co = '('+result.geometry.location.lat()+', '+result.geometry.location.lng()+')';
+		   $('#location').val(full_co);
+		    console.log('latitude ::'+result.geometry.location.lat());
+		    console.log('longitude ::'+result.geometry.location.lng());
+			}
+
+			function getLatitudeLongitude(callback, address) {
+			    // If adress is not supplied, use default value 'Ferrol, Galicia, Spain'
+			    address = address || 'Ferrol, Galicia, Spain';
+			    // Initialize the Geocoder
+			    geocoder = new google.maps.Geocoder();
+			    if (geocoder) {
+			        geocoder.geocode({
+			            'address': address
+			        }, function (results, status) {
+			            if (status == google.maps.GeocoderStatus.OK) {
+			                callback(results[0]);
+			            }
+			        });
+			    }
+			}
+
+			
+
+			function getLatLong(){
+				//alert("Hello There");
+			    var address = document.getElementById('streetAddress').value;
+			    getLatitudeLongitude(showResult, address)
+			}
+			
+
+			// var input = document.getElementById('autocomplete');
+   //        if(input){
+   //         var places = new google.maps.places.Autocomplete(input);
+   //         google.maps.event.addListener(places, 'place_changed', function () {
+   //              var place = places.getPlace();
+   //              var address = place.formatted_address;
+   //              var latitude = place.geometry.location.lat();
+   //              var longitude = place.geometry.location.lng();
+   //             // $('#lat').val(latitude);
+   //             // $('#long').val(longitude);
+   //             });
+
+   //         console.log(autocomplete);
+   //         }
+
+			
+			
+			$('.dashboard').click(function() 
+			{
+				var complete = 1;
+				
+				var companyName = $('#companyName').val();
+				var ownersName = $('#ownersName').val();
+				var companyEmail = $('#companyEmail').val();
+				var ownerEmail = $('#ownerEmail').val();
+				var ownerPhoneNumber = $('#ownerPhoneNumber').val();
+				var companyPhoneNumber = $('#companyPhoneNumber').val();
+				var aboutUs = $('#aboutUs').val();
+				var streetAddress = $('#streetAddress').val();
+				var suburb = $('#suburb').val();
+				var city = $('#city').val();
+				var location = $('#location').val();
+				var vatNumber = $('#vatNumber').val();
+				var salonOperatingHours = $('#operatingHours').val();
+				var salonWeekendHours = $('#weekendHours').val();
+				var salonPublicHolidays = $('#publicHolidaysHours').val();
+				
+				if(companyName == '')
+				{
+					complete = 0;
+					failure('You must add the company name.');
+				}
+				// else if(ownersName == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add the owner\'s name.');
+				// }
+				else if(companyEmail == '')
+				{
+					complete = 0;
+					failure('You must add your company\'s email.');
+				}
+				// else if(ownerEmail == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add the owner\'s email.');
+				// }
+				// else if(companyPhoneNumber == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add the company\'s phone number.');
+				// }
+				// else if(ownerPhoneNumber == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add the owner\'s phone number.');
+				// }
+				// else if(aboutUs == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add a company description.');
+				// }
+				// else if(streetAddress == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add a company street address.');
+				// }
+				// else if(suburb == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add the suburb or region.');
+				// }
+				// else if(city == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add the city.');
+				// }
+				else if(location == '')
+				{
+					complete = 0;
+					failure('You must add a correct street address, suburb and city to get location co-ordinates.');
+				}
+				// else if(vatNumber == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add a VAT number.');
+				// }
+				
+				if(complete == 1)
+				{
+					window.location = 'salonDashboard.html';
+				}
+				
+			});
+			
+			$('.updateSalonProfile').click(function() 
+			{
+				
+				var complete = 1;
+				
+				var companyName = $('#companyName').val();
+				var ownersName = $('#ownersName').val();
+				var companyEmail = $('#companyEmail').val();
+				var ownerEmail = $('#ownerEmail').val();
+				var ownerPhoneNumber = $('#ownerPhoneNumber').val();
+				var companyPhoneNumber = $('#companyPhoneNumber').val();
+				var aboutUs = $('#aboutUs').val();
+				var streetAddress = $('#streetAddress').val();
+				var suburb = $('#suburb').val();
+				var city = $('#city').val();
+				var location = $('#location').val();
+				var vatNumber = $('#vatNumber').val();
+				var salonOperatingHours = $('#operatingHours').val();
+				var salonWeekendHours = $('#weekendHours').val();
+				var salonPublicHolidays = $('#publicHolidaysHours').val();
+
+				
+				//var package = package_id;
+				if(package_id == null || package_id == ''){
+					package = '';
+					//alert("Packafe is emty");
+				}else{
+					//alert("Packafe is not emty");
+					package = package_id;
+				}
+				console.log("PACKAGE"+package);
+
+				var isTrue = $("#freelancer").is(':checked');
+				var freelancer = 0;
+				if(isTrue == true){
+					 freelancer = 1;
+				}else{
+					
+				}
+				
+				if(companyName == '')
+				{
+					complete = 0;
+					failure('You must add the company name.');
+				}
+				
+				else if(companyEmail == '')
+				{
+					complete = 0;
+					failure('You must add your company\'s email.');
+				}
+				
+				else if(companyPhoneNumber == '')
+				{
+					complete = 0;
+					failure('You must add the company\'s phone number.');
+				}
+				//get selected days
+                var checked = [];
+				$(".daysSelected:checked").each(function() {
+			        checked.push(this.id);
+			    });
+			    if(checked.length > 0){
+
+			    }else{
+			    	complete = 0;
+					failure('You must add the operating days.');
+			    }
+			    //get the times
+			    var op_time = []; 
+			    for(var i = 0; i < checked.length; i++){
+			      
+                   op_time.push($('.'+checked[i]+'_time').text());
+			    }
+			    console.log(checked);
+			    console.log(op_time);
+			    var opDays = checked+'_'+op_time;
+			    // alert("Debug");
+			    // return;
+				// else if(ownerPhoneNumber == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add the owner\'s phone number.');
+				// }
+				// else if(aboutUs == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add a company description.');
+				// }
+				// else if(streetAddress == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add a company street address.');
+				// }
+				// else if(suburb == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add the suburb or region.');
+				// }
+				// else if(city == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add the city.');
+				// }
+			    if(location == '')
+				{
+					complete = 0;
+					failure('You must add a correct street address, suburb and city to get location co-ordinates.');
+				}
+				// else if(vatNumber == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add a VAT number.');
+				// }
+				// else if(opDays == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add operating days.');
+				// }
+				// else if(package == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add package.');
+				// }
+				
+				
+				if(complete == 1)
+				{
+					
+					updateSalonData(salonId, companyName, ownersName, companyEmail, ownerEmail, companyPhoneNumber, ownerPhoneNumber, aboutUs, streetAddress, suburb, city, location, vatNumber, salonOperatingHours, salonWeekendHours, salonPublicHolidays, freelancer,opDays,package);
+					
+				}
+				
+			});
+			
+			$('.editTime').click(function() 
+			{
+				$('#operatingDaysHoursModal').openModal();
+				
+			});	
+			 
+            
+            $('#modayTime').click(function() 
+			{
+				$('#modal2').openModal();
+				
+			});	
+			 
+			$('#weekendHours').click(function() 
+			{
+				$('#modal3').openModal();
+			});	
+			
+			$('#publicHolidaysHours').click(function() 
+			{
+				$('#modal4').openModal();
+			});	
+			
+			$("#imageUpload").on("change", function() 
+			{
+				_("salonID").val(salonId);
+				Materialize.toast('Uploading Image...', 20000) ;
+				$("#imageUploadForm").submit();
+			});
+		
+		</script>
+		<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYxZEKln8YpyKsOY8irpLfauDtquK8-EU&libraries=places&language=en&libraries=places"></script> -->
+		   <script>
+      
+
+
+       
+          // var input = document.getElementById('autocomplete');
+          // if(input){
+          //  var places = new google.maps.places.Autocomplete(input);
+          //  google.maps.event.addListener(places, 'place_changed', function () {
+          //       var place = places.getPlace();
+          //       var address = place.formatted_address;
+          //       var latitude = place.geometry.location.lat();
+          //       var longitude = place.geometry.location.lng();
+          //      // $('#lat').val(latitude);
+          //      // $('#long').val(longitude);
+          //      });
+
+          //  console.log(autocomplete);
+          //  }
+
+      
+    </script>
+
+		<script type="text/javascript" src="js/timePicker.js"></script> 
+		<script type="text/javascript" src="js/timePicker2.js"></script>
+		<script type="text/javascript" src="js/timePicker3.js"></script>
+		<script type="text/javascript" src="js/timePicker4.js"></script>
+		<script type="text/javascript" src="js/timePicker5.js"></script>
+	</body>
+</html>

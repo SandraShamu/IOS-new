@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			}
+			
+			.employeeSales{
+				width: 100px;
+			}
+			
+			.db-icon{
+				color: #666;
+				font-size: 58px;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="salonDashboard.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Operations</a>
+			</div>
+		 </nav>
+		 </div>
+		<section>
+			<div class="row center-align">
+				<i class="ion-android-home db-icon"></i>
+				<br>
+				<div class="row">
+					<div class="input-field col s12">
+						<button class="btn-large waves-effect waves-light salonOperations" style="width: 100%;">Salon Operations</button>
+					</div>
+				</div>
+			</div>
+			<div class="row center-align">
+				<i class="ion-android-people db-icon"></i>
+				<br>
+				<div class="row">
+					<div class="input-field col s12">
+						<button class="btn-large waves-effect waves-light employeeOperations" style="width: 100%;">Employee Operations</button>
+					</div>
+				</div> 
+			</div>
+			<div class="row center-align">
+				<i class="ion-android-time db-icon"></i>
+				<br>
+				<div class="row">
+					<div class="input-field col s12">
+						<button class="btn-large waves-effect waves-light bookingSettings" style="width: 100%;">Booking Settings</button>
+					</div>
+				</div> 
+			</div>
+		</section>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript">
+			checkLogin();
+			$(".salonOperations").click(function(){
+				window.location.href="salonOperations.html";
+			}); 
+			
+			$(".employeeOperations").click(function(){
+				window.location.href="employeesOperations.html";
+			}); 
+			
+			$(".bookingSettings").click(function(){
+				window.location.href="bookingSettings.html";
+			}); 
+		</script>
+	</body>
+</html>

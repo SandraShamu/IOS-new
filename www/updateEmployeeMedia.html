@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.profilePic{
+				width: 100px;
+				position: relative;
+				top: 40px;
+			}
+			
+			.timePicker{
+				/* background: #ffffff; */
+				width: calc(100% - 20px);
+				margin: 0 auto;
+				height: auto;
+			}
+			
+			.topHalf, .bottomHalf{
+				width: 100%;
+				float: left;
+				height: auto;
+			}
+			
+			.topSpace{
+				width: 100%;
+				float: left;
+				height: 30px;
+			}
+			
+			
+			.left75{
+				float: left;
+				width: 75%;
+				height: 100%;
+			}
+			
+			.right25{
+				float: left;
+				width: 25%;
+				height: 100%;
+			}
+			
+			.containerForUp{
+				float: left;
+				width: 100%;
+				height: auto;
+				
+				text-align: center;
+				
+			}
+			
+			.containerForUp .clockArrow{
+				width: 40px;
+			}
+			
+			.containerForDown{
+				float: left;
+				width: 100%;
+				height: 50%;
+				text-align: center;
+			}
+			
+			.containerForDown .clockArrow{
+				width: 40px;
+				-ms-transform: rotate(180deg); /* IE 9 */
+				-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+				transform: rotate(180deg);
+			}
+			
+			.left75 h5, .right25 h5{
+				color: #666;
+				position: relative;
+				top: -12px;
+				font-size: 1.15em;
+				text-align: center;
+				text-transform: uppercase;
+			}
+			
+			.left75{
+				text-align: center;
+			}
+			
+			.left75 span{
+				font-size: 1.8em;
+				font-weight: bold;
+			}
+			
+			#salonCompanyLogo{
+				width: 100%;
+				max-height: 200px;
+			}
+			
+			.salonDisplayImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background: #f2f2f2;
+				text-align: center;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+			}
+			
+			.salonBannerImages{
+				width: 100%;
+				float: left;
+				min-height: 200px;
+				background: #f2f2f2;
+				text-align: center;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+			}
+			
+			.salonDisplayImage span{
+				line-height: 200px;
+			}
+			
+			.salonBannerImages span{
+				line-height: 200px;
+			}
+			
+			
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="salonEmployeeDashboard.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Employee Portfolio</a>
+			</div>
+		 </nav>
+		 </div>
+		<div class="row">
+			<div class="salonBannerImages" id="employeeBanner1">
+				<span>You have not uploaded an image.</span>
+			</div>
+			<div class="col s12">
+				<form action="https://lollipopbeauty.co.za/Website_1/api/uploadEmployeeBannerImage1.php" id="imageUploadForm1" method="post" enctype="multipart/form-data">
+				    <label class="myLabel">
+							<input type="file" name='imageUpload1' id='imageUpload1'>
+							<span>Upload Image Of Work Done</span>
+					</label>
+				  <input type="hidden" id="employeeUserId1" name="userId">
+			  </form>
+			  
+			</div>
+			<div class="topSpace"></div>
+			<div class="salonBannerImages" id="employeeBanner2">
+				<span>You have not uploaded an image.</span>
+			</div>
+			<div class="col s12">
+				<form action="https://lollipopbeauty.co.za/Website_1/api/uploadEmployeeBannerImage2.php" id="imageUploadForm2" method="post" enctype="multipart/form-data">
+				  <label class="myLabel">
+							<input type="file" name='imageUpload2' id='imageUpload2'>
+							<span>Upload Image Of Work Done</span>
+					</label>
+				  <input type="hidden" id="employeeUserId2" name="userId">
+			    </form>
+			</div>
+			<div class="topSpace"></div>
+			<div class="salonBannerImages" id="employeeBanner3">
+				<span>You have not uploaded an image.</span>
+			</div>
+			<div class="col s12">
+				<form action="https://lollipopbeauty.co.za/Website_1/api/uploadEmployeeBannerImage3.php" id="imageUploadForm3" method="post" enctype="multipart/form-data">
+				  <label class="myLabel">
+							<input type="file" name='imageUpload3' id='imageUpload3'>
+							<span>Upload Image Of Work Done</span>
+					</label>
+				  <input type="hidden" id="employeeUserId3" name="userId">
+			  </form>
+			  
+			</div>
+			<div class="topSpace"></div>
+			<div class="salonBannerImages" id="employeeBanner4">
+				<span>You have not uploaded an image.</span>
+			</div>
+			<div class="col s12">
+				<form action="https://lollipopbeauty.co.za/Website_1/api/uploadEmployeeBannerImage4.php" id="imageUploadForm4" method="post" enctype="multipart/form-data">
+				  <label class="myLabel">
+						<input type="file" name='imageUpload4' id='imageUpload4'>
+						<span>Upload Image Of Work Done</span>
+					</label>
+				  <input type="hidden" id="employeeUserId4" name="userId">
+			  </form>
+			  
+			</div>
+			<div class="topSpace"></div>
+			<div class="salonBannerImages" id="employeeBanner5">
+				<span>You have not uploaded an image.</span>
+			</div>
+			<div class="col s12">
+				<form action="https://lollipopbeauty.co.za/Website_1/api/uploadEmployeeBannerImage5.php" id="imageUploadForm5" method="post" enctype="multipart/form-data">
+				  <label class="myLabel">
+						<input type="file" name='imageUpload5' id='imageUpload5'>
+						<span>Upload Image Of Work Done</span>
+					</label>
+				  <input type="hidden" id="employeeUserId5" name="userId">
+			    </form>
+			</div>
+		</div>
+		<script src="js/functions.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/draggabilly.pkgd.min.js"></script>
+		<script src="js/mdDateTimePicker.js"></script>
+		<script>
+			checkLogin();
+			
+			//Slider Image Upload
+			$("#employeeUserId1").val(employeeId);
+			$("#employeeUserId2").val(employeeId);
+			$("#employeeUserId3").val(employeeId);
+			$("#employeeUserId4").val(employeeId);
+			$("#employeeUserId5").val(employeeId);
+			
+			function loadData()
+			{
+			
+				setData('employee_portfolio', 'banner1', 'employee_id', employeeId, 'employeeBanner1', 'banner');
+				setData('employee_portfolio', 'banner2', 'employee_id', employeeId, 'employeeBanner2', 'banner');
+				setData('employee_portfolio', 'banner3', 'employee_id', employeeId, 'employeeBanner3', 'banner');
+				setData('employee_portfolio', 'banner4', 'employee_id', employeeId, 'employeeBanner4', 'banner');
+				setData('employee_portfolio', 'banner5', 'employee_id', employeeId, 'employeeBanner5', 'banner');
+				
+			}
+			
+			loadData();
+			
+			
+			$("#imageUpload1").on("change", function() 
+			{
+				Materialize.toast('Uploading Image...', 30000);
+				$("#imageUploadForm1").submit();
+			});
+			
+			$("#imageUpload2").on("change", function() 
+			{
+				Materialize.toast('Uploading Image...', 30000);
+				$("#imageUploadForm2").submit();
+			});
+			
+			$("#imageUpload3").on("change", function() 
+			{
+				Materialize.toast('Uploading Image...', 30000);
+				$("#imageUploadForm3").submit();
+			});
+			
+			$("#imageUpload4").on("change", function() 
+			{
+				Materialize.toast('Uploading Image...', 30000);
+				$("#imageUploadForm4").submit();
+			});
+			
+			$("#imageUpload5").on("change", function() 
+			{
+				Materialize.toast('Uploading Image...', 30000);
+				$("#imageUploadForm5").submit();
+			});
+			
+		</script>
+	</body>
+</html>

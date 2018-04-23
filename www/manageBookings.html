@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+		
+			body{
+				overflow-x: hidden;
+			}
+		
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+			}
+			
+			.bookingsToday{
+				color: #ffffff !important;
+				background: #ff9933 !important;
+			}
+			
+			.bookingsToday .picker__day--infocus{
+				color: #ffffff !important;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			/*
+			.dateHolder{
+				width: 100%;
+				float: left;
+				background: #26a69a;
+				color: #ffffff;
+			}
+			
+			.dateHolder h2{
+				font-size: 2.12em;
+			}
+			*/
+			
+			.thisIsTheCurrentDate{
+			background: #666;
+			color: #ffffff;
+		}
+		
+		.thisIsTheCurrentDate .bottom25{
+			color: #ffffff;
+		}
+		
+		.specificDateOnCalendar{
+			text-align: center;
+			border: 1px solid #ccc;
+		}
+		
+		.timeContainer{
+			position: absolute; 
+			width: 15%;
+			/*height: 1080px; */
+			background: #e6e6e6;
+			box-shadow: 0 0 32px rgba(0,0,0,.09);
+            -moz-box-shadow : 0 0 32px rgba(0,0,0,.09);
+            -webkit-box-shadow : 0 0 32px rgba(0,0,0,.09); 
+			z-index: 9;
+		}
+		
+		
+		.timeHour{
+			width: 100%;
+			float: left;
+			height: 120px;
+			line-height: 30px;
+			color: #666;
+			text-align: center;
+			font-size: 1.1em;
+		}
+		
+		.blankTop{
+			float: left;
+			width: 100%;
+			height: 190px;
+		}
+		
+		._employeeContainer{
+			width: 50%;
+			float: left;
+			height: 1400px;
+		}
+		
+		.profileTop{
+			width: 100%;
+			float: left;
+			height: 190px; /*Was 140px*/
+			text-align: center;
+		}
+		
+		.hourSlot{
+			width: 100%;
+			float: left;
+			height: 90px;
+			border-bottom: 1px solid #ffffff;
+			border-right: 1px solid #ffffff;
+		}
+		
+		.fifteenMinuteSlot{
+			font-size: 0.76em;
+			color: #0d0d0d;
+			position: relative;
+			text-transform: uppercase;
+			border: 1px solid rgba(89,89,89,0.2);
+			
+		}
+		
+		.dummy .hourSlot{
+			border-bottom: none;
+		}
+		
+		.fifteenMinuteSlot{
+			height: 30px;
+			width: 100%;
+			float: left;
+			text-align: center;			
+		}
+		
+		.actualProfileImage{
+			width: 60px;
+			height: 60px;
+			margin: 0 auto;
+			border-radius: 50%;
+			position: relative;
+			top: 10px;
+			background-size: cover !important;
+			background-position: center center !important;
+			background-repeat: no-repeat !important;
+		}
+		
+		.salonEmployeesName{
+			font-weight: bold;
+			position: relative;
+			color: #808080;
+			top: 10px;
+		}
+		
+		.employeeNameContainer{
+			width: 100%;
+			float: left;
+			height: 50px;
+		}
+		
+		.serviceContainerButton, .cancelContainerButton{
+				position: relative;
+				top: 40px;
+		}
+		
+		.fixedMenu{
+			float: left;
+			width: 100%;
+			text-align: center;
+			position: fixed;
+			bottom: 0;
+			height: 50px;
+			background: #26a69a;
+		}
+		
+		.normal-icon{
+			color: #ffffff;
+			font-size: 2.5em;
+		}
+		
+		.carousel{
+			overflow-y:scroll;
+		}
+		
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="modal2" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4>Update Booking</h4>
+				<div class="specificBooking">
+					<div class="bookingMessage">
+						<span id="theClientsName" style="position: relative; top: 20px; font-size: 1.12em;"></span><br>
+						<span id="theServiceToBeDone" style="position: relative; top: 20px; font-size: 1.12em;"></span><br>
+						<span id="theTimeOfService" style="position: relative; top: 20px; font-size: 1.12em;"></span>
+						<div class="row">
+							<div class="col s12">
+								<div class="col s12">
+									<div class="serviceContainerButton">
+										<button class="btn modal-action modal-close waves-effect waves-effect waves-light" >View</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="modal3" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4>Add Booking</h4>
+				<div class="addBooking">
+					<div class="addBookingMessage">
+						<span id="makeABooking" style="position: relative; top: 20px; font-size: 1.12em;"></span>
+						<div class="serviceContainerButton">
+							<button class="btn modal-action modal-close waves-effect waves-effect waves-light" >Add Booking</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="salonDashboard.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Manage Bookings</a>
+			</div>
+		 </nav>
+		 </div>
+		<section class="bookingCalendarHolder">
+			<div class="openCalendar">
+				<div class="openCalendar_right datepicker">
+					<i class="ion-android-calendar datepicker"></i><span id="currentSelectedDate" class="datepicker"></span>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="dateContainer"></div>
+			<div class="leftSidePanel"><span>Nothing</span></div>
+			<div class="timeContainer">
+				<div class="blankTop">
+				</div>
+				<div class="timeHour">
+					<span>08</span>:00
+				</div>
+				<div class="timeHour">
+					<span>09</span>:00
+				</div>
+				<div class="timeHour">
+					<span>10</span>:00
+				</div>
+				<div class="timeHour">
+					<span>11</span>:00
+				</div>
+				<div class="timeHour">
+					<span>12</span>:00
+				</div>
+				<div class="timeHour">
+					<span>13</span>:00
+				</div>
+				<div class="timeHour">
+					<span>14</span>:00
+				</div>
+				<div class="timeHour">
+					<span>15</span>:00
+				</div>
+				<div class="timeHour">
+					<span>16</span>:00
+				</div>
+				<div class="timeHour">
+					<span>17</span>:00
+				</div>
+			</div>
+			<div class="rightSidePanel">
+				<div class="employeesCarousel" id="something"></div>
+			</div>
+		</section>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/Hammer.js"></script>
+		<script type="text/javascript" src="slick/slick.js"></script>
+		<script src="js/mdDateTimePickerBookingMgmt.js"></script>
+		<script type="text/javascript">
+			checkLogin();
+			var new_monthArray = '';
+			var new_monthArray2 = '';
+			var datesWithBookingsArray = datesWithBookings.split(",");
+			
+			$('.datepicker').pickadate({
+				selectMonths: true, // Creates a dropdown to control month
+				selectYears: 5,  // Creates a dropdown of 15 years to control year
+				onStart: function() {
+					console.log();
+					var monthArray = $(".picker__day--infocus").toArray();
+					var sizeOfArray = monthArray.length;
+					
+					if(sizeOfArray == 31){
+						new_monthArray = monthArray.slice(0,sizeOfArray);
+					}else if(sizeOfArray == 30){
+						new_monthArray = monthArray.slice(0,sizeOfArray);
+					}else if(sizeOfArray == 29){
+						new_monthArray = monthArray.slice(0,sizeOfArray);
+					}else if(sizeOfArray == 28){
+						new_monthArray = monthArray.slice(0,sizeOfArray);
+					}
+					
+					$.each( new_monthArray, function( key, val ) {
+						
+						var _the_date = $(this).attr("aria-label"); //format: 1 June, 2017
+						var _the_date_array = _the_date.split(" ");
+						var length_of_month = _the_date_array[1].length - 1;
+						var month = _the_date_array[1].slice(0,length_of_month);
+						var monthNumber = returnMonthNumber(month);
+						var dateNumber = returnDateNumber(_the_date_array[0]);
+						var formDate = dateNumber + "/" + monthNumber + "/" + _the_date_array[2];
+						var test = formDate;
+					
+						if(jQuery.inArray(test, datesWithBookingsArray) !== -1){
+							$(this).parent().addClass("bookingsToday");
+						}
+						
+					});
+	
+				},
+				onSet: function(e) {
+					console.log();
+					var monthArray = null;
+					var numberOfDaysInMonth = '';
+					monthArray = $(".picker__day--infocus").toArray();	
+					$.each( monthArray, function( key, val ) {
+				
+						numberOfDaysInMonth = $(this).text(); 
+						
+					});
+					var sizeOfArray = monthArray.length;
+					var startSlice = sizeOfArray - numberOfDaysInMonth;
+					
+					new_monthArray2 = monthArray.slice(startSlice, sizeOfArray);
+					
+					$.each( new_monthArray2, function( key, val ) {
+				
+						var _the_date = $(this).attr("aria-label"); 
+						var _the_date_array = _the_date.split(" ");
+						var length_of_month = _the_date_array[1].length - 1;
+						var month = _the_date_array[1].slice(0,length_of_month);
+						var monthNumber = returnMonthNumber(month);
+						var dateNumber = returnDateNumber(_the_date_array[0]);
+						var formDate = dateNumber + "/" + monthNumber + "/" + _the_date_array[2];
+						var test = formDate;
+
+						if(jQuery.inArray(test, datesWithBookingsArray) !== -1){
+							$(this).parent().addClass("bookingsToday");
+						}
+						
+					});
+					
+				  if (e.select) {
+					var date = new Date(e.select);
+					changeCalendarSettings(date);
+				  } else {
+					// a date has not been selected
+				  }
+				}
+			});
+			
+			$("#currentSelectedDate").empty();
+			var date_to_display = changeDateFormat(dbDateFormat) + " " + changeMonthFormat(dbDateFormat) + " " + returnTheYear(dbDateFormat);
+			$("#currentSelectedDate").text(date_to_display);
+			
+			var dateArray = dbDateFormat.split("/");
+			var dateString = dateArray[2] + "." + dateArray[1] + "." + dateArray[0];
+			var timestamp = new Date(dateString).getTime() / 1000;
+			var the_date = new Date(timestamp * 1000);
+			salonBookingCalendar(the_date);
+			
+			getEmployeeTimetables();
+			
+			$(document).ready(function(){       
+				$('.dateContainer').slick({
+					infinite: false,
+					speed: 400,
+					arrows:false,
+					slidesToShow: 6,
+					slidesToScroll: 6
+				 });
+				 
+				$('.addBookingMessage .serviceContainerButton').click(function(){
+					window.location.href = "addBooking.html";
+				});
+				
+				$('.bookingMessage .serviceContainerButton').click(function(){
+					window.location.href = "updateBooking.html";
+				});
+				
+				$('.bookingMessage .cancelContainerButton').click(function(){
+					deleteBooking(booking_id);	
+				});
+							
+				$( ".dateContainer" ).slick('slickGoTo', parseInt(scrollIndexValue));
+				 
+			});
+			
+			$(document).ready(function(){
+				
+				$('#something').hammer({domEvents:true}).on("press", ".fifteenMinuteSlot", function() {
+					
+					var dataClient = $(this).attr("data-client");
+					var dataTimeBooking = $(this).attr("data-time-booking");
+					var dataTheService = $(this).attr("data-the-service");
+					var dataSlotStatus = $(this).attr("data-slot-status");
+					
+					var timeSlot = $(this).attr("data-start-time");
+					var employeeID = $(this).parents("._employeeContainer").attr("id");
+					var employeeName = $(this).parents("._employeeContainer").attr("data-employee-name");
+					
+					var booking_id = $(this).attr("data-booking-id");
+					var booking_date = $(this).attr("data-booking-date");
+					var booking_employee_id = $(this).attr("data-booking-employee-id");
+					var booking_service_duration = $(this).attr("data-booking-duration");
+					
+					if(dataSlotStatus == "isBooked"){
+						
+							//$('.bookingMessage #theClientsName').empty();
+							$('.bookingMessage #theClientsName').text(dataClient);
+							//$('.bookingMessage #theServiceToBeDone').empty();
+							$('.bookingMessage #theServiceToBeDone').text(dataTheService);
+							//$('.bookingMessage #theTimeOfService').empty();
+							$('.bookingMessage #theTimeOfService').text(dataTimeBooking);
+							
+							localStorage.setItem('bookingId', booking_id);
+							localStorage.setItem('bookingDate', booking_date);
+							localStorage.setItem('bookingEmployeeId', booking_employee_id);
+							localStorage.setItem('bookingServiceDuration', booking_service_duration);
+											
+							$('#modal2').openModal();
+						}
+						
+						if(dataSlotStatus == "isClosed"){
+							failure('Sorry, you can\'t make a booking here.');
+						}
+						
+						if(dataSlotStatus == "isOpen"){
+		
+							localStorage.setItem('proposedTime', timeSlot);
+							localStorage.setItem('proposedEmployee', employeeName);
+							localStorage.setItem('proposedEmployeeID', employeeID);
+								
+								var d = new Date();
+								
+								var date = d.getDate(); //Date
+								var month = parseInt(d.getMonth()) + 1; //Month
+								var year = d.getFullYear();
+									
+								var currentDate = date + "" + month + "" + year;
+								var pDate = dbDateFormat.split("/");
+								var chosenMonth = parseFloat(pDate[1]) - 1;
+								var theChosenDate = new Date(pDate[2],chosenMonth,pDate[0]);
+
+								pDateMonth = "" + parseFloat(pDate[1]);
+								pDate = pDate[0] + "" + pDateMonth + "" + pDate[2];
+							
+								var hrs = d.getHours(); 
+								var mins = d.getMinutes(); 
+								
+								var pT = timeSlot.split(':'); //Where pT stands for proposed time.
+								pT = pT[0] + "" + pT[1];
+								
+								var timeRightNow = hrs + "" + mins;
+								
+									if(theChosenDate > d){
+										//Future
+										if(employeeName != "" && employeeID != "" && timeSlot !=""){
+										$("#makeABooking").text("Would you like to make a booking on " + employeeName + "'s calendar for " + timeSlot + "?");
+										$('#modal3').openModal();
+										
+										}
+
+									}else if(parseInt(pDate) == parseInt(currentDate)){
+										//Present
+										if(parseInt(timeRightNow) < parseInt(pT)){
+								
+											if(employeeName != "" && employeeID != "" && timeSlot !=""){
+											$("#makeABooking").text("Would you like to make a booking on " + employeeName + "'s calendar for " + timeSlot + "?");
+											$('#modal3').openModal();
+											
+											}
+											
+										}else{
+											
+											failure("You can't make a booking in the past.");
+										}
+										
+									}else{
+
+										failure("You can't make a booking in the past.");
+										
+									}
+
+						}
+					
+					
+				});
+			});
+			
+			var getPointerEvent = function(event) {
+				return event.originalEvent.targetTouches ? event.originalEvent.targetTouches[0] : event;
+			};
+			var $touchArea = $('#touchArea'),
+				touchStarted = false, // detect if a touch event is sarted
+				currX = 0,
+				currY = 0,
+				cachedX = 0,
+				cachedY = 0;
+
+			//setting the events listeners
+			$touchArea.on('touchstart mousedown', function (e){
+			
+				e.preventDefault(); 
+				var pointer = getPointerEvent(e);
+				// caching the current x
+				cachedX = currX = pointer.pageX;
+				
+				// caching the current y
+				cachedY = currY = pointer.pageY;
+				
+				// a touch event is detected      
+				touchStarted = true;
+				//$touchArea.text('Touchstarted');
+				// detecting if after 200ms the finger is still in the same position
+				setTimeout(function (){
+					if ((cachedX === currX) && touchStarted && (cachedY === currY)) {
+						// Here you get the Hold down event
+						//$touchArea.text('You are holding down');
+					}
+				},1500);
+			});
+			
+			$touchArea.on('touchstart mousedown', ".fifteenMinuteSlot", function(e) {
+			
+				e.preventDefault(); 
+				var pointer = getPointerEvent(e);
+				// caching the current x
+				cachedX = currX = pointer.pageX;
+				
+				// caching the current y
+				cachedY = currY = pointer.pageY;
+				
+				// a touch event is detected      
+				touchStarted = true;
+				
+				var dataClient = $(this).attr("data-client");
+				var dataTimeBooking = $(this).attr("data-time-booking");
+				var dataTheService = $(this).attr("data-the-service");
+				var dataSlotStatus = $(this).attr("data-slot-status");
+				
+				var timeSlot = $(this).attr("data-start-time");
+				var employeeID = $(this).parents("._employeeContainer").attr("id");
+				var employeeName = $(this).parents("._employeeContainer").attr("data-employee-name");
+				
+				var booking_id = $(this).attr("data-booking-id");
+				var booking_date = $(this).attr("data-booking-date");
+				var booking_employee_id = $(this).attr("data-booking-employee-id");
+				var booking_service_duration = $(this).attr("data-booking-duration");
+				
+				//(cachedX === currX) && touchStarted && (cachedY === currY)
+				setTimeout(function (){
+					if (touchStarted) {
+						// Here you get the Hold down event
+						
+						if(dataSlotStatus == "isBooked"){
+						
+							//$('.bookingMessage #theClientsName').empty();
+							$('.bookingMessage #theClientsName').text(dataClient);
+							//$('.bookingMessage #theServiceToBeDone').empty();
+							$('.bookingMessage #theServiceToBeDone').text(dataTheService);
+							//$('.bookingMessage #theTimeOfService').empty();
+							$('.bookingMessage #theTimeOfService').text(dataTimeBooking);
+							
+							localStorage.setItem('bookingId', booking_id);
+							localStorage.setItem('bookingDate', booking_date);
+							localStorage.setItem('bookingEmployeeId', booking_employee_id);
+							localStorage.setItem('bookingServiceDuration', booking_service_duration);
+											
+							$('#modal2').openModal();
+						}
+						
+						if(dataSlotStatus == "isClosed"){
+							failure('Sorry but you can\'t make a booking here.');
+						}
+						
+						if(dataSlotStatus == "isOpen"){
+		
+							localStorage.setItem('proposedTime', timeSlot);
+							localStorage.setItem('proposedEmployee', employeeName);
+							localStorage.setItem('proposedEmployeeID', employeeID);
+								
+								var d = new Date();
+								
+								var date = d.getDate(); //Date
+								var month = parseInt(d.getMonth()) + 1; //Month
+								var year = d.getFullYear();
+									
+								var currentDate = date + "" + month + "" + year;
+								var pDate = dbDateFormat.split("/");
+								pDate = pDate[0] + "" + pDate[1] + "" + pDate[2];
+							
+								var hrs = d.getHours(); 
+								var mins = d.getMinutes(); 
+								
+								var pT = timeSlot.split(':'); //Where pT stands for proposed time.
+								pT = pT[0] + "" + pT[1];
+								
+								var timeRightNow = hrs + "" + mins;
+									
+									if(parseInt(pDate) > parseInt(currentDate)){
+										//Future
+										if(employeeName != "" && employeeID != "" && timeSlot !=""){
+										$("#makeABooking").text("Would you like to make a booking on " + employeeName + "'s calendar for " + timeSlot + "?");
+										$('#modal3').openModal();
+										
+										}
+										
+									}else if(parseInt(pDate) == parseInt(currentDate)){
+										//Present
+										if(parseInt(timeRightNow) < parseInt(pT)){
+								
+											if(employeeName != "" && employeeID != "" && timeSlot !=""){
+											$("#makeABooking").text("Would you like to make a booking on " + employeeName + "'s calendar for " + timeSlot + "?");
+											$('#modal3').openModal();
+											
+											}
+											
+										}else{
+											
+											failure("You can't make a booking in the past.");
+										}
+										
+										
+									}else{
+										
+										
+										failure("You can't make a booking in the past.");
+										
+									}
+
+						}
+						
+						
+					}
+				},1700);
+				
+			});
+			
+			
+			
+			$touchArea.on('touchend mouseup touchcancel',function (e){
+				e.preventDefault();
+				// here we can consider finished the touch event
+				touchStarted = false;
+				//$touchArea.text('Touchended');
+			});
+
+			
+			$(document).on('click', ".specificDateOnCalendar", function(){
+					
+				var chosen_date = $(this).attr("data-calendar-date");
+				var unformattedDate = $(this).attr("data-datewithoutzeros");
+				
+				if(chosen_date != ""){
+					resetDate(chosen_date, unformattedDate);
+				}
+			});
+			
+			function changeCalendarSettings(dateToConvert){
+				var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+				
+				var timestamp = new Date(dateToConvert).getTime() / 1000;
+				var the_date = new Date(timestamp * 1000);
+				var _day = the_date.getDay();
+				var _theDay = days[_day]; //Day
+				var _month = the_date.getMonth(); //Month
+				var _date = the_date.getDate(); 
+				var currentYear = the_date.getFullYear(); //Year
+				var correctDate = _date;
+				
+				//Append 0 to date
+				if(correctDate == 1){
+					
+					correctDate = "0" + correctDate;
+					var twoDigitDate = correctDate;
+					
+				}else if(correctDate == 2){
+					
+					correctDate = "0" + correctDate;
+					var twoDigitDate = correctDate;
+					
+				}else if(correctDate == 3){
+					
+					correctDate = "0" + correctDate;
+					var twoDigitDate = correctDate;
+					
+				}else if(correctDate == 4){
+					
+					correctDate = "0" + correctDate;
+					var twoDigitDate = correctDate;
+					
+				}else if(correctDate == 5){
+					
+					correctDate = "0" + correctDate;
+					var twoDigitDate = correctDate;
+					
+				}else if(correctDate == 6){
+					
+					correctDate = "0" + correctDate;
+					var twoDigitDate = correctDate;
+					
+				}else if(correctDate == 7){
+					
+					correctDate = "0" + correctDate;
+					var twoDigitDate = correctDate;
+					
+				}else if(correctDate == 8){
+					
+					correctDate = "0" + correctDate;
+					var twoDigitDate = correctDate;
+					
+				}else if(correctDate == 9){
+					
+					correctDate = "0" + correctDate;
+					var twoDigitDate = correctDate;
+					
+				}else{
+					
+					var twoDigitDate = correctDate;
+					
+				}
+				
+				//Append 0 to month
+				var correctMonth = _month + 1;
+				
+				if(correctMonth == 1){
+					
+					correctMonth = "0" + correctMonth;
+					var twoDigitMonth = correctMonth;
+					
+				}else if(correctMonth == 2){
+					
+					correctMonth = "0" + correctMonth;
+					var twoDigitMonth = correctMonth;
+					
+				}else if(correctMonth == 3){
+					
+					correctMonth = "0" + correctMonth;
+					var twoDigitMonth = correctMonth;
+					
+				}else if(correctMonth == 4){
+					
+					correctMonth = "0" + correctMonth;
+					var twoDigitMonth = correctMonth;
+					
+				}else if(correctMonth == 5){
+					
+					correctMonth = "0" + correctMonth;
+					var twoDigitMonth = correctMonth;
+					
+				}else if(correctMonth == 6){
+					
+					correctMonth = "0" + correctMonth;
+					var twoDigitMonth = correctMonth;
+					
+				}else if(correctMonth == 7){
+					
+					correctMonth = "0" + correctMonth;
+					var twoDigitMonth = correctMonth;
+					
+				}else if(correctMonth == 8){
+					
+					correctMonth = "0" + correctMonth;
+					var twoDigitMonth = correctMonth;
+					
+				}else if(correctMonth == 9){
+					
+					correctMonth = "0" + correctMonth;
+					var twoDigitMonth = correctMonth;
+					
+				}else{
+					
+					var twoDigitMonth = correctMonth;
+					
+				}
+				
+				var dataDate = twoDigitDate + "/" + twoDigitMonth + "/" + currentYear; /* dd/mm/yyyy */
+				var dateWithoutZeroes = _theDay + "/" + _date + "/" + _month + "/" + currentYear;
+
+				if(dataDate != ""){
+					resetDate(dataDate, dateWithoutZeroes);
+				}
+
+			}
+		
+			$(document).on('click', ".bookThisEmployee", function() {
+			
+				var employeeName = $(this).attr("data-employee-name");
+				var employeeID = $(this).attr("data-employee-id");
+				var timeSlot = '';
+				localStorage.setItem('proposedTime', timeSlot);
+				localStorage.setItem('proposedEmployee', employeeName);
+				localStorage.setItem('proposedEmployeeID', employeeID);
+				
+				if(employeeID > 0){
+					window.location = 'addBooking.html';
+				}
+			
+			});
+			
+			$(".specificDateOnCalendar").each(function() {
+				
+				var test = $(this).attr("data-calendar-date");
+				if(jQuery.inArray(test, datesWithBookingsArray) !== -1){
+					$(this).addClass("bookingsToday");
+				}
+				
+			});
+			
+		</script>
+	</body>
+</html>

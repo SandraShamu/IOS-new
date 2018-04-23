@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			}
+			
+			.employeeSales{
+				width: 100px;
+			}
+			
+			.db-icon{
+				color: #666;
+				font-size: 58px;
+			}
+			
+			.spanHeading{
+				color: #26a69a;
+			}
+			
+			.buttonContainer{
+				width: calc(100% - 20px);
+				margin: 0 auto;
+				height: auto;
+				margin-top: 5px;
+			}
+			
+			.fixedMenu{
+				float: left;
+				width: 100%;
+				text-align: center;
+				position: fixed;
+				border-top: 1px solid #e6e6e6;
+				bottom: 0;
+				height: 70px;
+				background: #ffffff;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="salonDashboard.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Booking Settings</a>
+			</div>
+		 </nav>
+		 </div>
+		<section>
+			<div class="row">
+				<div class="input-field col s12">
+					<br>
+					<span class="spanHeading">Client can book appointments</span><br>
+					<span id="salonAppointments"></span><span> (hours in advance)</span><br><br>
+					<select id="appointments">
+					  <option value="" disabled selected>Client can book appointments</option>
+						  <option value="1">up to 1 hour before start time</option>
+						  <option value="2">up to 2 hours before start time</option>
+						  <option value="4">up to 4 hours before start time</option>
+						  <option value="6">up to 6 hours before start time</option>
+						  <option value="8">up to 8 hours before start time</option>
+						  <option value="10">up to 10 hours before start time</option>
+						  <option value="24">up to 24 hours before start time</option>
+					</select>
+					<label>Client can book appointments</label>
+				 </div>
+			 </div>
+		</section>
+		<section class="fixedMenu">
+			<div class="buttonContainer">
+				<button class="btn-large waves-effect waves-effect waves-light bookingSettings" style="width: 100%;" >Update Booking Settings</button>
+			</div>
+		</section>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript">
+			checkLogin();
+			
+			function loadData()
+			{
+				setData('salon_profile', 'booking_in_advance', 'company_id', salonId, 'salonAppointments', 'spanText'); 
+			}
+			
+			loadData();
+			
+			$(document).ready(function(){
+				$('select').material_select();
+				
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+ 	
+			});
+			
+			$('.bookingSettings').click(function() 
+			{
+				var complete = 1;
+				var numberOfHoursInAdvance = $('#appointments').val();
+				 
+				if(numberOfHoursInAdvance == '' || numberOfHoursInAdvance == null)
+				{
+					complete = 0;
+					failure('You must add at least one hour.');
+				}
+
+				if(complete == 1)
+				{			
+					updateSalonBookingSettings(salonId, numberOfHoursInAdvance);			
+				}
+			});
+			
+		</script>
+	</body>
+</html>

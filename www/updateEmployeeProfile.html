@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.profilePic{
+				position: relative;
+				top: 40px;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <i class="ion-ios-arrow-left topLeftIcon dashboard"></i>
+			  <a href="#!" class="brand-logo center appPageTitle">Update Profile</a>
+			</div>
+		 </nav>
+		 </div>
+		 <div class="headerImage" style="background: url('images/userProfileBG.jpg');">
+			<div class="changeProfileImage" id="myPicture" ></div>
+		 </div>
+		 <div class="lollipopColorsContainer">
+			<div class="lollipopColor" style="background: rgb(134, 232, 175);"></div>
+			<div class="lollipopColor" style="background: rgb(49, 158, 94);"></div>
+			<div class="lollipopColor" style="background: rgb(229, 141, 87);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 248, 153);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 218, 96);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 132, 167);"></div>
+			<div class="lollipopColor" style="background: rgb(237, 28, 59);"></div>
+		</div>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+					<form action="https://lollipopbeauty.co.za/Website_1/api/uploadEmployeeImage.php" id="imageUploadForm" method="post" enctype="multipart/form-data">
+						  <label class="myLabel promoPicUpload">
+							<input type="file" name='imageUpload' id='imageUpload'>
+							<span>Upload Profile Picture</span>
+						  </label>
+						  <input type="hidden" id="userId" name="userId">
+					</form>
+			</div>
+			<div class="col s12">
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="fullName" type="text" class="validate">
+				  <label for="fullName">Full Name</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="userPhoneNumber" type="text" class="validate">
+				  <label  for="userPhoneNumber">Phone Number</label>
+				</div>
+				<div class="input-field col s6">
+				  <input id="emailAddress" type="text" class="validate">
+				  <label  for="emailAddress">Email Address</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="physicalAddress" type="text" class="validate">
+				  <label  for="physicalAddress" >Physical Address</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+				  <textarea id="whyChooseMe" class="materialize-textarea"></textarea>
+				  <label for="whyChooseMe" class="active" style>Why Choose Me</label>
+				</div>
+			  </div>
+			  <br>
+			  <div class="row">
+				<div class="input-field col s12">
+					<button class="btn-large waves-effect waves-light updateEmployeeProfile" style="width: 100%;" type="submit" name="action">Update Profile</button>
+				</div>
+			  </div> 
+			</div>
+		</div>
+		<script src="js/functions.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/draggabilly.pkgd.min.js"></script>
+		<script src="js/mdDateTimePicker.js"></script>
+		<script>
+			checkLogin();
+			
+			$(document).ready(function(){
+				$('select').material_select();
+				
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+ 	
+			});
+			
+			
+			function loadData()
+			{
+				setData('salon_employees', 'profile_picture', 'employee_email', userEmail, 'myPicture', 'profilePic');
+				setData('salon_employees', 'employee_name', 'employee_email', userEmail, 'fullName', 'normalText');
+				setData('salon_employees', 'why_choose_me', 'employee_email', userEmail, 'whyChooseMe', 'normalText');
+				setData('salon_employees', 'phone_number', 'employee_email', userEmail, 'userPhoneNumber', 'normalText');
+				setData('salon_employees', 'physical_address', 'employee_email', userEmail, 'physicalAddress', 'normalText');				
+				setData('salon_employees', 'employee_email', 'employee_email', userEmail, 'emailAddress', 'normalText');				
+			}
+			
+			loadData();
+			
+			$('.dashboard').click(function() 
+			{
+				var complete = 1;
+				
+				var fullName = $('#fullName').val();
+				var whyChooseMe = $('#whyChooseMe').val();
+				var userPhoneNumber = $('#userPhoneNumber').val();
+				var userEmailAddress = $('#emailAddress').val();
+				var userPhysicalAddress = $('#physicalAddress').val();
+				
+				if(fullName == '')
+				{
+					complete = 0;
+					failure('You must add your name.');
+				}
+				else if(whyChooseMe == '')
+				{
+					complete = 0;
+					failure('Why should clients choose you?');
+				}
+				else if(userPhoneNumber == '')
+				{
+					complete = 0;
+					failure('You must add your phone number.');
+				}
+				else if(userEmailAddress == '')
+				{
+					complete = 0;
+					failure('You must add your email address.');
+				}
+				else if(userPhysicalAddress == '')
+				{
+					complete = 0;
+					failure('You must add your physical address.');
+				}
+				
+				if(complete == 1)
+				{
+					
+					window.location.href= "salonEmployeeDashboard.html";
+					
+				}
+			});
+			
+			
+			$('.updateEmployeeProfile').click(function() 
+			{
+				
+				var complete = 1;
+				
+				var complete = 1;
+				
+				var fullName = $('#fullName').val();
+				var whyChooseMe = $('#whyChooseMe').val();
+				var userPhoneNumber = $('#userPhoneNumber').val();
+				var userEmailAddress = $('#emailAddress').val();
+				var userPhysicalAddress = $('#physicalAddress').val();
+				
+				
+				if(fullName == '')
+				{
+					complete = 0;
+					failure('You must add your name.');
+				}
+				else if(whyChooseMe == '')
+				{
+					complete = 0;
+					failure('Why should clients choose you?');
+				}
+				else if(userPhoneNumber == '')
+				{
+					complete = 0;
+					failure('You must add your phone number.');
+				}
+				else if(userEmailAddress == '')
+				{
+					complete = 0;
+					failure('You must add your email address.');
+				}
+				else if(userPhysicalAddress == '')
+				{
+					complete = 0;
+					failure('You must add your physical address.');
+				}
+				
+				if(complete == 1)
+				{
+					
+					updateEmployeeData(employeeId, fullName, userEmailAddress, userPhoneNumber, userPhysicalAddress, whyChooseMe);
+					
+				}
+				
+			});
+			
+			
+			$("#imageUpload").on("change", function() 
+			{
+				_("userId").val(employeeId);
+				Materialize.toast('Uploading Image...', 70000);
+				$("#imageUploadForm").submit();
+			});
+		</script>
+		
+	</body>
+</html>

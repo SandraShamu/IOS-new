@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.menuBurger{
+				width: 35px;
+				position: relative;
+				top: 2px;
+				left: 15px;
+			}
+			/*
+			.promoSlider{
+				
+				background-size: cover !important;
+				background-position: center center;/* !important;*/
+				background-repeat: no-repeat !important;
+				background-attachment: fixed !important;
+			}
+			*/
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.logoContainer img{
+				width: 200px;
+			}
+			
+			.indicator-item{
+				position: relative;
+				top: -50px;
+				z-index: 99;
+			}
+			
+			.gLogo{
+				width: 100px;
+				position: relative;
+				top: -10px;
+			}
+			
+			._sliderOverlay{
+				height: 200px;
+				width: 100%;
+				
+
+				position: absolute;
+				z-index: 99;
+			}
+			
+			.search-icon{
+				float: right;
+				position: relative;
+				top: 4px;
+				left: -25px;
+				font-size: 24px;
+			}
+			
+			.search_result{
+				width: 100%;
+				float: left;
+				color: #666;
+				font-weight: bold;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			.search_result span{
+				font-size: 1.4em;
+			}
+			
+			.slideInSearch{
+				width: 100%;
+				height: auto;
+				background: #ffffff;
+				position: absolute;
+				top: -300px;
+				text-align: center;
+				z-index: 9999;
+			}
+			
+			.close-search{
+				width: 100%;
+				height: 35px;
+				background: #666;
+				text-align: center;
+				position: relative;
+				
+			}
+			
+			.close-search img{
+				height: 30px;
+				position: relative;
+				top: 5px;
+			}
+			
+			.promoTextContainer{
+				position: absolute;
+				color: #ffffff;
+				width: 100%;
+				float: left;
+				height: 340px;
+				font-size: 1.4em;
+				top: 0;
+				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+				background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+				background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+			}
+			
+			.promoTextChild{
+				position: absolute;
+				width: 100%;
+				left: 30px;
+				margin: 0 auto;
+				bottom: 30px;
+			}
+			
+			.promoPrice{
+				background: rgb(229, 141, 87);
+				font-size: 0.79em;
+				padding: 5px;
+				border-radius: 2px;
+			}
+			
+			.salonPromo{
+				text-transform: uppercase;
+				font-weight: 100;
+				font-size: 0.87em;
+			}
+			
+			.services{
+				margin-top: 20px;
+			}
+			
+			.colorsContainer{
+				height: 5px;
+				width: 100%;
+				float: left;
+				background: #ffffff;
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.headerImage_top{
+				height: 150px;
+				float: left;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.headerImage_top span{
+				line-height: 150px;
+				font-size: 7em;
+				color: #ffffff;
+			}
+			
+			.headerImage_bottom{
+				height: 50px;
+				float: left;
+				width: 100%;
+				text-align: center;
+				color: #ffffff;
+			}
+			
+			.headerImage_bottom span{
+				line-height: 50px;
+				color: #666;
+				font-size: 1.19em;
+				color: #ffffff;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.myBookings{
+				float: left;
+				width: 100%;
+				height: auto;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div class="slideInSearch">
+				<input type="text" id="search_text" style="text-transform: none; margin-bottom: 0px; padding: 5px;" placeholder="Search for salons or services..." name="search" >
+				<div class="close-search">
+					<img src="images/up-arrow.svg">
+				</div>
+				<div id="result"></div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <!--<img src="images/bars.svg" class="menuBurger button-collapse" data-activates="slide-out">-->
+			  <i class="ion-android-menu menuBurger button-collapse" data-activates="slide-out"></i>
+			  
+			  <a href="#!" class="brand-logo center appPageTitle"><img src="images/logo.png" class="gLogo"></a>
+			  <i class="ion-android-search search-icon"></i>
+			</div>
+		</nav>
+		</div>
+		<ul id="slide-out" class="side-nav">
+			<div class="navfullWidth">
+				<div class="row">
+					<div class="col s4" >
+						<div  class="navCircleProfilePic _userProfilePicture" id="myPicture" ></div>
+					</div>
+					<div class="col s8">
+						<span class="white-text name"  style=""></span>
+					</div>
+				</div>
+			</div>
+			<li><a class="waves-effect" href="main.html">Dashboard</a></li>
+			<li><a class="waves-effect" href="userBookings.html">My Bookings</a></li>
+			<li><a class="waves-effect" href="updateUserProfile.html">My Profile</a></li>
+			<li><a class="waves-effect" href="favoriteSalons.html">Favourite Salons</a></li>
+			<li><a class="waves-effect" href="favoriteServiceProviders.html">Favourite Service Providers</a></li>
+			<li><a class="waves-effect" href="#!">Terms of Service</a></li>
+			<li><a class="waves-effect" href="#!">Privacy</a></li>
+			<li><a class="waves-effect" href="#!">Get In Touch With Us</a></li>
+			<li><a class="waves-effect" href="logout.html">Log Out</a></li>
+		 </ul>
+		<div class="headerImage" style="background: url('images/4.jpg');">
+			<div class="headerImage_top">
+				
+			</div>
+			<div class="headerImage_bottom">
+				
+			</div>
+		 </div>
+		  <div class="lollipopColorsContainer">
+			<div class="lollipopColor" style="background: rgb(134, 232, 175);"></div>
+			<div class="lollipopColor" style="background: rgb(49, 158, 94);"></div>
+			<div class="lollipopColor" style="background: rgb(229, 141, 87);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 248, 153);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 218, 96);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 132, 167);"></div>
+			<div class="lollipopColor" style="background: rgb(237, 28, 59);"></div>
+		</div>
+		<section class="myBookings">
+			
+		</section>
+    </body>
+	<script src="js/functions.js"></script>
+	<script>
+		checkLogin();
+		function loadData()
+		{
+			setData('user_profile', 'profile_picture', 'email', userEmail, 'myPicture', 'profilePic');
+		}
+		
+		loadData();
+		
+		 $(document).ready(function(){
+		  //$('.slider').slider();
+
+		  $(".button-collapse").sideNav();
+		  
+		});
+		//Salon
+		$(document).on("click", ".salonResult", function(){
+			var _salonid = $(this).attr("data-salon-id");
+			localStorage.setItem('salonId', _salonid);
+			
+			var _latitude = $(this).attr("data-salon-lat");
+			localStorage.setItem('_lat', _latitude);
+			
+			var _longitude = $(this).attr("data-salon-long");
+			localStorage.setItem('_long', _longitude);
+
+			if(_salonid != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+		//Salon
+		$(document).on("click", "._salonResult_", function(){
+			var _salonid = $(this).attr("data-salon-id");
+			localStorage.setItem('salonId', _salonid);
+			
+			var _latitude = $(this).attr("data-salon-lat");
+			localStorage.setItem('_lat', _latitude);
+			
+			var _longitude = $(this).attr("data-salon-long");
+			localStorage.setItem('_long', _longitude);
+
+			if(_salonid != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+		//Service Provider
+		$(document).on("click", ".employeeResult", function(){
+			var _salonid = $(this).attr("data-salon-id");
+			localStorage.setItem('salonId', _salonid);
+
+			if(_salonid != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+		//Service
+		$(document).on("click", ".serviceResult", function(){
+			var _serviceName = $(this).attr("data-service-name");
+			localStorage.setItem('salonServiceName', _serviceName);
+
+			if(_serviceName != ''){
+				window.location.href = "serviceResults.html";
+			}else{
+				
+			}
+		});
+		//Region
+		$(document).on("click", ".regionResult", function(){
+			var _regionName = $(this).attr("data-region-name");
+			localStorage.setItem('salonRegionName', _regionName);
+
+			if(_regionName != ''){
+				window.location.href = "regionResults.html";
+			}else{
+				
+			}
+		});
+		//Product
+		$(document).on("click", ".productResult", function(){
+			var _productName = $(this).attr("data-product-name");
+			localStorage.setItem('salonProductName', _productName);
+
+			if(_productName != ''){
+				window.location.href = "productResults.html";
+			}else{
+				
+			}
+		});
+		
+		$(document).ready(function(){
+				
+				$('.name').empty();
+				$('.name').text(userName);
+				
+					$('#search_text').keyup(function(){
+						var txt = $(this).val();
+						
+						if(txt !=''){
+						
+							$('#result').html('');
+							
+							$.ajax
+							({		
+							   url : "https://lollipopbeauty.co.za/Website_1/api/searchApp2.php",
+							   method: "post",
+							   data: {search:txt},
+							   dataType: "text",
+							   success: function(data, status)
+							   {
+									$('#result').html(data);
+							   }
+							});
+							
+						}else{
+							$('#result').html('');
+						}
+						
+					});
+					
+		});
+		
+		getFavoriteSalonsCount(normalUserId);
+		getFavoriteSalons(normalUserId);
+		
+		$(document).on("click", ".thisBooking", function(){
+
+			var salonID = $(this).attr("data-salon-id");
+
+			localStorage.setItem('salonId', salonID);
+
+			if(salonID > 0){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+			
+		});
+		
+	</script>
+</html>

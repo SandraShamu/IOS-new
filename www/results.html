@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<!--<script src="js/loader.js"></script>-->
+		<style>
+			
+			.menuBurger{
+				width: 35px;
+				position: relative;
+				top: 2px;
+				left: 15px;
+			}
+		
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.logoContainer img{
+				width: 200px;
+			}
+			
+			.indicator-item{
+				position: relative;
+				top: -50px;
+				z-index: 99;
+			}
+			
+			.gLogo{
+				width: 100px;
+				position: relative;
+				top: -10px;
+			}
+			
+			._sliderOverlay{
+				height: 200px;
+				width: 100%;
+				
+
+				position: absolute;
+				z-index: 99;
+			}
+			
+			.search-icon{
+				float: right;
+				position: relative;
+				top: 1px;
+				left: -25px;
+			}
+			
+			.search_result{
+				width: 100%;
+				float: left;
+				color: #666;
+				font-weight: bold;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			.search_result span{
+				font-size: 1.4em;
+			}
+			
+			.slideInSearch{
+				width: 100%;
+				height: auto;
+				background: #ffffff;
+				position: fixed;
+				top: -300px;
+				text-align: center;
+				z-index: 9999;
+			}
+			
+			.close-search{
+				width: 100%;
+				height: 35px;
+				background: #666;
+				text-align: center;
+				position: relative;
+				
+			}
+			
+			.close-search img{
+				height: 30px;
+				position: relative;
+				top: 5px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.search-icon{
+				float: right;
+				position: relative;
+				top: 4px;
+				left: -25px;
+				font-size: 24px;
+			}
+			
+			.salon_Result{
+				float: left;
+				width: 100%;
+				height: 250px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				margin-bottom: 1px;
+			}
+			
+			.result-box{
+				float: left;
+				height: 100%;
+				width: 100%;
+				background: rgba(102, 102, 102, 0.5);
+			}
+			
+			.topOfBox, .bottomOfBox{
+				width: 100%;
+				height: 50%;
+				float: left;
+			}
+			
+			.bottomOfBox h1{
+				font-family: "Roboto";
+				font-weight: 300;
+				font-size: 1.75em;
+				color: #ffffff;
+				position: relative;
+				width: calc(100% - 50px);
+				margin: 0 auto;
+			}
+			
+			.bottomOfBox p{
+				font-size: 1.05em;
+				color: #ffffff;
+				font-weight: 300;
+				width: calc(100% - 50px);
+				margin: 0 auto;
+			}
+			
+			.bottomOfBox{
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.23) 27%, rgba(58,58,58,0.32) 38%, rgba(58,58,58,0.65) 78%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.23) 27%,rgba(58,58,58,0.32) 38%,rgba(58,58,58,0.65) 78%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.23) 27%,rgba(58,58,58,0.32) 38%,rgba(58,58,58,0.65) 78%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a63a3a3a',GradientType=0 ); /* IE6-9 */
+
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.promoTextContainer{
+				position: absolute;
+				color: #ffffff;
+				width: 100%;
+				float: left;
+				height: 200px;
+				font-size: 1.4em;
+				top: 0;
+				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+				background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+				background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+			}
+			
+			.promoTextChild{
+				position: absolute;
+				width: 100%;
+				left: 30px;
+				margin: 0 auto;
+				bottom: 30px;
+			}
+			
+			.promoPrice{
+				background: rgb(229, 141, 87);
+				font-size: 0.79em;
+				padding: 5px;
+				border-radius: 2px;
+			}
+			
+			.salonPromo{
+				text-transform: uppercase;
+				font-weight: 100;
+				font-size: 0.87em;
+			}
+			
+			.colorsContainer{
+				height: 5px;
+				width: 100%;
+				float: left;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.results{
+				margin-top: 1px;
+			}
+			
+			.noResultsHeading{
+				color: #666;
+				font-size: 1.19em;
+			}
+			
+			.main-slider .slider{
+				height: 200px !important;
+			}
+			
+			.main-slider .slider .slides {
+			  background-color: #9e9e9e;
+			  margin: 0;
+			  height: 200px !important;
+			}
+			
+			.main-slider .slider .indicators .indicator-item {
+			  display: inline-block;
+			  position: relative;
+			  top: 1px;
+			  cursor: pointer;
+			  height: 9px;
+			  width: 9px;
+			  margin: 0 12px;
+			  background-color: #e0e0e0;
+			  transition: background-color .3s;
+			  border-radius: 50%;
+			}
+			
+			.resultsSalonRating i{
+				color: #ffffff;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div class="slideInSearch">
+				<input type="text" id="search_text" style="text-transform: none; margin-bottom: 0px; padding: 5px;" placeholder="Search for salons or services..." name="search" >
+				<div class="close-search">
+					<img src="images/up-arrow.svg">
+				</div>
+				<div id="result"></div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="main.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Salons Nearby</a>
+			    <i class="ion-android-search search-icon"></i>
+			</div>
+		</nav>
+		</div>
+		<section class="main-slider">
+		<div class="slider">
+			<div class="_sliderOverlay"></div>
+			<ul class="slides">
+				
+			</ul>
+		</section>
+		<!--<section >
+			<div class="colorsContainer">
+				<div class="lollipopColor" style="background: rgb(134, 232, 175);"></div>
+				<div class="lollipopColor" style="background: rgb(49, 158, 94);"></div>
+				<div class="lollipopColor" style="background: rgb(229, 141, 87);"></div>
+				<div class="lollipopColor" style="background: rgb(255, 248, 153);"></div>
+				<div class="lollipopColor" style="background: rgb(255, 218, 96);"></div>
+				<div class="lollipopColor" style="background: rgb(255, 132, 167);"></div>
+				<div class="lollipopColor" style="background: rgb(237, 28, 59);"></div>
+				</div>
+	  </section>-->
+		<section class="results">
+			
+		</section>
+    </body>
+	
+	<script src="cordova.js"></script>
+	<script src="cordova_plugins.js"></script>
+	<script src="js/functions.js"></script>
+	<script>
+		checkLogin();
+		 $(document).ready(function(){
+		  $('.slider').slider();
+
+		  $(".button-collapse").sideNav();
+		});
+		
+		var latitude = '';
+		var longitude = '';
+		
+		getNearbySalons(salonResults);
+		
+		$(document).ready(function(){
+		
+				$('.name').empty();
+				$('.name').text(userName);
+				
+					$('#search_text').keyup(function(){
+						var txt = $(this).val();
+						
+						if(txt !=''){
+						
+							$('#result').html('');
+							
+							$.ajax
+							({		
+							   url : "https://lollipopbeauty.co.za/Website_1/api/searchApp2.php",
+							   method: "post",
+							   data: {search:txt},
+							   dataType: "text",
+							   success: function(data, status)
+							   {
+									$('#result').html(data);
+							   }
+							});
+							
+						}else{
+							$('#result').html('');
+						}
+						
+					});
+					
+		});
+		
+		var onSuccess = function(position){
+			latitude = position.coords.latitude;
+			longitude = position.coords.longitude;
+			getPromotionImages();
+		}
+				
+		function onError(error) {
+			failure('Can\'t find your location');
+			getPromotionImages();
+		}
+		
+		$(document).on('deviceready', function deviceIsReady() 
+		{
+			navigator.geolocation.getCurrentPosition(onSuccess, onError, { maximumAge: 3000, timeout: 11000, enableHighAccuracy: true });
+		});	
+		
+		$(document).on("click", ".salon_Result", function(){
+			var _salonid = $(this).attr("data-salon-id");
+			localStorage.setItem('salonId', _salonid);
+			
+			var _latitude = $(this).attr("data-salon-lat");
+			localStorage.setItem('_lat', _latitude);
+			
+			var _longitude = $(this).attr("data-salon-long");
+			localStorage.setItem('_long', _longitude);
+
+			if(_salonid != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+			
+		$(document).on("click", ".salonResult", function(){
+			var _salonid = $(this).attr("data-salon-id");
+			localStorage.setItem('salonId', _salonid);
+			
+			var _latitude = $(this).attr("data-salon-lat");
+			localStorage.setItem('_lat', _latitude);
+			
+			var _longitude = $(this).attr("data-salon-long");
+			localStorage.setItem('_long', _longitude);
+
+			if(_salonid != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+		
+		$(document).on("click", "._salonResult_", function(){
+			var _salonid = $(this).attr("data-salon-id");
+			localStorage.setItem('salonId', _salonid);
+			
+			var _latitude = $(this).attr("data-salon-lat");
+			localStorage.setItem('_lat', _latitude);
+			
+			var _longitude = $(this).attr("data-salon-long");
+			localStorage.setItem('_long', _longitude);
+
+			if(_salonid != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+		
+		//Service
+		$(document).on("click", ".serviceResult", function(){
+			var _serviceName = $(this).attr("data-service-name");
+			localStorage.setItem('salonServiceName', _serviceName);
+
+			if(_serviceName != ''){
+				window.location.href = "serviceResults.html";
+			}else{
+				
+			}
+		});
+		//Region
+		$(document).on("click", ".regionResult", function(){
+			var _regionName = $(this).attr("data-region-name");
+			localStorage.setItem('salonRegionName', _regionName);
+
+			if(_regionName != ''){
+				window.location.href = "regionResults.html";
+			}else{
+				
+			}
+		});
+		//Product
+		$(document).on("click", ".productResult", function(){
+			var _productName = $(this).attr("data-product-name");
+			localStorage.setItem('salonProductName', _productName);
+
+			if(_productName != ''){
+				window.location.href = "productResults.html";
+			}else{
+				
+			}
+		});
+		//Service Provider
+		$(document).on("click", ".employeeResult", function(){
+			var _salonid = $(this).attr("data-salon-id");
+			localStorage.setItem('salonId', _salonid);
+
+			if(_salonid != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+		
+		
+		$(document).on("click", ".slides li", function(){
+			var salonPromotingService = $(this).attr("data-promo-id");
+			localStorage.setItem('salonId', salonPromotingService);
+
+			if(salonPromotingService != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+			
+	</script>
+</html>

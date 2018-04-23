@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.clock{
+				width: 100%;
+				float: left;
+				height: 140px;
+				margin: 0 auto;
+			}
+			
+			.clockButton{
+				width: 100%;
+				float: left;
+				height: 40px;
+				background: #333333;
+				color: #ffffff;
+				text-align: center;
+			}
+			
+			.topLayerOfClock{
+				width: 100%;
+				float: left;
+				height: 20px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			
+			.middleLayerOfClock{
+				width: 100%;
+				float: left;
+				height: 60px;
+			}
+			
+			.bottomLayerOfClock{
+				width: 100%;
+				float: left;
+				height: 20px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			
+			.left_up, .right_up, .left_down, .right_down{
+				float: left;
+				width: 50%;
+				text-align: center;
+			}
+			
+			.middleLeft{
+				float: left;
+				width: 48%;
+				height: 100%;
+				text-align: center;
+				color: #666;
+			}
+			
+			.middleMiddle{
+				float: left;
+				width: 4%;
+				height: 100%;
+				text-align: center;
+				color: #666;
+			}
+			
+			.middleMiddle span{
+				position: relative;
+				top: 5px;
+				font-size: 40px;
+			}
+			
+			.middleRight{
+				float: left;
+				width: 48%;
+				height: 100%;
+				text-align: center;
+				color: #666;
+			}
+			
+			.middleRight span, .middleLeft span{
+				font-size: 40px;
+				position: relative;
+				top: 10px;
+			}
+			
+			.clockArrow{
+				width: 12px;
+				position: relative;
+				top: 3px;
+			}
+			
+			.downArrow{
+				-ms-transform: rotate(180deg); /* IE 9 */
+				-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+				transform: rotate(180deg);
+			}
+			
+			.clockButton span{
+				text-transform: uppercase;
+				font-size: 24px;
+				position: relative;
+				top: 6px;
+			}
+			
+			.clockHeadings{
+				width: 100%;
+				float: left;
+				height: auto;
+			}
+			
+			.clockHeadingsLefts{
+				width: 50%;
+				float: left;
+				text-align: center;
+			}
+			
+			.clockHeadingsRight{
+				width: 50%;
+				float: left;
+				text-align: center;
+			}
+			
+			.specificEmployeeContainer, .specificServiceContainer{
+				width: 100%;
+				float: left;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			
+			.specificEmployeeRadio, .specificServiceRadio{
+				width: 30%;
+				float: left;
+				height: 100%;				
+				text-align: center;
+			}
+			
+			.specificEmployeeName, .specificServiceName{
+				width: 100%;
+				float: left;
+				height: 100%;
+				font-size: 1.39em;
+				color: #666;
+				text-align: center;
+			}
+			
+			.serviceContainer{
+				width: calc(100% - 20px);
+				margin: 0 auto;
+				height: auto;
+				overflow:scroll;
+			}
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="modal4" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4>Services</h4>
+				<div class="input-field col s12">
+				  <input id="searchService" type="text" class="validate" placeholder="Search for a service...">
+				</div>
+				<div class="serviceContainer"></div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close confirmService waves-effect waves-effect waves-light" style="width: 100%;" >Confirm</button>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="managePromotions.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Add Promotion</a>
+			</div>
+		 </nav>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+
+			  <div class="row">
+			  
+				<div class="input-field col s6">
+				  <input id="promotionName" type="text" class="validate">
+				  <label for="promotionName">Name</label>
+				</div>
+				
+				<div class="input-field col s6">
+					<input id="promotionPrice" type="text" class="validate" onkeyup="numbersOnly(this)">
+					<label for="promotionPrice">Price (ZAR)</label>
+				</div>
+
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="service" type="text" class="validate">
+				  <label for="service">Service To Promote</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="promotionDuration" type="text" class="validate" onkeyup="numbersOnly(this)">
+				  <label  for="promotionDuration">Duration (Days)</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s12">
+				  <textarea id="promotionDesc" class="materialize-textarea"></textarea>
+				  <label for="promotionDesc">Description</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s12">
+					<button class="btn-large waves-effect waves-light addPromotion" style="width: 100%;" type="submit" name="action">Add Promotion</button>
+				</div>
+			  </div> 
+			</div>
+		</div>
+		<script src="js/functions.js"></script>
+		<script>
+			checkLogin();
+			$(document).ready(function(){
+				
+					$('#searchService').keyup(function(){
+						var txt = $(this).val();
+						var salonID = salonId;
+						if(txt !=''){
+						
+							$('.serviceContainer').html('');
+							
+							$.ajax
+							({		
+							   url : "https://lollipopbeauty.co.za/Website_1/api/searchServicesApp.php",
+							   method: "post",
+							   data: {search:txt,salon:salonID},
+							   dataType: "text",
+							   success: function(data, status)
+							   {
+									$('.serviceContainer').html(data);
+							   }
+							});
+							
+						}else{
+							
+							$('.serviceContainer').empty();
+							
+							$.ajax
+							({
+							   url: 'https://lollipopbeauty.co.za/Website_1/api/getAllServices.php?companyId=' + salonId,
+							   dataType: 'jsonp',
+							   jsonp: 'jsoncallback',
+							   timeout: 10000,
+							   success: function(data, status)
+							   {
+									var radioCount = 0;
+									$.each( data, function( key, val ) {
+										//$('.serviceContainer').append('<div class="specificServiceContainer"><div class="specificServiceRadio"><div class="pure-radiobutton"><input id="radio'+ radioCount +'" name="radio" type="radio" data-service-cost="'+ val.service_cost +'" data-service-id="'+ val.service_id +'" data-service-name="'+ val.service_name +'" data-service-duration="'+ val.time_to_complete_service +'" class="radio" '+ val.checked_value +'><label for="radio'+ radioCount +'"></label></div></div><div class="specificServiceName"><span>'+ val.service_name +'</span></div></div>');
+										$('.serviceContainer').append('<div class="row" data-radio-id="sradio'+ radioCount +'" data-rservice-cost="'+ val.service_cost +'" data-rservice-id="'+ val.service_id +'" data-rservice-name="'+ val.service_name +'" data-rservice-duration="'+ val.time_to_complete_service +'"><div class="col s12"><div class="specificServiceName"><span>'+ val.service_name +'</span></div></div></div>');
+										radioCount++;
+									});
+									
+									
+							   },
+							   error: function()
+							   {	
+									failure('Could not connect. Please try again.');
+							   }
+							});
+							
+						}
+						
+					});
+					
+			});
+		
+		
+		
+			$(document).ready(function() {
+				$('select').material_select();
+				
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+				
+			  });
+			  
+			$(document).on('click', ".confirmService", function() {
+				$(".radio").each(function( index ) {
+					var isChecked = $(this).is(':checked'); 
+					var selectedService = '';
+					if(isChecked == true){
+						selectedService = $(this).attr("data-service-name");
+						selectedServiceID = $(this).attr("data-service-id");
+						serviceId = selectedServiceID;
+						_("service").val(selectedService);
+						//_("serviceID").val(selectedServiceID);
+					}
+				});
+			});
+			
+			$(document).on('click', ".serviceContainer .row", function() {
+				
+				radioId = $(this).attr("data-radio-id");
+				$("#" + radioId).prop("checked", true);
+				selectedService = $(this).attr("data-rservice-name");
+				selectedServiceID = $(this).attr("data-rservice-id");
+				serviceId = selectedServiceID;
+				_("service").val(selectedService);
+				$('#modal4').closeModal();
+			});
+			
+			$('#service').click(function(){	
+				getAllServices();
+				$('#modal4').openModal();
+			});			
+
+			  
+			$('.addPromotion').click(function() 
+			{
+				var complete = 1;
+				
+				var serviceName = $('#service').val();
+				var servicePrice = $('#promotionPrice').val();
+				var promotionName = $('#promotionName').val();
+				var promotionDuration = $('#promotionDuration').val();
+				var promotionDesc = $('#promotionDesc').val();
+
+				
+				if(serviceName == '')
+				{
+					complete = 0;
+					failure('You must add a service name.');
+				}
+				else if(servicePrice == '')
+				{
+					complete = 0;
+					failure('You must add a promotion service price.');
+				}
+				else if(promotionName == '')
+				{
+					complete = 0;
+					failure('You must add a service duration');
+				}
+				else if(promotionDuration == '')
+				{
+					complete = 0;
+					failure('You must add a promotion duration.');
+				}
+				else if(promotionDesc == 0)
+				{
+					complete = 0;
+					failure('You must choose a promotion description.');
+				}
+				
+				if(complete == 1)
+				{
+					addPromotion(salonId, serviceId, serviceName, servicePrice, promotionName, promotionDuration, promotionDesc);		
+				}
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>

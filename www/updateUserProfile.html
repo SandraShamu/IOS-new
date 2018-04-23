@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.profilePic{
+				position: relative;
+				top: 40px;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <i class="ion-ios-arrow-left topLeftIcon dashboard"></i>
+			  <a href="#!" class="brand-logo center appPageTitle">Update Profile</a>
+			</div>
+		 </nav>
+		 </div>
+		 <div class="headerImage" style="background: url('images/userProfileBG.jpg');">
+			<div class="changeProfileImage" id="myPicture" ></div>
+		 </div>
+		 <div class="lollipopColorsContainer">
+			<div class="lollipopColor" style="background: rgb(134, 232, 175);"></div>
+			<div class="lollipopColor" style="background: rgb(49, 158, 94);"></div>
+			<div class="lollipopColor" style="background: rgb(229, 141, 87);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 248, 153);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 218, 96);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 132, 167);"></div>
+			<div class="lollipopColor" style="background: rgb(237, 28, 59);"></div>
+		</div>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+					<form action="https://lollipopbeauty.co.za/Website_1/api/uploadImage.php" id="imageUploadForm" method="post" enctype="multipart/form-data">
+						  <label class="myLabel promoPicUpload">
+							<input type="file" name='imageUpload' id='imageUpload'>
+							<span>Upload Profile Picture</span>
+						  </label>
+						  <input type="hidden" id="userId" name="userId">		
+					</form>
+			</div>
+			<div class="col s12">
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="firstName" type="text" class="validate" onkeyup="lettersOnly(this)">
+				  <label for="firstName">First Name</label>
+				</div>
+				<div class="input-field col s6">
+				  <input id="lastName" type="text" class="validate" onkeyup="lettersOnly(this)">
+				  <label for="lastName">Last Name</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="dateOfBirth" type="date" class="datepicker" class="validate">
+				  <label  for="dateOfBirth">Date Of Birth</label>
+				</div>
+				<div class="input-field col s6">
+				  <input id="userPhoneNumber" type="text" class="validate" onkeyup="numbersOnly(this)">
+				  <label  for="userPhoneNumber">Phone Number</label>
+				</div>
+			  </div>
+			<!--   <div class="row">
+				<div class="input-field col s12">
+				  <input id="physicalAddress" type="text" class="validate">
+				  <label  for="physicalAddress" >Physical Address</label>
+				</div>
+			  </div> -->
+			  <br>
+			<!--   <div class="row">
+				<div class="input-field col s12">
+					<select id="province">
+					  <option value="" disabled selected>Choose your province</option>
+						  <option value="Gauteng">Gauteng</option>
+						  <option value="Mpumalanga">Mpumalanga</option>
+						  <option value="Limpopo">Limpopo</option>
+						  <option value="North West">North West</option>
+						  <option value="Free State">Free State</option>
+						  <option value="Eastern Cape">Eastern Cape</option>
+						  <option value="Northern Cape">Northern Cape</option>
+						  <option value="Kwazulu Natal">Kwazulu Natal</option>
+					</select>
+					<label>Choose Province</label>
+				 </div>
+			  </div> -->
+			  <div class="row">
+				<div class="input-field col s12">
+					<button class="btn-large waves-effect waves-light updateUserProfile" style="width: 100%;" type="submit" name="action">Update Profile</button>
+				</div>
+			  </div> 
+			</div>
+		</div>
+		<script src="js/functions.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/draggabilly.pkgd.min.js"></script>
+		<script src="js/mdDateTimePicker.js"></script>
+		<script>
+			checkLogin();
+			preLoadNames();
+			$('.datepicker').pickadate({
+				selectMonths: true, // Creates a dropdown to control month
+				max: true,
+				selectYears: 220 // Creates a dropdown of 15 years to control year
+			});
+			
+			
+			  
+			$(document).ready(function(){
+				$('select').material_select();
+				
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+
+ 	
+			});
+			
+			var chosenProvince = '';
+			checkLogin();
+			setProfileInfo();
+
+			function loadData()
+			{
+				setData('user_profile', 'profile_picture', 'email', userEmail, 'myPicture', 'profilePic');
+				setData('user_profile', 'first_name', 'email', userEmail, 'firstName', 'normalText');
+				setData('user_profile', 'last_name', 'email', userEmail, 'lastName', 'normalText');
+				setData('user_profile', 'phone_number', 'email', userEmail, 'userPhoneNumber', 'normalText');
+				//setData('user_profile', 'email', 'id', userProfileId, 'userEmail', 'normalText');
+				setData('user_profile', 'physical_address', 'email', userEmail, 'physicalAddress', 'normalText');	
+				setData('user_profile', 'province', 'email', userEmail, 'province', 'normalText');	
+				setData('user_profile', 'dob', 'email', userEmail, 'dateOfBirth', 'normalText');			
+			}
+			
+			loadData();
+			
+			
+
+			
+			$('.dashboard').click(function() 
+			{
+				var complete = 1;
+				
+				var firstName = $('#firstName').val();
+				var lastName = $('#lastName').val();
+				var userPhoneNumber = $('#userPhoneNumber').val();
+				var userEmailAddress = userEmail;
+				var userPhysicalAddress = $('#physicalAddress').val();
+				var dateOfBirth = $('#dateOfBirth').val();
+				var province = $('#province').val();
+				
+				
+				if(firstName == '')
+				{
+					complete = 0;
+					failure('You must add your name.');
+				}
+				else if(lastName == '')
+				{
+					complete = 0;
+					failure('You must add last name.');
+				}
+				else if(userPhoneNumber == '')
+				{
+					complete = 0;
+					failure('You must add your phone number.');
+				}
+				else if(userEmailAddress == '')
+				{
+					complete = 0;
+					failure('You must add your email address.');
+				}
+				// else if(province == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add your province.');
+				// }
+				
+				if(complete == 1)
+				{
+					
+					window.location.href= "main.html";
+					
+				}
+			});
+			
+			
+			
+			$('.updateUserProfile').click(function() 
+			{
+				
+				var complete = 1;
+				
+				var firstName = $('#firstName').val();
+				var lastName = $('#lastName').val();
+				var userPhoneNumber = $('#userPhoneNumber').val();
+				var userEmailAddress = userEmail;
+				var userPhysicalAddress = $('#physicalAddress').val();
+				var dateOfBirth = $('#dateOfBirth').val();
+				var province = $('#province').val();
+				
+				
+				if(firstName == '')
+				{
+					complete = 0;
+					failure('You must add your name.');
+				}
+				else if(lastName == '')
+				{
+					complete = 0;
+					failure('You must add last name.');
+				}
+				else if(userPhoneNumber == '')
+				{
+					complete = 0;
+					failure('You must add your phone number.');
+				}
+				else if(userEmailAddress == '')
+				{
+					complete = 0;
+					failure('You must add your email address.');
+				}
+				// else if(province == '')
+				// {
+				// 	complete = 0;
+				// 	failure('You must add your province.');
+				// }
+				
+				if(complete == 1)
+				{
+
+					updateData(normalUserId, firstName, lastName, userEmailAddress, userPhoneNumber, userPhysicalAddress, province, dateOfBirth);
+					
+				}
+				
+			});
+			
+			
+			/*
+			var z = new mdDateTimePicker.default({
+			  type: 'date',
+			  init: moment('2006-12-31', 'YYYY-MM-DD'),
+			  orientation: 'PORTRAIT'
+			});
+	
+			document.getElementById('dateOfBirth').addEventListener('click', function() {
+				z.toggle();
+			});
+			*/
+			
+			$("#imageUpload").on("change", function() 
+			{
+
+				// var firstName = $('#firstName').val();
+				// var lastName = $('#lastName').val();
+				// var userPhoneNumber = $('#userPhoneNumber').val();
+				// var userEmailAddress = userEmail;
+				// var userPhysicalAddress = $('#physicalAddress').val();
+				// var dateOfBirth = $('#dateOfBirth').val();
+				// var province = $('#province').val();
+				// updateData(normalUserId, firstName, lastName, userEmailAddress, userPhoneNumber, userPhysicalAddress, province, dateOfBirth);
+				_("userId").val(normalUserId);
+				Materialize.toast('Uploading Image...', 70000);
+				$("#imageUploadForm").submit();
+
+			});
+
+			//preload
+			function preLoadNames(){
+			$('#firstName').val(userFirstName);
+			$('#lastName').val(userLastName);
+		     }
+		</script>
+		
+	</body>
+</html>

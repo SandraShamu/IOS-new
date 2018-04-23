@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.profilePic{
+				width: 100px;
+				position: relative;
+				top: 40px;
+			}
+			
+			.spanHeading{
+				color: #26a69a;
+			}
+			
+			.buttonContainer{
+				width: calc(100% - 20px);
+				margin: 0 auto;
+				height: auto;
+				margin-top: 5px;
+			}
+			
+			.fixedMenu{
+			float: left;
+			width: 100%;
+			text-align: center;
+			position: fixed;
+			border-top: 1px solid #e6e6e6;
+			bottom: 0;
+			height: 70px;
+			background: #ffffff;
+		}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<!-- Time Picker 1 -->
+		<div id="weeklyHours" class="modal modal-fixed-footer">
+			<div class="modal-content">
+			  <h4>Operating Hours</h4>
+			  <p>A bunch of text</p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Confirm</button>
+			</div>
+		</div>
+		<div id="modal2" class="modal">
+			<div class="modal-content">
+				<h4>Operating Hours</h4>
+				<div class="clock">
+					<div class="topLayerOfClock">
+						<div class="left_up">
+							<img src="images/clock-arrow.svg" class="clockArrow OHU">
+						</div>
+						<div class="right_up">
+							<img src="images/clock-arrow.svg" class="clockArrow OMU">
+						</div>
+					</div>
+					<div class="middleLayerOfClock">
+						<div class="middleLeft">
+							<span id="openingHour"></span>
+						</div>
+						<div class="middleMiddle">
+							<span>:</span>
+						</div>
+						<div class="middleRight">
+							<span id="openingMinuteHand"></span>
+						</div>
+					</div>
+					<div class="bottomLayerOfClock">
+						<div class="left_down" >
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow OHD">
+						</div>
+						<div class="right_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow OMD">
+						</div>
+					</div>
+				</div>
+				<h4>TO</h4>
+				<div class="clock">
+					<div class="topLayerOfClock">
+						<div class="left_up" >
+							<img src="images/clock-arrow.svg" class="clockArrow CHU" >
+						</div>
+						<div class="right_up">
+							<img src="images/clock-arrow.svg" class="clockArrow CMU">
+						</div>
+					</div>
+					<div class="middleLayerOfClock">
+						<div class="middleLeft">
+							<span id="closingHour"></span>
+						</div>
+						<div class="middleMiddle">
+							<span>:</span>
+						</div>
+						<div class="middleRight">
+							<span id="closingMinuteHand"></span>
+						</div>
+					</div>
+					<div class="bottomLayerOfClock">
+						<div class="left_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow CHD">
+						</div>
+						<div class="right_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow CMD">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close m1 waves-effect waves-effect waves-light" style="width: 100%;" >Confirm</button>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="employees.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Update Employee</a>
+			</div>
+		 </nav>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="employeeName" type="text" class="validate">
+				  <label  for="employeeName">Employee Name</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="employeePhoneNumber" type="text" class="validate">
+				  <label  for="employeePhoneNumber">Employee Phone Number</label>
+				</div>
+			  </div>
+			   <div class="row">
+				<div class="input-field col s12">
+				  <input id="employeeEmail" type="text" class="validate">
+				  <label  for="employeeEmail">Employee Email</label>
+				</div>
+			  </div>
+			   <div class="row">
+				<div class="input-field col s12">
+				  <input id="experience" type="number" class="validate">
+				  <label  for="experience">Experience (in years)</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="employeeRole" type="text" class="validate">
+				  <label  for="employeeRole">Employee Role</label>
+				</div>
+			  </div>
+			   <div class="row">
+				<div class="input-field col s12">
+				  <input id="operatingHours" type="text" class="validate">
+				  <label  for="operatingHours">Operating Hours</label>
+				</div>
+			  </div>
+			  <div  class="row listAllServicesContainer">
+				<div id="listAllServices" class="col s12"></div>
+			  </div>
+			</div>
+		</div>
+		<section class="fixedMenu">
+			<div class="buttonContainer">
+				<button class="btn-large waves-effect waves-effect waves-light updateEmployee" style="width: 100%;" >Update Employee</button>
+			</div>
+		</section>
+		<script src="js/functions.js"></script>
+		<script>
+			checkLogin();
+			$(document).ready(function(){
+				
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+ 	
+			});
+			
+			function loadData()
+			{
+				setData('salon_employees', 'employee_name', 'id', employeeId, 'employeeName', 'normalText'); 
+				setData('salon_employees', 'employee_role', 'id', employeeId, 'employeeRole', 'normalText'); 
+				setData('salon_employees', 'employee_email', 'id', employeeId, 'employeeEmail', 'normalText'); 
+				setData('salon_employees', 'experience', 'id', employeeId, 'experience', 'normalText'); 
+				setData('salon_employees', 'phone_number', 'id', employeeId, 'employeePhoneNumber', 'normalText'); 
+				setData('salon_employees', 'operating_hours', 'id', employeeId, 'operatingHours', 'normalText'); 
+			}
+			
+			loadData();
+			
+			getEmployeeSalonServices();
+			
+			$('.updateEmployee').click(function() 
+			{
+				var complete = 1;
+				var updatedServices = [];
+				
+				$('#listAllServices input:checkbox:checked').each(function(){
+					 var service_id = $(this).val();
+					 updatedServices.push(service_id);
+				  });
+				 
+				var employeeRole = $('#employeeRole').val();
+				var employeeName = $('#employeeName').val();
+				var employeeEmail = $('#employeeEmail').val();
+				var experience = $('#experience').val();
+				var employeePhoneNumber = $('#employeePhoneNumber').val();
+				var operatingHours = $('#operatingHours').val();
+				 
+				if(employeeName == '')
+				{
+					complete = 0;
+					failure('You must give the employee a name.');
+				}
+				else if(employeeRole == '')
+				{
+					complete = 0;
+					failure('You must select a role for the employee.');
+				}
+				else if(operatingHours == '')
+				{
+					complete = 0;
+					failure('You must add operating hours.');
+				}
+				  
+				 if(complete == 1)
+				{		
+					updateServicesForEmployee(employeeId, employeeName, employeeRole, updatedServices, employeeEmail, experience, employeePhoneNumber, operatingHours);			
+				}
+			});
+			
+			$(document).on('click', ".selectAll", function() {
+				var isTrue = $(this).is(':checked');
+				
+				if(isTrue == true){
+					
+					$('.aService').each(function(){
+						  $(this).prop( "checked", true );
+					  });
+					
+				}else{
+					$('.aService').each(function(){
+						  $(this).prop( "checked", false );
+					  });
+				}
+				
+			});
+			
+			$('#operatingHours').click(function() 
+			{
+				$('#modal2').openModal();
+				
+			});
+			
+		</script>
+		<script type="text/javascript" src="js/timePicker.js"></script>
+	</body>
+</html>

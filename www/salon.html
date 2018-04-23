@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.menuBurger{
+				width: 35px;
+				position: relative;
+				top: 2px;
+				left: 15px;
+			}
+		
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.logoContainer img{
+				width: 200px;
+			}
+			
+			.indicator-item{
+				position: relative;
+				top: -50px;
+				z-index: 99;
+			}
+			
+			.gLogo{
+				width: 100px;
+				position: relative;
+				top: -10px;
+			}
+			
+			.search-icon{
+				float: right;
+				position: relative;
+				top: 4px;
+				left: -25px;
+				font-size: 24px;
+			}
+			
+			.search_result{
+				width: 100%;
+				float: left;
+				color: #666;
+				font-weight: bold;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			.search_result span{
+				font-size: 1.4em;
+			}
+			
+			.slideInSearch{
+				width: 100%;
+				height: auto;
+				background: #ffffff;
+				position: fixed;
+				top: -300px;
+				text-align: center;
+				z-index: 9999;
+			}
+			
+			.close-search{
+				width: 100%;
+				height: 35px;
+				background: #666;
+				text-align: center;
+				position: relative;
+				
+			}
+			
+			.close-search img{
+				height: 30px;
+				position: relative;
+				top: 5px;
+			}
+			
+			.profileLogo{
+				float: left;
+				width: 100%;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			
+			.logo-banner-container{
+				width: 100%;
+				float: left;
+				text-align: center;
+			}
+			
+			.logo-banner-container img{
+				width: 100%;
+			}
+			
+			.socialMediaContainer{
+				float: left;
+				width: 100%;
+				margin-bottom: 20px;
+			}
+			
+			.socialMediaContainer img{
+				width: 55px;
+				padding: 5px;
+				display: inline;
+			}
+			
+			.secondary-content i{
+				font-size: 1.89em;
+			}
+			
+			.service-category{
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				background: rgba(255,255,255,1);
+				z-index: 9999;
+				overflow-y: scroll;
+				display: none;
+			}
+			
+			.service-category-table{
+				width: 100%;
+				float: left;
+				height: auto;
+				background: #ffffff;
+			}
+			
+			.service-category table{
+				margin-bottom: 100px;
+			}
+			
+			.service-category table td{
+				font-size: 0.9em;
+			}
+			
+			.closeServices{
+				position: fixed;
+				width: 100%;
+				bottom: 0;
+				height: auto;
+				background: #ffffff;
+				border-top: 1px solid #cccccc;
+				z-index: 99999;
+			}
+			
+			.closeServices button{
+				width: 100%;
+			}
+			
+			.promoTextContainer{
+				position: absolute;
+				color: #ffffff;
+				width: 100%;
+				float: left;
+				height: 340px;
+				font-size: 1.4em;
+				top: 0;
+				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+				background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+				background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+			}
+			
+			._serviceCategory{
+				border-top: 1px solid #e6e6e6;
+				padding-top: 20px;
+			}
+			
+			._promotionCategory{
+				border-top: 1px solid #e6e6e6;
+				padding-top: 20px;
+			}
+			
+			.toastContainer{
+	width: calc(100% - 10px);
+	margin: 0 auto;
+	height: 400px;
+}
+
+.fullWidth{
+	float: left;
+	width: 100%;
+	height: 50px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.bigFourth{
+	float: left;
+	height: 100%;
+	width: 28%;
+}
+
+.oneFourth{
+	float: left;
+	height: 100%;
+	width: 24%;
+}
+
+.salonInfo{
+	width: 100%;
+	float: left;
+	text-align: center;
+	color: #ffffff;
+	background: #1e4844;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	font-size: 0.99em;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.title{
+	line-height: 54px;
+	font-size: 1.1em;
+	color: #666;
+}
+
+.myArrow{
+	font-size: 1.1em;
+	color: #666;
+	line-height: 54px;
+}
+
+.myCircle{
+	height: 50px;
+}
+
+			.main-slider .slider{
+				height: 240px !important;
+			}
+			
+			.main-slider .slider .slides {
+			  background-color: #9e9e9e;
+			  margin: 0;
+			  height: 240px !important;
+			}
+			
+			.main-slider .slider .indicators .indicator-item {
+			  display: inline-block;
+			  position: relative;
+			  top: 1px;
+			  cursor: pointer;
+			  height: 9px;
+			  width: 9px;
+			  margin: 0 12px;
+			  background-color: #e0e0e0;
+			  transition: background-color .3s;
+			  border-radius: 50%;
+			}
+			
+			.colorsContainer{
+				height: 5px;
+				width: 100%;
+				float: left;
+				background: #ffffff;
+			}
+			
+			#salonName{
+				color: #666;
+				font-family: SkinnyJeans;
+			}
+			
+			.salonRating{
+				width: 100%;
+				float: left;
+				text-align: center;
+				padding-bottom: 20px;
+			}
+			
+			.salonRating i{
+				color: #666666;
+			}
+			
+			.rateUsClass{
+				color: #666;
+				border-bottom: 1px solid #ccc;
+				padding-top: 60px;
+				padding-bottom: 60px;
+			}
+			
+			.rateUsClass span, .rateUsClass i{
+				font-size: 1.53em;
+			}
+			
+			.rateServiceClass span, .rateServiceClass i{
+				font-size: 1.23em;
+			}
+			
+			.modal-rating div{
+				text-align: left;
+			}
+			
+			#map{
+				width: 100%;
+				height: 200px;
+			}
+			
+			.listHeading{
+				padding-bottom: 10px;
+				
+			}
+			
+			.headingContainer_halfWidth{
+				float: left;
+				width: 50%;
+				height: auto;
+			}
+			
+			.selectedTab{
+				background: #ccc;
+				border-radius: 2px;
+			}
+			
+			.selectedTab h4{
+				color: #666;
+			}
+			
+			.headingContainer_halfWidth h4{
+				font-size: 0.84em;
+				text-align: center;
+				position: relative;
+				top: 5px;
+			}
+			
+			.profileServices .collection{
+				height: auto;
+			}
+			
+			.rateServiceContainer{
+				display: none;
+				text-align: left;
+			}
+			
+			.headingContainer{
+				width: 100%;
+				float: left;
+				height: auto;
+			}
+			
+			.rSS i{
+				font-size: 2em;
+			}
+			
+			.salonHomeRating{
+				position: relative;
+				top: 10px;
+				padding-bottom: 0;
+			}
+			
+			.salonHomeRating i{
+				font-size: 1.5em;
+			}
+			
+			.buttonWidth{
+				width: calc(100% - 20px);
+				margin: 0 auto;
+			}
+			
+			#locationContainer{
+				/* color: rgba(0, 0, 0, 0.87); */
+				color: #26a69a;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="modal2" class="modal modal-fixed-footer">
+			<div class="modal-content">
+			  <h4 id="companyName"></h4>
+				<div class="salonRating">
+				   
+				</div>
+			  <p id="aboutSalonInfo"></p>
+			  <h5></h5>
+			  <div class="socialMediaContainer">
+			  </div>
+				<h5>Contact Numbers</h5>
+				<p id="contactNumbers"></p>
+				<br>
+				<h5>Email Address</h5>
+				<p id="emailAddress"></p>
+				<br>
+				<h5>Website</h5>
+				<p id="websiteAddress"></p>
+				<br>
+				<h5>Operating Hours</h5>
+				<p id="operatingHours"></p>
+				<br>
+				<!-- <h5>Weekend Operating Hours</h5>
+				<p id="weekendOperatingHours"></p>
+				<br> -->
+				<!-- <h5>Public Holidays</h5>
+				<p id="publicHolidaysOperatingHours"></p>
+				<br> -->
+				<h5>Location</h5>
+				<a id="locationContainer"><p id="location"></p></a>
+				<div class="row">			
+					<div id="map"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="modal3" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<div class="headingContainer">
+					<div class="headingContainer" >
+						<div class="headingContainer_halfWidth selectedTab" data-sp-container="servicesForChosenCatergory">
+							<h4>Book Service</h4>
+						</div>	
+						<div class="headingContainer_halfWidth" data-sp-container="rateServiceContainer">
+							<h4>Rate Service</h4>
+						</div>
+					</div>
+				</div>
+				<br><br>
+				<div class="col s12 servicesForChosenCatergory serviceProviderContainer"></div>
+				<div class="col s12 rateServiceContainer serviceProviderContainer"></div>
+			</div>
+
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="modal4" class="modal modal-fixed-footer">
+			<div class="modal-content modal-rating">
+			  <h4>Rate Salon</h4>
+			  <div class="row" >
+				<div class="col s12 rateUsClass" data-salon-rating="1">
+					<div class="col s6" >
+						<span>Very Poor</span>
+					</div>
+					<div class="col s6">
+						<i class="ion-android-star "></i>
+					</div>
+				</div>
+				<div class="col s12 rateUsClass" style="text-align: left;" data-salon-rating="2">
+					<div class="col s6">
+						<span>Poor</span>
+					</div>
+					<div class="col s6">
+						<i class="ion-android-star "></i>
+						<i class="ion-android-star "></i>
+					</div>
+				</div>
+				<div class="col s12 rateUsClass" style="text-align: left;"data-salon-rating="3">
+					<div class="col s6">
+						<span>Okay</span>
+					</div>
+					<div class="col s6">
+						<i class="ion-android-star "></i>
+						<i class="ion-android-star "></i>
+						<i class="ion-android-star "></i>
+					</div>
+				</div>
+				<div class="col s12 rateUsClass" style="text-align: left;" data-salon-rating="4">
+					<div class="col s6">
+						<span>Good</span>
+					</div>
+					<div class="col s6">
+						<i class="ion-android-star "></i>
+						<i class="ion-android-star "></i>
+						<i class="ion-android-star "></i>
+						<i class="ion-android-star "></i>
+					</div>
+				</div>
+				<div class="col s12 rateUsClass" style="text-align: left;" data-salon-rating="5">
+					<div class="col s6">
+						<span>Excellent</span>
+					</div>
+					<div class="col s6">
+						<i class="ion-android-star "></i>
+						<i class="ion-android-star "></i>
+						<i class="ion-android-star "></i>
+						<i class="ion-android-star "></i>
+						<i class="ion-android-star "></i>
+					</div>
+				</div>
+			  </div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div class="slideInSearch">
+				<input type="text" id="search_text" style="text-transform: none; margin-bottom: 0px; padding: 5px;" placeholder="Search for salons or services..." name="search" >
+				<div class="close-search">
+					<img src="images/up-arrow.svg">
+				</div>
+				<div id="result"></div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <!--<img src="images/bars.svg" class="menuBurger button-collapse" data-activates="slide-out">-->
+			  <i class="ion-android-menu menuBurger button-collapse" data-activates="slide-out"></i>
+			  
+			  <a href="#!" class="brand-logo center appPageTitle"><img src="images/logo.png" class="gLogo"></a>
+			  <i class="ion-android-search search-icon"></i>
+			</div>
+		</nav>
+		</div>
+		<ul id="slide-out" class="side-nav">
+			<div class="navfullWidth">
+				<div class="row">
+					<div class="col s4">
+						<div  class="navCircleProfilePic _userProfilePicture" id="myPicture"></div>
+					</div>
+					<div class="col s8">
+						<span class="white-text name"></span>
+					</div>
+				</div>
+			</div>
+			<li><a class="waves-effect" href="main.html">Dashboard</a></li>
+			<li><a class="waves-effect" href="userBookings.html">My Bookings</a></li>
+			<li><a class="waves-effect" href="serviceHistory.html">Service History</a></li>
+			<li><a class="waves-effect" href="updateUserProfile.html">My Profile</a></li>
+			<li><a class="waves-effect" href="favoriteSalons.html">Favourite Salons</a></li>
+			<li><a class="waves-effect" href="favoriteServiceProviders.html">Favourite Service Providers</a></li>
+			<li><a class="waves-effect" href="termsOfService.html">Legal</a></li>
+			<li><a class="waves-effect" href="contactUs.html">Get In Touch With Us</a></li>
+			<li><a class="waves-effect" href="logout.html">Log Out</a></li>
+		 </ul>
+		 <section class="main-slider">
+		<div class="slider">
+			<div class="_sliderOverlay"></div>
+			<ul class="slides">
+				
+			</ul>
+		</section>	
+	  </div>
+	  <section class="profileLogo">
+			<div class="row">
+				<div class="col s12"><div class="salonRating salonHomeRating"></div></div>
+				<div class="col s12 center-align">
+					<h3 id="salonName"></h3>
+				</div>
+			</div>
+			<div class="row center-align">
+				<div class="col s12">
+					<button class="btn-large waves-effect waves-light rateSalon myBtn buttonWidth" >Rate Us</button>
+				</div>
+				<br><br><br>
+				<div class="col s12">
+					<button id="myFavouriteBtn" class="btn-large waves-effect waves-light myBtn buttonWidth" >Favourite</button>
+				</div>
+				<br><br><br>
+				<div class="col s12">
+					<button class="btn-large waves-effect waves-light viewSalonInfo myBtn buttonWidth dark-btn" id="viewSalonInfo" >More Information</button>
+				</div>
+			</div>
+	  </section>
+	  <section class="bookingTypeContainer">
+		<div>
+			<h4 class="center-align listHeading" >Services</h4>
+		</div>
+	  </section>
+	  <section class="profileServices">
+			<ul class="collection">
+				
+			</ul>
+	  </section>
+    </body>
+	<script src="js/functions.js"></script>
+	<script>
+		
+		function loadData()
+		{
+			setData('user_profile', 'profile_picture', 'email', userEmail, 'myPicture', 'profilePic');
+			setData('salon_profile', 'company_name', 'company_id', salonId, 'salonName', 'spanText');
+		}
+		
+		loadData();
+		
+		checkLogin();
+			
+		$(document).ready(function(){
+		  $(".button-collapse").sideNav();
+		  
+		});
+		
+		if(salonId != ''){
+			getSalonInformation(salonId);
+		}else{
+			window.location.href = "main.html";
+		}
+		
+		checkIfFavoriteSalon(normalUserId, salonId);
+		
+		$(document).ready(function(){
+				
+				$('.name').empty();
+				$('.name').text(userName);
+				
+				var displayThisImage = 'https://lollipopbeauty.co.za/Website_1/temp/' + userPicture;
+				
+				$('._userProfilePicture').css("background", "url('"+ displayThisImage +"')");
+				
+					$('#search_text').keyup(function(){
+						var txt = $(this).val();
+						
+						if(txt !=''){
+						
+							$('#result').html('');
+							
+							$.ajax
+							({		
+							   url : "https://lollipopbeauty.co.za/Website_1/api/searchApp2.php",
+							   method: "post",
+							   data: {search:txt},
+							   dataType: "text",
+							   success: function(data, status)
+							   {
+									$('#result').html(data);
+							   }
+							});
+							
+						}else{
+							$('#result').html('');
+						}
+						
+					});
+					
+					
+		});
+		//Salon
+		$(document).on("click", ".salonResult", function(){
+			var _salonid = $(this).attr("data-salon-id");
+			localStorage.setItem('salonId', _salonid);
+			
+			var _latitude = $(this).attr("data-salon-lat");
+			localStorage.setItem('_lat', _latitude);
+			
+			var _longitude = $(this).attr("data-salon-long");
+			localStorage.setItem('_long', _longitude);
+
+			if(_salonid != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+		//Salon
+		$(document).on("click", "._salonResult_", function(){
+			var _salonid = $(this).attr("data-salon-id");
+			localStorage.setItem('salonId', _salonid);
+			
+			var _latitude = $(this).attr("data-salon-lat");
+			localStorage.setItem('_lat', _latitude);
+			
+			var _longitude = $(this).attr("data-salon-long");
+			localStorage.setItem('_long', _longitude);
+
+			if(_salonid != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+		
+		//Service
+		$(document).on("click", ".serviceResult", function(){
+			var _serviceName = $(this).attr("data-service-name");
+			localStorage.setItem('salonServiceName', _serviceName);
+
+			if(_serviceName != ''){
+				window.location.href = "serviceResults.html";
+			}else{
+				
+			}
+		});
+		//Region
+		$(document).on("click", ".regionResult", function(){
+			var _regionName = $(this).attr("data-region-name");
+			localStorage.setItem('salonRegionName', _regionName);
+
+			if(_regionName != ''){
+				window.location.href = "regionResults.html";
+			}else{
+				
+			}
+		});
+		//Product
+		$(document).on("click", ".productResult", function(){
+			var _productName = $(this).attr("data-product-name");
+			localStorage.setItem('salonProductName', _productName);
+
+			if(_productName != ''){
+				window.location.href = "productResults.html";
+			}else{
+				
+			}
+		});
+		//Service Provider
+		$(document).on("click", ".employeeResult", function(){
+			var _salonid = $(this).attr("data-salon-id");
+			localStorage.setItem('salonId', _salonid);
+
+			if(_salonid != ''){
+				window.location.href = "salon.html";
+			}else{
+				
+			}
+		});
+		  
+		$('.viewSalonInfo').click(function(){
+			
+			
+			startMap();
+			
+			
+			$('#modal2').openModal();
+			
+		});
+		
+		function initMap() {
+				var icon2 = {
+									  url: "http://www.dragonflyscarlet.com/CMS/DESIGN/_Lollipop/Website_1/api/images/mapIcon2.png",
+									  size: new google.maps.Size(30, 48),
+									  origin: new google.maps.Point(0, 0),
+									  anchor: new google.maps.Point(17, 34),
+									  scaledSize: new google.maps.Size(20, 32)
+									};
+									
+				var uluru = {lat: parseFloat(_lat) , lng: parseFloat(_long)};
+									var map = new google.maps.Map(document.getElementById('map'), {
+									  zoom: 12,
+									  center: uluru,
+									  scrollwheel:  false
+									});
+									
+				var marker = new google.maps.Marker({
+									  position: uluru,
+									  map: map,
+									  icon: icon2
+									});				
+		}
+		
+		$('.rateSalon').click(function(){
+			$('#modal4').openModal();
+		});
+		
+		
+		$('.rateUsClass').click(function(){
+			var salonRating = $(this).attr("data-salon-rating");
+			rateThisSalon(salonId, salonRating);
+			$('#modal4').closeModal();
+		});
+		
+		$(document).on("click", ".rateUsClassFavorite", function(){
+			favoriteSalon(salonId, normalUserId);
+			
+		});
+		
+		$(document).on("click", ".unrateUsClassFavorite", function(){
+			unfavoriteSalon(salonId, normalUserId);
+		});
+		
+		$(document).on("click", ".rateServiceClass", function(){
+			var serviceID = $(this).attr("data-service-id");
+			var serviceRating = $(this).attr("data-service-rating");
+			rateThisService(serviceID, serviceRating);
+			$('#modal3').closeModal(); 
+		});
+		
+		$('.secondary-content i').click(function(){
+			$('.service-category').fadeIn();
+		});
+		
+		$('._closeServices').click(function(){
+			$(".service-category-table table tbody").empty();
+			$('.service-category').fadeOut();
+		});
+		
+		$(document).on("click", "._serviceCategory", function(){
+			var categoryId = $(this).attr("data-category-id");
+
+			getSalonServicesForCategory(salonId, categoryId);
+			
+			$('#modal3').openModal();
+		});
+		
+		
+		
+		$(document).on("click", "._promotionCategory", function(){
+			getSalonServicesOnPromotion(salonId);
+
+			$('#modal3').openModal();
+		});
+		
+		$(document).on("click", ".bookThisService", function(){
+			var serviceID = $(this).attr("data-service-id");
+			localStorage.setItem('chosenServiceId', serviceID);
+			
+			if(serviceID != ''){
+				window.location.href = "bookingCalendar.html";
+			}else{
+				
+			}
+			
+		});
+		
+		$(".headingContainer_halfWidth").click(function(){
+			
+			$(".headingContainer_halfWidth").removeClass("selectedTab");
+			$(this).addClass("selectedTab");
+			
+			var className = $(this).attr("data-sp-container");
+			$(".serviceProviderContainer").css("display","none");
+			
+			$("." + className).fadeIn();
+			
+		});
+		
+		getSalonSliderImages(salonId);
+	</script>
+</html>

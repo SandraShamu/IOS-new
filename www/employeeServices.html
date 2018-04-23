@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.allCustomers{
+				float: left;
+				width: 100%;
+				height: auto;
+			}
+			
+			
+			.oneThirdWidth{
+				height: 100%;
+				width: 25%;
+				float: left;
+			}
+			
+			.profilePicCircle{
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background: #f2f2f2;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				border: 1px solid #a6a6a6;
+				line-height: 75px;
+			}
+			
+			.twoThirdsWidth{
+				height: 100%;
+				width: 75%;
+				float: left;
+				text-align: center;
+			}
+			
+			.twoThirdsWidth span{
+				line-height: 75px;
+				font-size: font-size: 1.3em;
+			}
+			
+			.serviceCategories{
+				float: left;
+				height: auto;
+				width: 100%;
+				background: #ffffff;
+				height: 100%;
+			}
+			
+			.serviceCategory{
+				width: 100%;
+				float: left;
+				text-align: center;
+				border-bottom: 1px solid #e6e6e6;
+				height: 75px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+
+			.serviceCategory img{
+				height: 55px;
+			}
+			
+			.serviceCategory span{
+				font-size: 1.4em;
+				line-height: 55px;
+			}
+			
+			.nameOfServiceTitle{
+				color: #26a69a;
+				font-weight: bold;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <!--<img src="images/bars.svg" class="menuBurger" data-activates="slide-out">-->
+			  <a href="salonEmployeeDashboard.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">My Services<!--<img src="images/logo.png" class="gLogo">--></a>
+			</div>
+		 </nav>
+		 </div>
+		<section class="allServices" style="margin-bottom: 100px;">
+
+		</section>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript">
+			checkLogin();
+			getEmployeeServices(employeeId);		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.profilePic{
+				width: 100px;
+				position: relative;
+				top: 40px;
+			}
+			
+			.timePicker{
+				/* background: #ffffff; */
+				width: calc(100% - 20px);
+				margin: 0 auto;
+				height: auto;
+			}
+			
+			.topHalf, .bottomHalf{
+				width: 100%;
+				float: left;
+				height: auto;
+			}
+			
+			
+			.left75{
+				float: left;
+				width: 75%;
+				height: 100%;
+			}
+			
+			.right25{
+				float: left;
+				width: 25%;
+				height: 100%;
+			}
+			
+			.containerForUp{
+				float: left;
+				width: 100%;
+				height: auto;
+				
+				text-align: center;
+				
+			}
+			
+			.containerForUp .clockArrow{
+				width: 40px;
+			}
+			
+			.containerForDown{
+				float: left;
+				width: 100%;
+				height: 50%;
+				text-align: center;
+			}
+			
+			.containerForDown .clockArrow{
+				width: 40px;
+				-ms-transform: rotate(180deg); /* IE 9 */
+				-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+				transform: rotate(180deg);
+			}
+			
+			.left75 h5, .right25 h5{
+				color: #666;
+				position: relative;
+				top: -12px;
+				font-size: 1.15em;
+				text-align: center;
+				text-transform: uppercase;
+			}
+			
+			.left75{
+				text-align: center;
+			}
+			
+			.left75 span{
+				font-size: 1.8em;
+				font-weight: bold;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<!-- Time Picker 1 -->
+		<div id="weeklyHours" class="modal modal-fixed-footer">
+			<div class="modal-content">
+			  <h4>Operating Hours</h4>
+			  <p>A bunch of text</p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Confirm</button>
+			</div>
+		</div>
+		<div id="modal2" class="modal">
+			<div class="modal-content">
+				<h4>Operating Hours</h4>
+				<div class="clock">
+					<div class="topLayerOfClock">
+						<div class="left_up">
+							<img src="images/clock-arrow.svg" class="clockArrow OHU">
+						</div>
+						<div class="right_up">
+							<img src="images/clock-arrow.svg" class="clockArrow OMU">
+						</div>
+					</div>
+					<div class="middleLayerOfClock">
+						<div class="middleLeft">
+							<span id="openingHour"></span>
+						</div>
+						<div class="middleMiddle">
+							<span>:</span>
+						</div>
+						<div class="middleRight">
+							<span id="openingMinuteHand"></span>
+						</div>
+					</div>
+					<div class="bottomLayerOfClock">
+						<div class="left_down" >
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow OHD">
+						</div>
+						<div class="right_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow OMD">
+						</div>
+					</div>
+				</div>
+				<h4>TO</h4>
+				<div class="clock">
+					<div class="topLayerOfClock">
+						<div class="left_up" >
+							<img src="images/clock-arrow.svg" class="clockArrow CHU" >
+						</div>
+						<div class="right_up">
+							<img src="images/clock-arrow.svg" class="clockArrow CMU">
+						</div>
+					</div>
+					<div class="middleLayerOfClock">
+						<div class="middleLeft">
+							<span id="closingHour"></span>
+						</div>
+						<div class="middleMiddle">
+							<span>:</span>
+						</div>
+						<div class="middleRight">
+							<span id="closingMinuteHand"></span>
+						</div>
+					</div>
+					<div class="bottomLayerOfClock">
+						<div class="left_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow CHD">
+						</div>
+						<div class="right_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow CMD">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close m1 waves-effect waves-effect waves-light" style="width: 100%;" >Confirm</button>
+			</div>
+		</div>
+		
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="employees.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Add Employee</a>
+			</div>
+		 </nav>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="fullName" type="text" class="validate">
+				  <label for="fullName">Full Name</label>
+				</div>
+				<div class="input-field col s6">
+				  <input id="employeeRole" type="text" class="validate">
+				  <label for="employeeRole">Employee Role</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="experience" type="number" class="validate">
+				  <label for="experience">Experience (in years)</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="employeeEmail" type="text" class="validate">
+				  <label  for="employeeEmail">Email Address</label>
+				</div>
+				<div class="input-field col s6">
+				  <input id="operatingHours" value="08:00 - 23:00" type="text" class="validate" value="">
+				  <label  for="operatingHours" class="active" style>Working Hours</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+					<button class="btn-large waves-effect waves-light addThisEmployee" style="width: 100%;" type="submit" name="action">Add Employee</button>
+				</div>
+			  </div> 
+			</div>
+		</div>
+		<script src="js/functions.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/draggabilly.pkgd.min.js"></script>
+		<script src="js/mdDateTimePicker.js"></script>
+		<script>
+			checkLogin();
+			
+			function loadData()
+			{
+				//setData('salon_profile', 'operating_hours', 'company_id', salonId, 'operatingHours', 'normalText'); // Service Name
+			}
+			
+			loadData();
+			
+			$(document).ready(function(){
+				
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+ 	
+			});
+			
+			$('.addThisEmployee').click(function() 
+			{
+
+				var complete = 1;
+				var full_name = $('#fullName').val();
+				var employeeRole = $('#employeeRole').val();
+				var employee_email = $('#employeeEmail').val();
+				var operating_hours = $('#operatingHours').val();
+				var experience = $('#experience').val();
+
+				if(full_name == '')
+				{
+					complete = 0;
+					failure('You must add an emplooyee name.');
+				}				
+				else if(employee_email == '')
+				{
+					complete = 0;
+					failure('You must add a valid email address.');
+				}
+				else if(operating_hours == '')
+				{
+					complete = 0;
+					failure('You must add operating hours.');
+				}
+				else if(employeeRole == '')
+				{
+					complete = 0;
+					failure('You must add an emplooyee role.');
+				}
+				else if(experience == '')
+				{
+					complete = 0;
+					failure('You must add years of experience.');
+				}
+				if(complete == 1)
+				{
+					
+					addSalonEmployee(salonId, full_name, employeeRole, employee_email, operating_hours, experience);
+					
+				}
+			});	
+			
+			$('#operatingHours').click(function() 
+			{
+				$('#modal2').openModal();
+				
+			});	
+			
+			$('#weekendHours').click(function() 
+			{
+				$('#modal3').openModal();
+			});	
+			
+			$('#publicHolidaysHours').click(function() 
+			{
+				$('#modal4').openModal();
+			});	
+		
+		</script>
+		<script type="text/javascript" src="js/timePicker.js"></script>
+	</body>
+</html>

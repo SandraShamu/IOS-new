@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			
+			.clock{
+				width: 100%;
+				float: left;
+				height: 140px;
+				margin: 0 auto;
+			}
+			
+			.clockButton{
+				width: 100%;
+				float: left;
+				height: 40px;
+				background: #333333;
+				color: #ffffff;
+				text-align: center;
+			}
+			
+			.topLayerOfClock{
+				width: 100%;
+				float: left;
+				height: 20px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			
+			.middleLayerOfClock{
+				width: 100%;
+				float: left;
+				height: 60px;
+			}
+			
+			.bottomLayerOfClock{
+				width: 100%;
+				float: left;
+				height: 20px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			
+			.left_up, .right_up, .left_down, .right_down{
+				float: left;
+				width: 50%;
+				text-align: center;
+			}
+			
+			.middleLeft{
+				float: left;
+				width: 48%;
+				height: 100%;
+				text-align: center;
+				color: #666;
+			}
+			
+			.middleMiddle{
+				float: left;
+				width: 4%;
+				height: 100%;
+				text-align: center;
+				color: #666;
+			}
+			
+			.middleMiddle span{
+				position: relative;
+				top: 5px;
+				font-size: 40px;
+			}
+			
+			.middleRight{
+				float: left;
+				width: 48%;
+				height: 100%;
+				text-align: center;
+				color: #666;
+			}
+			
+			.middleRight span, .middleLeft span{
+				font-size: 40px;
+				position: relative;
+				top: 10px;
+			}
+			
+			.clockArrow{
+				width: 12px;
+				position: relative;
+				top: 3px;
+			}
+			
+			.downArrow{
+				-ms-transform: rotate(180deg); /* IE 9 */
+				-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+				transform: rotate(180deg);
+			}
+			
+			.clockButton span{
+				text-transform: uppercase;
+				font-size: 24px;
+				position: relative;
+				top: 6px;
+			}
+			
+			.employeeContainer, .serviceContainer{
+				width: calc(100% - 20px);
+				margin: 0 auto;
+				height: auto;
+				overflow:scroll;
+			}
+					
+			.specificEmployeeContainer, .specificServiceContainer{
+				width: 100%;
+				float: left;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			
+			.specificEmployeeRadio, .specificServiceRadio{
+				width: 30%;
+				float: left;
+				height: 100%;				
+				text-align: center;
+			}
+			
+			.specificEmployeeName, .specificServiceName{
+				width: 100%;
+				float: left;
+				height: 100%;
+				font-size: 1.39em;
+				color: #666;
+				text-align: center;
+			}
+			
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+
+		<div id="modal3" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4>Employees</h4>
+				<div class="employeeContainer"></div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close  waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		
+		<div id="modal4" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4>Services</h4>
+				<div class="serviceContainer"></div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close  waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		
+		<div id="modal5" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4 id="employeeTimetable">Employee's Available Times</h4>
+				<div class="freeTimesContainer"></div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close  waves-effect waves-effect waves-light" style="width: 100%;" >Confirm</button>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+			  <!--<img src="images/bars.svg" class="menuBurger" data-activates="slide-out">-->
+			  <a href="employeeBookings.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Add Booking<!--<img src="images/logo.png" class="gLogo">--></a>
+			</div>
+		 </nav>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+			  
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="clientName" type="text" class="validate" >
+				  <label for="clientName">Client Name</label>
+				</div>
+				
+				<div class="input-field col s6">
+				  <input id="clientEmail" type="text" class="validate" >
+				  <label for="clientEmail">Client Email</label>
+				</div>
+				
+			  </div>	
+				
+			  <div class="row">
+				
+				<div class="input-field col s6">
+				  <input id="clientPhoneNumber" type="text" class="validate" >
+				  <label for="clientPhoneNumber">Client Phone Number</label>
+				</div>
+				
+				<div class="input-field col s6">
+				  <div id="service" class="spanInput"></div>
+				  <input id="serviceID" type="hidden" class="validate" >
+				  <label for="service">Service</label>
+				</div>
+			  </div>
+
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="serviceCost" type="text" class="validate nonEditable" readonly>
+				  <label for="serviceCost">Cost Of Service</label>
+				</div>
+				
+				<div class="input-field col s6">
+					<input id="timeToCompleteService" type="text" class="validate nonEditable" readonly>
+					<label for="timeToCompleteService">Service Duration</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="allocatedEmployee_ae" type="text" class="validate nonEditable" readonly>
+				  <input type="hidden" id="allocatedEmployeeID" value="">
+				  <label for="allocatedEmployee_ae">Allocated Employee</label>
+				</div>
+				
+				<div class="input-field col s6">
+				  <input id="dateOfBooking" type="text" class="validate">
+				  <label for="dateOfBooking">Date Of Booking</label>
+				</div>
+			  </div>
+			  
+			  <div class="row">
+				<div class="input-field col s6">
+				  <div id="timeOfBooking" class="spanInput"></div>
+				  <label for="timeOfBooking">Time Of Booking</label>
+				</div>
+				
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+					<button class="btn-large waves-effect waves-light addBooking" style="width: 100%;" type="submit" name="action">Add Booking</button>
+				</div>
+			  </div>
+			  
+			</div>
+		</div>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/draggabilly.pkgd.min.js"></script>
+		<script src="js/mdDateTimePicker2.js"></script>
+		<script>
+			checkLogin();
+			$('.datepicker').pickadate({
+				selectMonths: true, // Creates a dropdown to control month
+				selectYears: 1 // Creates a dropdown of 15 years to control year
+			  });
+			  
+			$(document).ready(function(){
+			
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+ 	
+			});
+			
+			if(proposedTime != ""){
+				$("#timeOfBooking").val(proposedTime);
+			}
+			
+			if(proposedEmployee != "" && proposedEmployeeID !=""){
+				$("#allocatedEmployee_ae").val(proposedEmployee);
+				$("#allocatedEmployeeID").val(proposedEmployeeID);
+			}
+			
+			/*::::::::::::::::::::::GET EMPLOYEES::::::::::::::::::::*/
+			$(document).on('click', ".confirmEmployee", function() {
+				
+				$(".eradio").each(function( index ) {
+					var isChecked = $(this).is(':checked'); 
+					var selectedEmployee = '';
+					if(isChecked == true){
+						selectedEmployee = $(this).attr("data-employee-name");
+						selectedEmployeeID = $(this).attr("data-employee-id");
+						$("#allocatedEmployee_ae").val(selectedEmployee);
+						$("#allocatedEmployeeID").val(selectedEmployeeID);
+						//_("employeeTimetable").empty();
+						//_("employeeTimetable").text(selectedEmployee + "\'s Available Times");
+
+					}
+				});
+				
+			});
+			
+			$(document).on('click', ".employeeContainer .row", function() {
+				
+				radioId = $(this).attr("data-radio-id");
+				$("#" + radioId).prop("checked", true);
+				selectedEmployee = $(this).attr("data-remployee-name");
+				selectedEmployeeID = $(this).attr("data-remployee-id");
+				
+				$("#allocatedEmployee_ae").val(selectedEmployee);
+				$("#allocatedEmployeeID").val(selectedEmployeeID);
+				//_("employeeTimetable").empty();
+				//_("employeeTimetable").text(selectedEmployee + "\'s Available Times");
+				
+			});
+			
+			/*::::::::::::::::::::::GET EMPLOYEES TIMETABLE::::::::::::::::::::*/
+			$(document).on('click', ".confirmTime", function() {
+				
+				$(".tradio").each(function( index ) {
+					var isChecked = $(this).is(':checked'); 
+					var selectedEmployee = '';
+					if(isChecked == true){
+						selectedTime = $(this).attr("data-time-slot");
+						$("#timeOfBooking").text(selectedTime);
+						//_("employeeTimetable").empty();
+						//_("employeeTimetable").text(selectedEmployee + "\'s Available Times");
+
+					}
+				});
+				
+			});
+			
+			$(document).on('click', ".freeTimesContainer .row", function() {
+				
+				radioId = $(this).attr("data-radio-id");
+				$("#" + radioId).prop("checked", true);
+				selectedTime = $(this).attr("data-rtime-slot");
+				$("#timeOfBooking").text(selectedTime);
+				//_("timeOfBooking").val(selectedTime);
+				//_("employeeTimetable").empty();
+				//_("employeeTimetable").text(selectedEmployee + "\'s Available Times");
+				$('#modal5').closeModal();
+			});
+			
+			
+			$('#timeOfBooking').click(function(){	
+				//Get the chosen date
+				
+				var theDate = _("dateOfBooking").val();
+				var employeeID = _("allocatedEmployeeID").val();
+				var serviceId = $('#serviceID').val();
+				
+				if(theDate !='' && employeeID !='' && serviceId !=''){
+					
+					getAvailableSlotsForEmployee(salonId,serviceId,employeeID,theDate);
+					$('#modal5').openModal();
+					
+				 }else{
+				 
+					failure('Please choose a date, service and an employee.');
+					
+				 }
+				 
+			});
+			
+			/*::::::::::::::::::::::::GET SERVICES::::::::::::::::::::*/
+			$(document).on('click', ".serviceContainer .row", function() {
+				
+				radioId = $(this).attr("data-radio-id");
+				$("#" + radioId).prop("checked", true);
+				selectedService = $(this).attr("data-rservice-name");
+				selectedServiceID = $(this).attr("data-rservice-id");
+				serviceCost = $(this).attr("data-rservice-cost");
+				serviceDuration = $(this).attr("data-rservice-duration");
+				serviceId = selectedServiceID;
+				_("serviceID").val(selectedServiceID);
+				_("serviceCost").val(serviceCost);
+				_("timeToCompleteService").val(serviceDuration);
+				_("service").text(selectedService);
+				//Empty Employee field and the booking time
+				_("timeOfBooking").text("");
+				
+				$('#modal4').closeModal();
+			});
+			
+			$(document).on('click', ".confirmService", function() {
+				$(".radio").each(function( index ) {
+					var isChecked = $(this).is(':checked'); 
+					var selectedService = '';
+					if(isChecked == true){
+						selectedService = $(this).attr("data-service-name");
+						selectedServiceID = $(this).attr("data-service-id");
+						serviceCost = $(this).attr("data-service-cost");
+						serviceDuration = $(this).attr("data-service-duration");
+						_("serviceCost").val(serviceCost);
+						_("timeToCompleteService").val(serviceDuration);
+						serviceId = selectedServiceID;
+						_("serviceID").val(selectedServiceID);
+						_("service").val(selectedService);
+						_("timeOfBooking").val("");
+					}
+				});
+			});
+			
+			$('#service').click(function(){	
+				getThisEmployeesServices();
+				$('#modal4').openModal();
+			});
+			
+			var $input = $('.datepicker').pickadate();
+
+			// Use the picker object directly.
+			var picker = $input.pickadate('picker');
+
+			picker.set('select', todaysDatePickerFormat, { format: 'yyyy-mm-dd' });
+			
+			/*
+			var z = new mdDateTimePicker.default({
+			  type: 'date',
+			  init: moment(todaysDatePickerFormat, 'YYYY-MM-DD'),
+			  orientation: 'PORTRAIT'
+			});
+			
+			document.getElementById('dateOfBooking').addEventListener('click', function() {
+				z.toggle();
+			});
+			*/
+			
+			$('.addBooking').click(function() 
+			{
+				var complete = 1;
+				
+				var clientName = $('#clientName').val();
+				var clientPhoneNumber = $('#clientPhoneNumber').val();
+				var clientEmail = $('#clientEmail').val();
+				var service = $('#service').text();
+				var serviceId = $('#serviceID').val();
+				var serviceCost = $('#serviceCost').val();
+				var timeToCompleteService = $('#timeToCompleteService').val();
+				var allocatedEmployee = $('#allocatedEmployee_ae').val();
+				var allocatedEmployeeID = $('#allocatedEmployeeID').val();
+				var dateOfBooking = $('#dateOfBooking').val();
+				var timeOfBooking = $('#timeOfBooking').text();
+				
+				if(clientName == '')
+				{
+					complete = 0;
+					failure('You must add a client.');
+				}
+				else if(clientPhoneNumber == ''){
+				
+					complete = 0;
+					failure('You must add a phone number.');
+				}
+				else if(clientEmail == ''){
+				
+					complete = 0;
+					failure('You must add an email.');
+					
+				}
+				else if(service == '')
+				{
+					complete = 0;
+					failure('You must add a service.');
+				}
+				else if(allocatedEmployee == '')
+				{
+					complete = 0;
+					failure('You must allocate an employee.');
+				}
+				else if(dateOfBooking == '')
+				{
+					complete = 0;
+					failure('You must select a booking.');
+				}
+				else if(timeOfBooking == '')
+				{
+					complete = 0;
+					failure('You must add a time for the booking.');
+				}
+				
+				if(complete == 1)
+				{					
+					addBooking(clientName, clientPhoneNumber, clientEmail, salonId, serviceId, service, serviceCost, timeToCompleteService, allocatedEmployee, allocatedEmployeeID, dateOfBooking, timeOfBooking);	
+				}
+				
+			});
+		</script>
+	</body>
+</html>

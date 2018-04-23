@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			
+			.adminServices{
+				float: left;
+				width: 100%;
+				height: auto;
+				position: relative;
+				top: 7px;
+			}
+
+.serviceCategories{
+	float: left;
+	height: 100%;
+	position: fixed;
+	top: 62px;
+	width: 100%;
+	background: #ffffff;
+	border-right: 1px solid #bfbfbf;
+	-webkit-box-shadow: -1px 1px 6px 0px rgba(102,102,102,1);
+-moz-box-shadow: -1px 1px 6px 0px rgba(102,102,102,1);
+box-shadow: -1px 1px 6px 0px rgba(102,102,102,1);
+}
+
+.fixedMenu{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	float: left;
+	height: 50px;
+	background: #e6e6e6;
+}
+
+.fixedMenuItem{
+	width: 50%;
+	float: left;
+	height: 100%;
+	text-align: center;
+	background: #e6e6e6;
+}
+
+.employeeProfilePicture{
+	height: 90px;
+	width: 90px;
+	border-radius: 50%;
+	background: #f2f2f2;
+	margin: 0 auto;
+	background-size: cover !important;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+}
+
+.employeeMenuItem{
+	width: 50%;
+	float: left;
+	height: 100%;
+	text-align: center;
+	background: #e6e6e6;
+}
+
+.employeeMenuItem img{
+	position: relative;
+	top: 9px;
+	height: 30px;
+}
+
+.fixedMenuItem img{
+	position: relative;
+	top: 9px;
+	height: 30px;
+}
+
+.serviceCategory{
+	width: 100%;
+	float: left;
+	text-align: center;
+	border-bottom: 1px solid #e6e6e6;
+	height: 60px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.serviceCategory img{
+	height: 45px;
+}
+
+.selectedCategoryHeading{
+	background: #26a69a;
+	color: #ffffff;
+	width: calc(100% - 20px);
+	margin: 0 auto;
+	text-align: center;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	text-align: left;
+}
+
+.serviceCategory span{
+	font-size: 1.4em;
+	line-height: 45px;
+}
+
+.serviceCategoryShadow{
+	float: left;
+	width: 30%;
+	height: auto;
+}
+
+.serviceCategoryShadow span{
+	opacity: 0;
+}
+
+.listedServices{
+	float: left;
+	width: 70%;
+	height: auto;
+}
+
+.listedService{
+	width: 100%;
+	float: left;
+	border-bottom: 1px solid #e6e6e6;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+}
+
+.listedService div{
+	font-size: 1.3em;
+	width: calc(100% - 20px);
+	margin: 0 auto;
+}	
+
+.salonLogoContainer img{
+	width: 100%;
+}
+
+.rightSide{
+	text-align: left;
+}
+
+.fixedMenu{
+			float: left;
+			width: 100%;
+			text-align: center;
+			position: fixed;
+			bottom: 0;
+			height: 50px;
+			background: #26a69a;
+		}
+		
+		.normal-icon{
+			color: #ffffff;
+			font-size: 2.5em;
+		}
+		
+		.oneHalfMenuItem{
+			width: 50%;
+			float: left;
+			height:100%;
+		}
+		
+		.leftSide{
+			float: left; width: 30%; height: 100%; 
+		}
+		
+		.rightSide{
+			float: left; width: 50%; height: 100%;
+		}
+		
+		.farRight{
+			float: left; width: 20%; height: 100%;
+		}
+		
+		.buttonContainer{
+			float: left;
+			width: 100%;
+			height: auto;
+		}
+		
+		.circleContainer{
+			background: #26a69a;
+			color: #ffffff;
+			width: 44px;
+			height: 44px;
+			border-radius: 50%;
+		}
+		
+		.addServiceIcon{
+			color: #ffffff;
+			font-size: 14px;
+		}
+		
+		.selectedCategoryHeadingContainer{
+			float: left;
+			width: 100%;
+			margin: 0 auto;
+			height: auto;
+		}
+		
+		.fullRowBackrgoundSC{
+			background: #26a69a;
+		}
+		
+		.noServices{
+			margin-top: 20px;
+		}
+		
+		.containerForServiceCategories, .containerForListedServices{
+			float: left;
+			width: 100%;
+			height: auto;
+		}
+		
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="salonDashboard.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Services</a>
+			</div>
+		 </nav>
+		 </div>
+		<section class="adminServices">
+			<div class="serviceCategories" >
+				<div class="containerForServiceCategories">
+				</div>
+				<div class="row buttonContainer">
+					<div class="input-field col s12">
+						<a href="addService.html"><button class="btn-large waves-effect waves-light" style="width: 100%;" >Add Service</button></a>
+					</div>
+				</div>
+			</div>
+			<div class="serviceCategoryShadow"><span>this is a shadow</span></div>
+			<div class="listedServices">
+				<div class="selectedCategoryHeadingContainer">
+					<div class="col s12 fullRowBackrgoundSC">
+						<a href="addService.html"><h1 class="selectedCategoryHeading"></h1></a>
+					</div>
+				</div>
+				
+				<div class="containerForListedServices">
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script>
+			checkLogin();
+			getAllSalonServiceCategories(salonId);
+		</script>
+	</body>
+</html>

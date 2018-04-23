@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.profilePic{
+				width: 100px;
+				position: relative;
+				top: 40px;
+			}
+			
+			.spanHeading{
+				color: #26a69a;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="employeeTips.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Booking Details</a>
+			</div>
+		 </nav>
+		 <div class="headerImage" style="background: url('images/userProfileBG.jpg');">
+			<div class="changeProfileImage" id="myPicture" ></div>
+		 </div>
+		 <div class="lollipopColorsContainer">
+			<div class="lollipopColor" style="background: rgb(134, 232, 175);"></div>
+			<div class="lollipopColor" style="background: rgb(49, 158, 94);"></div>
+			<div class="lollipopColor" style="background: rgb(229, 141, 87);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 248, 153);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 218, 96);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 132, 167);"></div>
+			<div class="lollipopColor" style="background: rgb(237, 28, 59);"></div>
+		</div>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+			  <div class="row">
+				<div class="input-field col s6">
+					<span class="spanHeading">Client Name</span><br>
+					<span id="clientName"></span>
+				</div>
+				<div class="input-field col s6">
+					<span class="spanHeading">Service Name</span><br>
+					<span id="service"></span>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s6">
+					<span class="spanHeading">Date</span><br>
+					<span id="date"></span>
+				</div>
+				
+				<div class="input-field col s6">
+					<span class="spanHeading">Time</span><br>
+					<span id="time"></span>
+				</div>
+			  </div>
+				<div class="row">
+					<div class="input-field col s12">
+						<span class="spanHeading">Tip</span><br>
+						<span id="tip"></span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="js/functions.js"></script>
+		<script>
+			checkLogin();
+			$(document).ready(function(){
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+ 	
+			});
+			
+			function loadData()
+			{
+				setData('bookings', 'client_name', 'booking_id', bookingId, 'clientName', 'spanText'); // Client Name
+				setData('bookings', 'service_name', 'booking_id', bookingId, 'service', 'spanText'); // Email
+				setData('bookings', 'date', 'booking_id', bookingId, 'date', 'spanText'); // Contact Number
+				setData('bookings', 'time', 'booking_id', bookingId, 'time', 'spanText');
+				setData('bookings', 'tip', 'booking_id', bookingId, 'tip', 'spanCost');
+				setData('salon_employees', 'profile_picture', 'employee_email', userEmail, 'myPicture', 'profilePic');
+			}
+			
+			loadData();
+			
+			
+		</script>
+		
+	</body>
+</html>

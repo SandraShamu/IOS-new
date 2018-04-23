@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.clock{
+				width: 100%;
+				float: left;
+				height: 140px;
+				margin: 0 auto;
+			}
+			
+			.clockButton{
+				width: 100%;
+				float: left;
+				height: 40px;
+				background: #333333;
+				color: #ffffff;
+				text-align: center;
+			}
+			
+			.topLayerOfClock{
+				width: 100%;
+				float: left;
+				height: 20px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			
+			.middleLayerOfClock{
+				width: 100%;
+				float: left;
+				height: 60px;
+			}
+			
+			.bottomLayerOfClock{
+				width: 100%;
+				float: left;
+				height: 20px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			
+			.left_up, .right_up, .left_down, .right_down{
+				float: left;
+				width: 50%;
+				text-align: center;
+			}
+			
+			.middleLeft{
+				float: left;
+				width: 48%;
+				height: 100%;
+				text-align: center;
+				color: #666;
+			}
+			
+			.middleMiddle{
+				float: left;
+				width: 4%;
+				height: 100%;
+				text-align: center;
+				color: #666;
+			}
+			
+			.middleMiddle span{
+				position: relative;
+				top: 5px;
+				font-size: 40px;
+			}
+			
+			.middleRight{
+				float: left;
+				width: 48%;
+				height: 100%;
+				text-align: center;
+				color: #666;
+			}
+			
+			.middleRight span, .middleLeft span{
+				font-size: 40px;
+				position: relative;
+				top: 10px;
+			}
+			
+			.clockArrow{
+				width: 12px;
+				position: relative;
+				top: 3px;
+			}
+			
+			.downArrow{
+				-ms-transform: rotate(180deg); /* IE 9 */
+				-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+				transform: rotate(180deg);
+			}
+			
+			.clockButton span{
+				text-transform: uppercase;
+				font-size: 24px;
+				position: relative;
+				top: 6px;
+			}
+			
+			.clockHeadings{
+				width: 100%;
+				float: left;
+				height: auto;
+			}
+			
+			.clockHeadingsLefts{
+				width: 50%;
+				float: left;
+				text-align: center;
+			}
+			
+			.clockHeadingsRight{
+				width: 50%;
+				float: left;
+				text-align: center;
+			}
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="modal2" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+				<div class="clock">
+					<div class="clockHeadings">
+						<div class="clockHeadingsLefts">
+							Hrs
+						</div>
+						<div class="clockHeadingsRight">
+							Mins
+						</div>
+					</div>
+					<div class="topLayerOfClock">
+						<div class="left_up">
+							<img src="images/clock-arrow.svg" class="clockArrow">
+						</div>
+						<div class="right_up">
+							<img src="images/clock-arrow.svg" class="clockArrow">
+						</div>
+					</div>
+					<div class="middleLayerOfClock">
+						<div class="middleLeft">
+							<span id="hourHand"></span>
+						</div>
+						<div class="middleMiddle">
+							<span>:</span>
+						</div>
+						<div class="middleRight">
+							<span id="minuteHand"></span>
+						</div>
+					</div>
+					<div class="bottomLayerOfClock">
+						<div class="left_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow">
+						</div>
+						<div class="right_down">
+							<img src="images/clock-arrow.svg" class="clockArrow downArrow">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close confirmTime waves-effect waves-effect waves-light" style="width: 100%;" >Confirm</button>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="salonServices.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Add Service</a>
+			</div>
+		 </nav>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+			  <div class="row">
+				<div class="input-field col s6">
+				  <input id="serviceName" type="text" class="validate">
+				  <label for="serviceName" class="active" style>Service Name</label>
+				</div>
+				<div class="input-field col s6">
+				  <input id="servicePrice" type="text" class="validate" onkeyup="numbersOnly(this)">
+				  <label  for="servicePrice" class="active" style>Cost Of Service (ZAR)</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+					<select id="serviceCategory">
+					  <option value="" disabled selected>Choose your option</option>
+					  <option value="1">Make-Up</option>
+						  <option value="2">Hair</option>
+						  <option value="3">Nails</option>
+						  <option value="4">Massage</option>
+						  <option value="5">Waxing</option>
+						  <option value="6">Barber</option>
+					</select>
+					<label>Choose Service Category</label>
+				 </div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s">
+				  <input id="serviceDuration" type="text" class="validate">
+				  <label  for="serviceDuration" class="active" style>Time To Complete Service</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+				  <textarea id="serviceDesc" class="materialize-textarea"></textarea>
+				  <label for="serviceDesc" class="active" style>Service Description</label>
+				</div>
+			  </div>
+
+			  <div class="row">
+				<div class="input-field col s12">
+					<button class="btn-large waves-effect waves-light addService" style="width: 100%;" type="submit" name="action">Add Service</button>
+				</div>
+			  </div> 
+			</div>
+		</div>
+		<script src="js/functions.js"></script>
+		<script src="js/pseudoTimePicker.js"></script>
+		<script>
+			checkLogin();
+		
+			$(document).ready(function() {
+				$('select').material_select();
+			  });
+			  
+			  $(document).ready(function(){
+				
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+ 
+				
+			});
+			  
+			$('.addService').click(function() 
+			{
+				var complete = 1;
+				
+				var serviceName = $('#serviceName').val();
+				var servicePrice = $('#servicePrice').val();
+				var serviceDuration = $('#serviceDuration').val();
+				var serviceDesc = $('#serviceDesc').val();
+				var serviceCategory = $('#serviceCategory').val();
+
+				
+				if(serviceName == '')
+				{
+					complete = 0;
+					failure('You must add a service name.');
+				}
+				else if(servicePrice == '')
+				{
+					complete = 0;
+					failure('You must add a service price.');
+				}
+				else if(serviceDuration == '' || serviceDuration == '00:00:00')
+				{
+					complete = 0;
+					failure('You must add a proper service duration');
+				}
+				else if(serviceCategory == 0)
+				{
+					complete = 0;
+					failure('You must choose a service category.');
+				}
+				
+				if(complete == 1)
+				{
+					
+					addSalonService(salonId, serviceName, servicePrice, serviceDuration, serviceDesc, serviceCategory);
+					
+				}
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>

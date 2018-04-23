@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+	    
+	
+
+
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <!--<img src="images/bars.svg" class="menuBurger" data-activates="slide-out">-->
+			  <a href="registerAs.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">User Sign up<!--<img src="images/logo.png" class="gLogo">--></a>
+			</div>
+		</nav>
+		</div>
+		 <div class="headerImage" style="background: url('images/sign-up.jpg');"></div>
+		 <div class="lollipopColorsContainer">
+			<div class="lollipopColor" style="background: rgb(134, 232, 175);"></div>
+			<div class="lollipopColor" style="background: rgb(49, 158, 94);"></div>
+			<div class="lollipopColor" style="background: rgb(229, 141, 87);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 248, 153);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 218, 96);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 132, 167);"></div>
+			<div class="lollipopColor" style="background: rgb(237, 28, 59);"></div>
+		</div>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="email" type="email" class="validate">
+				  <label for="email">Email</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="password" type="password" class="validate">
+				  <label for="password">Password</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+				  <input id="password_retype" type="password" class="validate">
+				  <label for="password_retype">Confirm Password</label>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="input-field col s12">
+					<button class="btn-large waves-effect waves-light submitUserSignUp" style="width: 100%;" type="submit" name="action">Sign Up</button>
+				</div>
+				<div class="input-field col s12">
+					<a class="btn-large waves-effect waves-light " style="width: 100%;background-color: #172691;"  onclick="login_facebook()" >Sign Up With Facebok</a>
+				</div>
+
+					<div class="input-field col s12">
+					<a class="btn-large waves-effect waves-light " style="width: 100%;background-color: white;color:black;"  onclick="login_google()" >Sign Up With Google</a>
+				   </div>
+		
+		
+			  </div> 
+			</div>
+		</div>
+		<script src="js/functions.js"></script>
+		<script>
+		
+			$('.submitUserSignUp').click(function() 
+			{
+				complete = 1;
+				
+				var emailAddress = $('#email').val();
+
+				if(emailAddress.indexOf('@') > -1 && emailAddress.indexOf('.') > -1 && emailAddress.length > 3)
+				{
+					
+				}
+				else if(emailAddress == '')
+				{
+					complete = 0;
+					failure('You must add your email address.');
+				}
+				else
+				{
+					complete = 0;
+					failure('Please enter a valid email address.');
+				}
+				
+				var password = _("password").val();
+				var password_reentry = _("password_retype").val();
+							
+				if(password.length > 4 && password_reentry.length > 4){
+					
+					if(password == password_reentry){
+
+					}else{
+						complete = 0;
+						failure('Passwords do not match.');
+					}
+						
+				}else{
+					complete = 0;
+					failure('Please enter a longer password');
+				}
+				
+				if(complete == 1){
+					var name = '';var surname = '';
+					signUpUser(emailAddress, password,name,surname);
+				}
+				
+			});
+		</script>
+			<script src="cordova.js"></script>
+		<script src="openfb.js"></script>
+		<script>
+		
+     // Defaults to sessionStorage for storing the Facebook token
+     openFB.init({
+			     	appId: '921573651357574',
+			        cookie     : true,
+			        xfbml      : true,
+			        version    : 'v2.8'
+			    });
+
+    //  Uncomment the line below to store the Facebook token in localStorage instead of sessionStorage
+     //openFB.init({appId: '921573651357574', tokenStore: window.localStorage});
+
+    function login_facebook() {
+        openFB.login(
+                function(response) {
+                    if(response.status === 'connected') {
+                       //alert('Facebook login succeeded, got access token: ' + response.authResponse.accessToken);
+                       alert("Facebook login successful");
+                       getInfo(response.authResponse.userID)
+                     } else {
+                        alert('Facebook login failed: ' + response.error);
+                    }
+                }, {scope: 'public_profile,email'});
+
+
+
+
+
+    }
+     function getInfo(userid) {
+        openFB.api({
+            path: '/me?fields=name,id,first_name,last_name,gender',
+            success: function(data) {
+            	// alert(JSON.stringify(data));
+            	// alert(data.first_name);
+                var password = "Thendo50";
+		        var emailAddress = data.email;
+		        if(emailAddress == '' || emailAddress == 'undefined' || emailAddress == null){
+		        	emailAddress = data.id;
+		        }
+		        signUpUser(emailAddress, password,data.first_name,data.last_name);
+            },
+            error: errorHandler});
+    }
+
+
+    function errorHandler(error) {
+        alert(error.message);
+    }
+
+</script>
+<script type="text/javascript">
+  app.initialize();
+  function isAvailable() {
+    window.plugins.googleplus.isAvailable(function(avail) {alert(avail)});
+  }
+  function login_google() {
+    window.plugins.googleplus.login(
+        {},
+        function (obj) {
+          alert( "Hi, " + obj.displayName + ", Google login successful");
+                  var password = "Thendo50";
+                  var emailAddress = obj.email;
+		          var surname = '';
+		          signUpUser(emailAddress, password,obj.displayName,surname);
+		         // alert("After");
+          // document.querySelector("#image").src = obj.imageUrl;
+          // document.querySelector("#image").style.visibility = 'visible';
+          // document.querySelector("#feedback").innerHTML = "Hi, " + obj.displayName + ", " + obj.email;
+        },
+        function (msg) {
+          document.querySelector("#feedback").innerHTML = "error: " + msg;
+        }
+    );
+  }
+  function trySilentLogin() {
+    window.plugins.googleplus.trySilentLogin(
+        {},
+        function (obj) {
+          document.querySelector("#image").src = obj.imageUrl;
+          document.querySelector("#image").style.visibility = 'visible';
+          document.querySelector("#feedback").innerHTML = "Silent hi, " + obj.displayName + ", " + obj.email;
+        },
+        function (msg) {
+          document.querySelector("#feedback").innerHTML = "error: " + msg;
+        }
+    );
+  }
+  function logout() {
+    window.plugins.googleplus.logout(
+        function (msg) {
+          document.querySelector("#image").style.visibility = 'hidden';
+          document.querySelector("#feedback").innerHTML = msg;
+        },
+        function (msg) {
+          document.querySelector("#feedback").innerHTML = msg;
+        }
+    );
+  }
+  function disconnect() {
+    window.plugins.googleplus.disconnect(
+        function (msg) {
+          document.querySelector("#image").style.visibility = 'hidden';
+          document.querySelector("#feedback").innerHTML = msg;
+        },
+        function (msg) {
+          document.querySelector("#feedback").innerHTML = msg;
+        }
+    );
+  }
+  window.onerror = function(what, line, file) {
+    alert(what + '; ' + line + '; ' + file);
+  };
+  function handleOpenURL (url) {
+    document.querySelector("#feedback").innerHTML = "App was opened by URL: " + url;
+  }
+</script>
+
+
+	</body>
+</html>

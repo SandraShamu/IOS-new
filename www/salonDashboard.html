@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.menuBurger{
+				width: 35px;
+				position: relative;
+				top: 2px;
+				left: 15px;
+			}
+		
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.logoContainer img{
+				width: 200px;
+			}
+			
+			.indicator-item{
+				position: relative;
+				top: -50px;
+				z-index: 99;
+			}
+			
+			.gLogo{
+				width: 100px;
+				position: relative;
+				top: -10px;
+			}
+			
+			._sliderOverlay{
+				height: 400px;
+				width: 100%;
+				background: rgba(89,89,89,0.4);
+				position: absolute;
+				z-index: 99;
+			}
+			
+			.search-icon{
+				float: right;
+				position: relative;
+				top: 4px;
+				left: -25px;
+				font-size: 24px;
+			}
+			
+			.search_result{
+				width: 100%;
+				float: left;
+				color: #666;
+				font-weight: bold;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			.search_result span{
+				font-size: 1.4em;
+			}
+			
+			.slideInSearch{
+				width: 100%;
+				height: auto;
+				background: #ffffff;
+				position: absolute;
+				top: -300px;
+				text-align: center;
+				z-index: 9999;
+			}
+			
+			.close-search{
+				width: 100%;
+				height: 35px;
+				background: #666;
+				text-align: center;
+				position: relative;
+				
+			}
+			
+			.close-search img{
+				height: 30px;
+				position: relative;
+				top: 5px;
+			}
+			
+			.headerImage_top{
+				height: 150px;
+				float: left;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.headerImage_top span{
+				line-height: 150px;
+				font-size: 7em;
+				color: #ffffff;
+			}
+			
+			.headerImage_bottom{
+				height: 50px;
+				float: left;
+				width: 100%;
+				text-align: center;
+				color: #ffffff;
+			}
+			
+			.headerImage_bottom span{
+				line-height: 50px;
+				color: #666;
+				font-size: 1.19em;
+				color: #ffffff;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+		
+			
+			.box{
+				width: 50%;
+				float: left;
+				height: 150px;
+				text-align: center;
+			}
+			
+			.db-icon{
+				color: #666;
+				font-size: 58px;
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.services{
+				float: left;
+				width: 100%;
+				position: relative;
+				top: 50px;
+				
+			}
+			
+			.services span{
+				color: #666;
+			}
+			
+			.nameContainer{
+				line-height: 90px;
+			}
+			
+			.center-align .name{
+				font-size: 1.91em;
+				font-family: SkinnyJeans;
+			}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="paymentModal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <a href="payments.html" class="btn-large modal-action  waves-effect waves-effect waves-light" style="width: 100%;" >Activate Now</a>
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div class="slideInSearch">
+				<input type="text" id="search_text" style="text-transform: none; margin-bottom: 0px;" name="search" >
+				<div class="close-search">
+					<img src="images/up-arrow.svg">
+				</div>
+				<div id="result"></div>
+		</div>
+		<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+			  <i class="ion-android-menu menuBurger button-collapse" data-activates="slide-out"></i>
+			  <a href="#!" class="brand-logo center appPageTitle"><img src="images/logo.png" class="gLogo"></a>
+			  
+			</div>
+		</nav>
+		</div>
+		<ul id="slide-out" class="side-nav">
+			<div class="navfullWidth">
+				<div class="row">
+					<div class="col s12 nameContainer center-align">
+						<span class="white-text name"  style=""></span>
+					</div>
+				</div>
+			</div>
+			<li><a class="waves-effect" href="salonDashboard.html">Dashboard</a></li>
+			<li><a class="waves-effect" href="payments.html">Payments</a></li>
+			<li><a class="waves-effect" href="termsOfService.html">Legal</a></li>
+			<li><a class="waves-effect" href="contactUs.html">Get In Touch With Us</a></li>
+			<li><a class="waves-effect" href="logout.html">Log Out</a></li>
+		 </ul>
+		 <a href="manageBookings.html"><div class="headerImage" style="background: url('images/1.jpg');">
+			<div class="headerImage_top">
+				
+			</div>
+			<div class="headerImage_bottom">
+				<!--<span>Bookings Today</span>-->
+			</div>
+		 </div></a>
+		 <div class="lollipopColorsContainer">
+			<div class="lollipopColor" style="background: rgb(134, 232, 175);"></div>
+			<div class="lollipopColor" style="background: rgb(49, 158, 94);"></div>
+			<div class="lollipopColor" style="background: rgb(229, 141, 87);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 248, 153);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 218, 96);"></div>
+			<div class="lollipopColor" style="background: rgb(255, 132, 167);"></div>
+			<div class="lollipopColor" style="background: rgb(237, 28, 59);"></div>
+		</div>
+		<section class="services">
+			<div class="box linkFromDashboard" data-link-to="salonServices">
+			<i class="ion-pricetags db-icon"></i>
+			<br><span>Manage Services</span>
+			</div>
+			
+			<div class="box linkFromDashboard" data-link-to="employees">
+			<i class="ion-android-people db-icon"></i>
+			<br><span>Manage Employees</span>
+			</div>
+			
+			<div class="box linkFromDashboard" data-link-to="managePromotions" >
+			<i class="ion-speakerphone db-icon"></i>
+			<br><span>Manage Promotions</span>
+			</div>
+			
+			<div class="box manageBookings">
+			<i class="ion-android-calendar db-icon"></i><br>
+			<span>Manage Bookings</span>
+			</div>
+			
+			<div class="box linkFromDashboard" data-link-to="bookingHistory" >
+			<i class="ion-android-folder db-icon"></i>
+			<br><span>Booking History</span>
+			</div>
+			
+			<div class="box linkFromDashboard" data-link-to="manageSales" >
+			<i class="ion-cash db-icon"></i>
+			<br><span>Manage Sales</span>
+			</div>
+			
+			<div class="box linkFromDashboard" data-link-to="customerDatabase" >
+			<i class="ion-android-person db-icon"></i>
+			<br><span>Manage Customers</span>
+			</div>
+			
+			<div class="box linkFromDashboard" data-link-to="updateSalonMedia" >
+			<i class="ion-android-camera db-icon"></i>
+			<br><span>Manage Multimedia</span>
+			</div>
+			
+			<div class="box linkFromDashboard" data-link-to="updateSalonSocialMedia" >
+			<i class="ion-social-facebook db-icon"></i>
+			<br><span>Manage Social Media</span>
+			</div>
+			
+			<a href="updateSalonProfile.html"><div class="box">
+			<i class="ion-android-settings db-icon"></i>
+			<br><span>Manage Profile</span>
+			</div></a>
+			
+			<div class="box linkFromDashboard" data-link-to="manageOperations" >
+			<i class="ion-android-time db-icon"></i>
+			<br><span>Manage Operations</span>
+			</div>
+			
+			<div class="box linkFromDashboard" data-link-to="manageProducts" >
+			<i class="ion-paintbrush db-icon"></i>
+			<br><span>Manage Products</span>
+			</div>
+		
+		</section>
+	  
+    </body>
+	<script src="js/functions.js"></script>
+	<script>
+		checkLogin();
+		checkPackageStatus(salonId);
+		$(document).ready(function(){
+		  $(".button-collapse").sideNav();
+		  $('.name').empty();
+		  $('.name').text(salonName);
+			
+		});
+		
+		$('.linkFromDashboard').click(function(){
+			
+			var linkTo = $(this).attr("data-link-to");
+			
+			if(checkIfUserIsActivated()){
+				window.location.href = linkTo + '.html'
+			}else{
+				paymentFailure('You can\'t use this feature beacuse your account is not active.');
+			}
+			
+		});
+		
+		getDatesWithBookings(salonId);
+		
+		$('.manageBookings').click(function(){
+			
+			if(checkIfUserIsActivated()){
+			
+				var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+				var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+				
+				var fullDate = new Date();
+				var day = fullDate.getDay(); //Day
+				var date = fullDate.getDate(); //Date
+				var month = fullDate.getMonth(); //Month
+				var year = fullDate.getFullYear(); //Year
+				
+				currentDay = days[day];
+				currentDate = date;
+				currentMonth = months[month];
+				currentYear = year;
+					
+					var correctDate = currentDate;
+					
+					//Append 0 to date
+					if(correctDate == 1){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 2){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 3){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 4){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 5){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 6){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 7){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 8){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else if(correctDate == 9){
+						
+						correctDate = "0" + correctDate;
+						var twoDigitDate = correctDate;
+						
+					}else{
+						
+						var twoDigitDate = correctDate;
+						
+					}
+					
+					var correctMonth = month + 1;
+					
+					if(correctMonth == 1){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 2){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 3){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 4){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 5){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 6){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 7){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 8){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else if(correctMonth == 9){
+						
+						correctMonth = "0" + correctMonth;
+						var twoDigitMonth = correctMonth;
+						
+					}else{
+						
+						var twoDigitMonth = correctMonth;
+						
+					}
+					
+				
+				todaysDateDBformat = twoDigitDate + "/" + twoDigitMonth + "/" + currentYear; 
+				
+				localStorage.setItem('dbDateFormat', todaysDateDBformat);
+				
+				if(todaysDateDBformat != ''){
+					window.location = 'manageBookings.html';
+				}
+				
+			}else{
+				failure('You can\'t use this feature beacuse your account is not active.');
+			}
+
+		});
+		
+		
+		function loadData()
+		{
+			setData('salon_profile', 'profile_picture', 'company_email_address', userEmail, 'myPicture', 'profilePic');
+		}
+		
+		loadData();
+		
+		
+		getBookingsCount(salonId);
+	</script>
+</html>

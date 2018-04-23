@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Lollipop</title>		
+		<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		<link rel="stylesheet" href="css/ionicons.css">	
+		<link rel="stylesheet" href="css/mdDateTimePicker.css">		
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/materialize.js"></script>
+		<script src="js/loader.js"></script>
+		<style>
+			.gLogo{
+				width: 120px;
+			}
+			
+			.menuBurger{
+				position: absolute;
+				left: 15px;
+				top: 13px;
+				width: 35px;
+			}
+			
+			.topLeftIcon{
+				position: absolute;
+				left: 15px;
+				top: 5px;
+				color: #ffffff;
+			
+			}
+			
+			.headerImage{
+				width: 100%;
+				float: left;
+				height: 200px;
+				background-size: cover !important;
+				background-position: center center !important;
+				background-repeat: no-repeat !important;
+				text-align: center;
+			}
+			
+			.lollipopColorsContainer{
+				width: 100%;
+				float: left;
+				height: 5px;
+				background: #ffffff;
+			}
+			
+			.lollipopColor{
+				width: 14.2857142857%;
+				float: left;
+				height: 100%;
+			}
+			
+			.whiteColor{
+				color: #ffffff;
+			}
+			
+			.appPageTitle{
+				font-size: 12px;
+				text-transform: uppercase;
+			}
+			
+			.profilePic{
+				width: 100px;
+				position: relative;
+				top: 40px;
+			}
+			
+			.spanHeading{
+				color: #26a69a;
+			}
+			
+			.buttonContainer{
+				width: calc(100% - 20px);
+				margin: 0 auto;
+				height: auto;
+				margin-top: 5px;
+			}
+			
+			.fixedMenu{
+			float: left;
+			width: 100%;
+			text-align: center;
+			position: fixed;
+			border-top: 1px solid #e6e6e6;
+			bottom: 0;
+			height: 70px;
+			background: #ffffff;
+		}
+			
+		</style>		
+	</head>
+	<body>
+		<div id="loading-overlay">
+			<div class="spinner"></div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer" style="height: 190px;">
+			<div class="modal-content">
+			  <h4>Oops!</h4>
+			  <p></p>
+			</div>
+			<div class="modal-footer">
+			  <button class="btn-large modal-action modal-close waves-effect waves-effect waves-light" style="width: 100%;" >Close</button>
+			</div>
+		</div>
+		<nav>
+			<div class="nav-wrapper">
+			  <a href="employeesOperations.html"><i class="ion-ios-arrow-left topLeftIcon"></i></a>
+			  <a href="#!" class="brand-logo center appPageTitle">Employee</a>
+			</div>
+		 </nav>
+		<div class="row" style="position:relative; top:20px;">
+			<div class="col s12">
+			   <div class="row">
+				<div class="input-field col s12">
+					<span class="spanHeading">Employee Name</span><br>
+					<span id="employeeName"></span>
+				</div>
+			  </div>
+			  <div class="input-field col s6">
+				  <input id="dateToDisable" type="date" class="datepicker">
+				  <label for="dateToDisable">Disable This Date</label>
+				</div>
+			</div>
+		</div>
+		<section class="fixedMenu">
+			<div class="buttonContainer">
+				<button class="btn-large waves-effect waves-effect waves-light disableThisDate" style="width: 100%;" >Update Employee</button>
+			</div>
+		</section>
+		<script src="js/functions.js"></script>
+		<script>
+			checkLogin();
+			
+			$('.datepicker').pickadate({
+				selectMonths: true, // Creates a dropdown to control month
+				selectYears: 1 // Creates a dropdown of 15 years to control year
+			  });
+			
+			$(document).ready(function(){
+				
+				$( "label" ).each(function() {
+				  $( this ).addClass( "alabel" );
+				});
+				
+				$( ".alabel" ).each(function() {
+				  $( this ).attr("style","font-size: 0.8rem; -webkit-transform: translateY(-140%); transform: translateY(-140%);");
+				});
+ 	
+			});
+			
+			var d = new Date();
+								
+			var date = d.getDate(); //Date
+			var month = parseInt(d.getMonth()) + 1; //Month
+			var year = d.getFullYear();
+									
+			var currentDate = year + "-" + month + "-" + date;
+			var sCurrentDate = date + "" + month + "" + year;
+			
+			var $input = $('.datepicker').pickadate();
+			
+			// Use the picker object directly.
+			var picker = $input.pickadate('picker');
+
+			picker.set('select', currentDate, { format: 'yyyy-mm-dd' });
+
+			
+			function loadData()
+			{
+				setData('salon_employees', 'employee_name', 'id', employeeId, 'employeeName', 'spanText'); // Client Name
+			}
+			
+			loadData();
+			
+			
+			$('.disableThisDate').click(function() 
+			{
+				complete = 0;
+				
+				var chosenDate = $("#dateToDisable").val();
+				var pDate = chosenDate.split("/");
+				
+				var chosenMonth = parseFloat(pDate[1]) - 1;
+				var theChosenDate = new Date(pDate[2],chosenMonth,pDate[0]);
+				
+				pDate = pDate[0] + "" + pDate[1] + "" + pDate[2];
+				
+				if(theChosenDate > d){
+					complete = 1;
+				}
+				else if(parseInt(pDate) == parseInt(sCurrentDate)){
+					complete = 1;
+				}
+				else{
+				
+					failure('You can\'t disbale a date in the past');
+				
+				}
+				
+				if(complete == 1){
+					disableThisEmployeesDate(employeeId, chosenDate);
+				}
+				
+			});
+			
+			
+		</script>
+		
+	</body>
+</html>
